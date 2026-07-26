@@ -1,0 +1,114 @@
+{
+  "company": {
+    "name": "HTech Supports",
+    "tagline": "Everything you need. Global IT Support & Infrastructure Services.",
+    "taglineRotator": [
+      "Support Services",
+      "Datacenter Services",
+      "Wireless Services",
+      "Global Roll Out",
+      "Deskside Services"
+    ],
+    "description": "HTS has a strong global presence, delivering solutions across more than 50 countries. Our engineers, many of whom are multilingual, range from Level 1 through to Level 3 across a broad spectrum of vendor technologies.",
+    "details": "Our global services are provisioned through the use of our own engineers and our highly approved service partners. Servicing client requirements in multiple sectors from simple smart hands engineering to the more complicated consultative approach that enables us to build solutions partnered alongside our clients. HTS can support you in Datacenter, Unified collaboration, Deskside support with back fill or fixed term contracted engineers, Wireless and Data communications, global roll outs, and forward stocking locations.",
+    "coverageStats": [
+      { "region": "NORTH AMERICA", "percentage": 70 },
+      { "region": "SOUTH AMERICA", "percentage": 80 },
+      { "region": "EMEA", "percentage": 100 },
+      { "region": "APAC", "percentage": 70 },
+      { "region": "AUSTRALIA", "percentage": 80 }
+    ]
+  },
+  "navigation": [
+    { "title": "Home", "path": "/" },
+    { "title": "Company", "path": "/pages/company/" },
+    {
+      "title": "Services",
+      "path": "/pages/services/",
+      "children": [
+        { "title": "Professional Service", "path": "/pages/professional-service/" },
+        { "title": "Wireless Survey", "path": "/pages/wireless-survey/" },
+        { "title": "Network Support", "path": "/pages/network-support/" },
+        { "title": "Structured Cabling", "path": "/pages/structured-cabling/" },
+        { "title": "End User Computing Support", "path": "/pages/end-user-computing-support/" },
+        { "title": "ITAD – IT Asset Disposal", "path": "/pages/itad-it-asset-disposal/" },
+        { "title": "Staff Augmentation", "path": "/pages/staff-augmentation/" }
+      ]
+    },
+    {
+      "title": "Sectors",
+      "path": "/pages/sectors/",
+      "children": [
+        { "title": "Retail", "path": "/pages/retail/" },
+        { "title": "Enterprise", "path": "/pages/enterprise/" },
+        { "title": "Data Center", "path": "/pages/data-center/" },
+        { "title": "Carrier Network", "path": "/pages/carrier-network/" },
+        { "title": "Manufacturing", "path": "/pages/manufacturing/" },
+        { "title": "Government", "path": "/pages/government/" }
+      ]
+    },
+    { "title": "Resources", "path": "/resources/", "children": [{ "title": "Blog", "path": "/blog-2/" }] },
+    { "title": "Careers", "path": "/pages/careers/" },
+    { "title": "Contact", "path": "/pages/contact-creative/" },
+    { "title": "Enter the Hub", "path": "/pages/engineer/" }
+  ],
+  "services": [
+    {
+      "id": "professional-service",
+      "title": "Professional Service",
+      "icon": "Support",
+      "description": "Creating a dynamic and engaging audio-visual experience requires skilled professionals and a seamless integration process. We offer comprehensive AV installation and consultation.",
+      "link": "/pages/professional-service/"
+    },
+    {
+      "id": "wireless-survey",
+      "title": "Wireless Survey",
+      "icon": "Wifi",
+      "description": "Optimize Your Wireless Network with Ekahau Surveys performed by a certified partner to improve Wi-Fi performance and site coverage.",
+      "link": "/pages/wireless-survey/"
+    },
+    {
+      "id": "network-support",
+      "title": "Network Support",
+      "icon": "Network",
+      "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We offer a comprehensive suite of services to keep your network active.",
+      "link": "/pages/network-support/"
+    },
+    {
+      "id": "structured-cabling",
+      "title": "Structured Cabling",
+      "icon": "Cabling",
+      "description": "A well-designed network cabling system is the backbone of any successful IT infrastructure, providing a reliable foundation for high-speed data transmission.",
+      "link": "/pages/structured-cabling/"
+    }
+  ],
+  "sectors": [
+    {
+      "id": "retail",
+      "title": "Retail",
+      "icon": "Shop",
+      "description": "Comprehensive site audits, IT health checks, and technology rollouts throughout EMEA retail estates.",
+      "link": "/pages/retail/"
+    },
+    {
+      "id": "enterprise",
+      "title": "Enterprise",
+      "icon": "Building",
+      "description": "Unified collaboration upgrades across multiple enterprise locations in Europe for global banking and corporate networks.",
+      "link": "/pages/enterprise/"
+    },
+    {
+      "id": "datacenter",
+      "title": "Data Center",
+      "icon": "Database",
+      "description": "Datacenter engineering services ranging from cable patching to full hardware deployment, racking, and support.",
+      "link": "/pages/data-center/"
+    }
+  ],
+  "contactForm": {
+    "title": "Have some questions or want to say hi?",
+    "subtitle": "Your queries are important to us, reach us anytime for further information.",
+    "roles": ["Engineer", "Customer", "Business Owner"],
+    "recaptchaSiteKey": "6Lcr9SkpAAAAAPvheMRebSc25Uk9my0wET5_vX14"
+  }
+}

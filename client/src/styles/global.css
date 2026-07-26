@@ -1,0 +1,78 @@
+/* src/styles/global.css */
+/* Basic reset and typography using Inter font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Simple layout helpers */
+.site-header, .site-footer {
+  background: #1e266d;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.main-nav a {
+  color: #fff;
+  font-weight: 500;
+}
+
+.main-nav .has-dropdown:hover .dropdown {
+  display: block;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background: #1e266d;
+  padding: 0.5rem;
+}
+
+.dropdown li {
+  margin: 0.5rem 0;
+}
+
+footer .footer-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer .footer-copy {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
