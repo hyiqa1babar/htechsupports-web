@@ -1,78 +1,68 @@
-/* src/styles/global.css */
-/* Basic reset and typography using Inter font */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* =============================================
+   HTECH SUPPORTS – GLOBAL DESIGN SYSTEM
+   ============================================= */
+
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── Design Tokens ──────────────────────────── */
+:root {
+  --hts-navy:      #1e266d;   /* primary brand blue */
+  --hts-blue:      #1e3a8a;   /* card/section blue  */
+  --hts-cyan:      #06b6d4;   /* accent cyan        */
+  --hts-purple:    #7c3aed;   /* accent purple      */
+  --hts-dark:      #121824;   /* footer dark        */
+  --hts-offwhite:  #f4f6fb;   /* section bg         */
+  --hts-white:     #ffffff;
+  --hts-text:      #1f2937;
+  --hts-muted:     #6b7280;
+  --radius-card:   14px;
+  --shadow-card:   0 4px 24px rgba(30,38,109,.12);
+  --shadow-hover:  0 8px 36px rgba(30,38,109,.24);
+  --transition:    0.28s cubic-bezier(.4,0,.2,1);
 }
 
-html, body {
-  font-family: 'Inter', sans-serif;
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--hts-white);
+  color: var(--hts-text);
   line-height: 1.6;
-  background-color: #f9fafb;
-  color: #111827;
+  -webkit-font-smoothing: antialiased;
 }
 
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+ul { list-style: none; }
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── Utility ─────────────────────────────────── */
 .container {
-  max-width: 1200px;
+  max-width: 1260px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--hts-navy);
 }
 
-ul {
-  list-style: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-/* Simple layout helpers */
-.site-header, .site-footer {
-  background: #1e266d;
-  color: #fff;
-  padding: 1rem 0;
-}
-
-.main-nav ul {
-  display: flex;
-  gap: 1rem;
-}
-
-.main-nav a {
-  color: #fff;
-  font-weight: 500;
-}
-
-.main-nav .has-dropdown:hover .dropdown {
-  display: block;
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  background: #1e266d;
-  padding: 0.5rem;
-}
-
-.dropdown li {
-  margin: 0.5rem 0;
-}
-
-footer .footer-links ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-footer .footer-copy {
-  margin-top: 1rem;
-  font-size: 0.875rem;
+.section-sub {
+  font-size: 1rem;
+  color: var(--hts-muted);
+  max-width: 680px;
+  line-height: 1.7;
 }
