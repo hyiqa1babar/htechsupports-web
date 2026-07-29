@@ -103,29 +103,6 @@ export default function CompanySection() {
           <p className="company-body">
             {company.details}
           </p>
-
-          {/* Coverage stats */}
-          <div className="company-stats">
-            {company.coverageStats.map((stat) => (
-              <div key={stat.region} className="stat-item">
-                <div className="stat-bar-bg">
-                  <div
-                    className="stat-bar-fill"
-                    style={{ width: `${stat.percentage}%` }}
-                    role="progressbar"
-                    aria-valuenow={stat.percentage}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-label={`${stat.region}: ${stat.percentage}%`}
-                  />
-                </div>
-                <div className="stat-label">
-                  <span>{stat.region}</span>
-                  <span>{stat.percentage}%</span>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

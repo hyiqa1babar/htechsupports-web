@@ -5,8 +5,8 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, #1e266d 0%, #162d8e 50%, #0f1f6f 100%);
-  padding: 12px 0;
+  background: linear-gradient(45deg, var(--hts-banner-start) 0%, var(--hts-banner-end) 100%);
+  padding: 18px 0;
 }
 
 /* ── Inner wrapper ─────────────────────────────────────── */
@@ -21,15 +21,17 @@
   align-items: center;
   gap: 1.5rem;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 10px 22px;
+  border-radius: 14px;
+  padding: 18px 28px;
+  min-height: 76px;
   width: 100%;
   max-width: 1200px;
   box-shadow: 0 6px 32px rgba(0,0,0,.18), 0 1px 4px rgba(0,0,0,.08);
 }
 
 /* ── Logo ──────────────────────────────────────────────── */
-.hts-logo img { height: 44px; width: auto; flex-shrink: 0; }
+.hts-logo { flex-shrink: 0; display: flex; align-items: center; }
+.hts-logo img { height: 52px; width: auto; max-width: 180px; object-fit: contain; }
 
 /* ── Desktop nav ───────────────────────────────────────── */
 .hts-nav { flex: 1; display: flex; justify-content: center; }

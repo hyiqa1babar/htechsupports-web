@@ -1,9 +1,57 @@
 /* LogoCarousel.css */
 
-.carousel-section {
+.carousel-section--full {
   background: var(--hts-offwhite);
   padding: 72px 0 56px;
   overflow: hidden;
+}
+
+/* ── Mini variant: sits inside the hero band itself ────── */
+.carousel-section--mini {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  padding: 0 0 28px;
+  overflow: hidden;
+}
+
+.carousel-section--mini .carousel-mask::before {
+  background: linear-gradient(to right, var(--hts-banner-start), transparent);
+}
+
+.carousel-section--mini .carousel-mask::after {
+  background: linear-gradient(to left, var(--hts-banner-end), transparent);
+}
+
+.carousel-section--mini .carousel-track {
+  animation-duration: 30s;
+  gap: 14px;
+}
+
+.carousel-section--mini .carousel-card {
+  background: #ffffff;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 8px;
+  min-width: 120px;
+  height: 52px;
+  padding: 6px 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.carousel-section--mini .carousel-card:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.carousel-section--mini .carousel-card img {
+  max-height: 36px;
+  max-width: 100px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
 }
 
 .carousel-header {

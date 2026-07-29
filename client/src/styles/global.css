@@ -23,6 +23,10 @@
   --shadow-card:   0 4px 24px rgba(30,38,109,.12);
   --shadow-hover:  0 8px 36px rgba(30,38,109,.24);
   --transition:    0.28s cubic-bezier(.4,0,.2,1);
+
+  /* Real site palette — banner + footer only (from htechsupports.com kd-overlay) */
+  --hts-banner-start: #4f44b0;
+  --hts-banner-end:   #51a9be;
 }
 
 /* ── Reset ──────────────────────────────────── */

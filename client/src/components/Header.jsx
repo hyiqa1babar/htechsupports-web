@@ -62,7 +62,7 @@ export default function Header() {
               <img
                 src="/assets/logos/logo-dark.png"
                 alt="HTech Supports Logo"
-                height={44}
+                height={52}
                 loading="eager"
               />
             </Link>

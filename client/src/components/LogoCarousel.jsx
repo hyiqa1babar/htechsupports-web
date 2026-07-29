@@ -12,19 +12,26 @@ const LOGOS = [
 // Duplicate for seamless loop
 const TRACK = [...LOGOS, ...LOGOS];
 
-export default function LogoCarousel() {
+/**
+ * variant="mini"  -> slim, borderless strip meant to sit inside the hero band
+ * variant="full"  -> the real "CLIENTS" section from the original site
+ */
+export default function LogoCarousel({ variant = 'full' }) {
+  const isMini = variant === 'mini';
+
   return (
-    <section className="carousel-section" aria-label="Global Roll Out – client logos">
-      {/* Section header */}
-      <div className="container carousel-header">
-        <h2 className="section-title">Global Roll Out</h2>
-        <p className="section-sub">
-          HTS has a strong global presence, delivering solutions across more than 50 countries.
-        </p>
-        <p className="carousel-intro">
-          Some of our awesome clients we've had great pleasure working with!
-        </p>
-      </div>
+    <section
+      className={isMini ? 'carousel-section carousel-section--mini' : 'carousel-section carousel-section--full'}
+      aria-label={isMini ? 'Client logos' : 'Clients'}
+    >
+      {!isMini && (
+        <div className="container carousel-header">
+          <h2 className="section-title">CLIENTS</h2>
+          <p className="carousel-intro">
+            Some of our awesome clients we've had great pleasure working with!
+          </p>
+        </div>
+      )}
 
       {/* Scrolling track */}
       <div className="carousel-mask" aria-hidden="true">

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const PARTNERS = [
-  { name: 'SIA',      logo: '/assets/clients/36.png'  },
-  { name: 'ASCDI',    logo: '/assets/clients/26.png'  },
-  { name: 'Fortinet', logo: '/assets/clients/24.png'  },
-  { name: 'Ekahau',   logo: '/assets/clients/351.png' },
+  { name: 'Service Industry Association', logo: '/assets/partners/service_industry_association_logo-150x150.jpeg' },
+  { name: 'ASCDI',                        logo: '/assets/partners/ascdi_logo-150x150.jpeg' },
+  { name: 'Partner',                      logo: '/assets/partners/file-300x200.jpg' },
+  { name: 'Ekahau',                       logo: '/assets/partners/2017_Ekahau_logo_black-640x360-1-300x169.png' },
 ];
 
 const SOCIAL = [
@@ -124,18 +124,31 @@ export default function Footer() {
           </div>
 
           {/* Col 4 */}
-          <div className="footer-col">
+          <div className="footer-col footer-col--offices">
             <h3 className="footer-col-title">Global Footprint</h3>
-            <ul className="footer-offices">
-              <li>🇬🇧 UK Office</li>
-              <li>🇫🇷 France Office</li>
-              <li>🇺🇸 USA Office</li>
-            </ul>
+
+            <div className="office-block">
+              <p className="office-name">🇬🇧 UK Office</p>
+              <p className="office-address">450 Bath Road, Longford, Heathrow London, UB7 0EB, UK</p>
+              <a href="mailto:sales@htechsupports.com" className="office-line">sales@htechsupports.com</a>
+            </div>
+
+            <div className="office-block">
+              <p className="office-name">🇫🇷 France Office</p>
+              <p className="office-address">Unit 8 – 189 Boulevard André Brémont, 95320 Saint-Leu-la-Forêt, France</p>
+              <a href="tel:+33650306719" className="office-line">+33 650 30 6719</a>
+            </div>
+
+            <div className="office-block">
+              <p className="office-name">🇺🇸 USA Office</p>
+              <a href="mailto:sales@htechsupports.com" className="office-line">sales@htechsupports.com</a>
+            </div>
+
             <div className="app-badges">
-              <a href="https://play.google.com/store" className="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+              <a href="https://play.google.com/store/apps/details?id=com.h_tech_support.live" className="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
               </a>
-              <a href="https://www.apple.com/app-store/" className="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+              <a href="https://apps.apple.com/us/app/h-tech-supports/id6612006961" className="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
                 <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
               </a>
             </div>
