@@ -37,29 +37,24 @@
 }
 
 .partner-badge {
-  background: #ffffff;
-  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 10px 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: background 0.2s;
 }
 
-.partner-badge:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0,0,0,.15);
-}
+.partner-badge:hover { background: rgba(255,255,255,.15); }
 
 .partner-badge img {
-  height: 32px;
+  height: 28px;
   width: auto;
-  max-width: 140px;
   object-fit: contain;
-  filter: none;
-  opacity: 0.95;
+  filter: brightness(0) invert(1);
+  opacity: 0.75;
 }
 
 /* ── Contact strip ──────────────────────────────────────── */

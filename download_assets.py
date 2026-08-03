@@ -9,10 +9,12 @@ client_assets_dir = os.path.join(base_dir, "client", "public", "assets")
 logos_dir = os.path.join(client_assets_dir, "logos")
 images_dir = os.path.join(client_assets_dir, "images")
 clients_dir = os.path.join(client_assets_dir, "clients")
+partners_dir = os.path.join(client_assets_dir, "partners")
 
 os.makedirs(logos_dir, exist_ok=True)
 os.makedirs(images_dir, exist_ok=True)
 os.makedirs(clients_dir, exist_ok=True)
+os.makedirs(partners_dir, exist_ok=True)
 
 # List of known image URLs from the site inspection
 assets = [
@@ -50,6 +52,14 @@ client_logo_urls = [
     "https://htechsupports.com/wp-content/uploads/2024/04/02.png"
 ]
 
+# Real "OUR PARTNERS" logos from the Company page — NOT the same as the client logos above
+partner_logo_urls = [
+    "https://htechsupports.com/wp-content/uploads/2024/07/service_industry_association_logo-150x150.jpeg",
+    "https://htechsupports.com/wp-content/uploads/2024/07/ascdi_logo-150x150.jpeg",
+    "https://htechsupports.com/wp-content/uploads/2024/07/file-300x200.jpg",
+    "https://htechsupports.com/wp-content/uploads/2024/07/2017_Ekahau_logo_black-640x360-1-300x169.png",
+]
+
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
 
 print("Downloading core site assets...")
@@ -72,6 +82,18 @@ for url in client_logo_urls:
         with urllib.request.urlopen(req) as resp, open(target, 'wb') as f:
             f.write(resp.read())
         print(f"Downloaded client logo: {filename}")
+    except Exception as e:
+        print(f"Failed to download {filename}: {e}")
+
+print("\nDownloading OUR PARTNERS logo assets...")
+for url in partner_logo_urls:
+    filename = os.path.basename(urlparse(url).path)
+    target = os.path.join(partners_dir, filename)
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req) as resp, open(target, 'wb') as f:
+            f.write(resp.read())
+        print(f"Downloaded partner logo: {filename}")
     except Exception as e:
         print(f"Failed to download {filename}: {e}")
 

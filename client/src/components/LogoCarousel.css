@@ -29,30 +29,28 @@
 }
 
 .carousel-section--mini .carousel-card {
-  background: #ffffff;
-  border: 1px solid rgba(255,255,255,.3);
-  border-radius: 8px;
-  min-width: 120px;
-  height: 52px;
-  padding: 6px 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  min-width: 110px;
+  height: 56px;
+  padding: 8px 16px;
+  box-shadow: none;
 }
 
 .carousel-section--mini .carousel-card:hover {
-  background: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  background: rgba(255,255,255,.14);
+  transform: none;
+  box-shadow: none;
 }
 
 .carousel-section--mini .carousel-card img {
-  max-height: 36px;
-  max-width: 100px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: none;
-  opacity: 1;
+  max-height: 30px;
+  max-width: 90px;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
 }
+
+.carousel-section--mini .carousel-card:hover img { opacity: 1; }
 
 .carousel-header {
   text-align: center;
