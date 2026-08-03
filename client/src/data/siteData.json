@@ -12,74 +12,180 @@
     "description": "HTS has a strong global presence, delivering solutions across more than 50 countries. Our engineers, many of whom are multilingual, range from Level 1 through to Level 3 across a broad spectrum of vendor technologies.",
     "details": "Our global services are provisioned through the use of our own engineers and our highly approved service partners. Servicing client requirements in multiple sectors from simple smart hands engineering to the more complicated consultative approach that enables us to build solutions partnered alongside our clients. HTS can support you in Datacenter, Unified collaboration, Deskside support with back fill or fixed term contracted engineers, Wireless and Data communications, global roll outs, and forward stocking locations.",
     "coverageStats": [
-      { "region": "NORTH AMERICA", "percentage": 70 },
-      { "region": "SOUTH AMERICA", "percentage": 80 },
-      { "region": "EMEA", "percentage": 100 },
-      { "region": "APAC", "percentage": 70 },
-      { "region": "AUSTRALIA", "percentage": 80 }
+      {
+        "region": "NORTH AMERICA",
+        "percentage": 70
+      },
+      {
+        "region": "SOUTH AMERICA",
+        "percentage": 80
+      },
+      {
+        "region": "EMEA",
+        "percentage": 100
+      },
+      {
+        "region": "APAC",
+        "percentage": 70
+      },
+      {
+        "region": "AUSTRALIA",
+        "percentage": 80
+      }
     ]
   },
   "navigation": [
-    { "title": "Home", "path": "/" },
-    { "title": "Company", "path": "/pages/company/" },
+    {
+      "title": "Home",
+      "path": "/"
+    },
+    {
+      "title": "Company",
+      "path": "/pages/company/"
+    },
     {
       "title": "Services",
       "path": "/pages/services/",
       "children": [
-        { "title": "Professional Service", "path": "/pages/professional-service/" },
-        { "title": "Wireless Survey", "path": "/pages/wireless-survey/" },
-        { "title": "Network Support", "path": "/pages/network-support/" },
-        { "title": "Structured Cabling", "path": "/pages/structured-cabling/" },
-        { "title": "End User Computing Support", "path": "/pages/end-user-computing-support/" },
-        { "title": "ITAD – IT Asset Disposal", "path": "/pages/itad-it-asset-disposal/" },
-        { "title": "Staff Augmentation", "path": "/pages/staff-augmentation/" }
+        {
+          "title": "Professional Service",
+          "path": "/pages/professional-service/"
+        },
+        {
+          "title": "Wireless Survey",
+          "path": "/pages/wireless-survey/"
+        },
+        {
+          "title": "Network Support",
+          "path": "/pages/network-support/"
+        },
+        {
+          "title": "Structured Cabling",
+          "path": "/pages/structured-cabling/"
+        },
+        {
+          "title": "End User Computing Support",
+          "path": "/pages/end-user-computing-support/"
+        },
+        {
+          "title": "ITAD \u2013 IT Asset Disposal",
+          "path": "/pages/itad-it-asset-disposal/"
+        },
+        {
+          "title": "Staff Augmentation",
+          "path": "/pages/staff-augmentation/"
+        }
       ]
     },
     {
       "title": "Sectors",
       "path": "/pages/sectors/",
       "children": [
-        { "title": "Retail", "path": "/pages/retail/" },
-        { "title": "Enterprise", "path": "/pages/enterprise/" },
-        { "title": "Data Center", "path": "/pages/data-center/" },
-        { "title": "Carrier Network", "path": "/pages/carrier-network/" },
-        { "title": "Manufacturing", "path": "/pages/manufacturing/" },
-        { "title": "Government", "path": "/pages/government/" }
+        {
+          "title": "Retail",
+          "path": "/pages/retail/"
+        },
+        {
+          "title": "Enterprise",
+          "path": "/pages/enterprise/"
+        },
+        {
+          "title": "Data Center",
+          "path": "/pages/data-center/"
+        },
+        {
+          "title": "Carrier Network",
+          "path": "/pages/carrier-network/"
+        },
+        {
+          "title": "Manufacturing",
+          "path": "/pages/manufacturing/"
+        },
+        {
+          "title": "Government",
+          "path": "/pages/government/"
+        }
       ]
     },
-    { "title": "Resources", "path": "/resources/", "children": [{ "title": "Blog", "path": "/blog-2/" }] },
-    { "title": "Careers", "path": "/pages/careers/" },
-    { "title": "Contact", "path": "/pages/contact-creative/" },
-    { "title": "Enter the Hub", "path": "/pages/engineer/" }
+    {
+      "title": "Resources",
+      "path": "/resources/",
+      "children": [
+        {
+          "title": "Blog",
+          "path": "/blog-2/"
+        }
+      ]
+    },
+    {
+      "title": "Careers",
+      "path": "/pages/careers/"
+    },
+    {
+      "title": "Contact",
+      "path": "/pages/contact-creative/"
+    },
+    {
+      "title": "Enter the Hub",
+      "path": "/pages/engineer/"
+    }
   ],
   "services": [
     {
       "id": "professional-service",
       "title": "Professional Service",
       "icon": "Support",
-      "description": "Creating a dynamic and engaging audio-visual experience requires skilled professionals and a seamless integration process. We offer comprehensive AV installation and consultation.",
-      "link": "/pages/professional-service/"
+      "description": "Bringing Your Vision to Life: Professional AV Installation and Remote Support Services. Creating a dynamic and engaging audio-visual experience requires skilled professionals and a seamless integration process. We offer comprehensive AV installation services, coupled with remote IT deployment support, to ensure your project is completed efficiently and according to your specific needs.",
+      "link": "/pages/professional-service/",
+      "image": "/assets/services/professional-service.jpg"
     },
     {
       "id": "wireless-survey",
       "title": "Wireless Survey",
       "icon": "Wifi",
-      "description": "Optimize Your Wireless Network with Ekahau Surveys performed by a certified partner to improve Wi-Fi performance and site coverage.",
-      "link": "/pages/wireless-survey/"
+      "description": "Optimize Your Wireless Network with Ekahau Surveys \u2013 Performed by a Certified Partner. Looking to improve your Wi-Fi performance? We're a proud official partner of Ekahau, a leader in Wi-Fi network optimization solutions. Our team of experts can conduct a comprehensive Ekahau survey to identify and address any issues impacting your wireless network.",
+      "link": "/pages/wireless-survey/",
+      "image": "/assets/services/wireless-survey.webp"
     },
     {
       "id": "network-support",
       "title": "Network Support",
       "icon": "Network",
-      "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We offer a comprehensive suite of services to keep your network active.",
-      "link": "/pages/network-support/"
+      "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We offer a comprehensive suite of services to keep your network running smoothly, from planning and installation to troubleshooting and maintenance.",
+      "link": "/pages/network-support/",
+      "image": "/assets/services/network-support.webp"
     },
     {
       "id": "structured-cabling",
       "title": "Structured Cabling",
       "icon": "Cabling",
-      "description": "A well-designed network cabling system is the backbone of any successful IT infrastructure, providing a reliable foundation for high-speed data transmission.",
-      "link": "/pages/structured-cabling/"
+      "description": "A well-designed and organized network cabling system is the backbone of any successful IT infrastructure. It provides a reliable foundation for data transmission, voice communication, and security systems. Our team of experts offers a comprehensive range of cabling and connectivity solutions to meet your specific needs.",
+      "link": "/pages/structured-cabling/",
+      "image": "/assets/services/structured-cabling.jpg"
+    },
+    {
+      "id": "end-user-computing-support",
+      "title": "End User Computing Support",
+      "icon": "Support",
+      "description": "Technology is an essential tool for business success, but technical issues can disrupt your workflow and cost valuable time. Our comprehensive IT support services ensure your systems run smoothly, allowing you to focus on what matters most \u2013 your business.",
+      "link": "/pages/end-user-computing-support/",
+      "image": "/assets/services/end-user-computing-support.jpg"
+    },
+    {
+      "id": "itad-it-asset-disposal",
+      "title": "ITAD \u2013 IT Asset Disposal",
+      "icon": "Recycle",
+      "description": "Supporting Your Transitions: Seamless Site Closure, Relocation & Device Disposal Solutions. As your business evolves, you may face the need to close a site, relocate to a new location, or dispose of outdated equipment. We understand the complexities involved in managing these transitions and offer comprehensive services to ensure a smooth and secure process.",
+      "link": "/pages/itad-it-asset-disposal/",
+      "image": "/assets/services/itad-it-asset-disposal.webp"
+    },
+    {
+      "id": "staff-augmentation",
+      "title": "Staff Augmentation",
+      "icon": "Users",
+      "description": "Building a Strong Foundation: Network Cabling and Connectivity Solutions. In today's globalized business environment, maintaining seamless technology operations across multiple locations is crucial. We offer comprehensive global dispatch and on-site tech support services to ensure your IT infrastructure stays up and running no matter where your business operates.",
+      "link": "/pages/staff-augmentation/",
+      "image": "/assets/services/staff-augmentation.jpg"
     }
   ],
   "sectors": [
@@ -108,7 +214,11 @@
   "contactForm": {
     "title": "Have some questions or want to say hi?",
     "subtitle": "Your queries are important to us, reach us anytime for further information.",
-    "roles": ["Engineer", "Customer", "Business Owner"],
+    "roles": [
+      "Engineer",
+      "Customer",
+      "Business Owner"
+    ],
     "recaptchaSiteKey": "6Lcr9SkpAAAAAPvheMRebSc25Uk9my0wET5_vX14"
   }
 }

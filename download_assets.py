@@ -97,4 +97,29 @@ for url in partner_logo_urls:
     except Exception as e:
         print(f"Failed to download {filename}: {e}")
 
+services_dir = os.path.join(client_assets_dir, "services")
+os.makedirs(services_dir, exist_ok=True)
+
+# Real per-service images from the live Services page
+service_image_urls = {
+    "professional-service.jpg":          "https://htechsupports.com/wp-content/uploads/2024/06/Professional-Service-Trends-to-Look-Out-for-in-2021-1-1024x592.jpg",
+    "wireless-survey.webp":               "https://htechsupports.com/wp-content/uploads/2024/06/improve-a-corporate-wifi-network-1-1024x576.webp",
+    "network-support.webp":               "https://htechsupports.com/wp-content/uploads/2024/06/Network-Support-Services.webp",
+    "structured-cabling.jpg":             "https://htechsupports.com/wp-content/uploads/2024/06/Cable-04.jpg",
+    "end-user-computing-support.jpg":     "https://htechsupports.com/wp-content/uploads/2024/06/shutterstock_1099878668_low-1024x684.jpg",
+    "itad-it-asset-disposal.webp":        "https://htechsupports.com/wp-content/uploads/2024/06/Wisetek_Banner.webp",
+    "staff-augmentation.jpg":             "https://htechsupports.com/wp-content/uploads/2024/06/staff-augmentation-1.jpg",
+}
+
+print("\nDownloading Services page images...")
+for filename, url in service_image_urls.items():
+    target = os.path.join(services_dir, filename)
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req) as resp, open(target, 'wb') as f:
+            f.write(resp.read())
+        print(f"Downloaded service image: {filename}")
+    except Exception as e:
+        print(f"Failed to download {filename}: {e}")
+
 print("\nAsset download complete.")

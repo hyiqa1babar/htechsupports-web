@@ -42,6 +42,24 @@ const ICONS = {
       <line x1="40" y1="20" x2="40" y2="28"/>
     </svg>
   ),
+  Recycle: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 8h9l5 8"/>
+      <path d="M40 24l3 8-8 3"/>
+      <path d="M36 40h-9l-5-8"/>
+      <path d="M8 24l-3-8 8-3"/>
+      <path d="M12 8l-4 7"/>
+      <path d="M36 40l4-7"/>
+    </svg>
+  ),
+  Users: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="17" cy="16" r="7"/>
+      <path d="M4 40c0-8 6-13 13-13s13 5 13 13"/>
+      <circle cx="34" cy="18" r="5.5"/>
+      <path d="M30 27c6 .5 10 5 10 13"/>
+    </svg>
+  ),
 };
 
 export default function ServicesGrid() {

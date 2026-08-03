@@ -1,0 +1,93 @@
+/* Services.css */
+
+.services-page {
+  background: #ffffff; /* page bg stays white */
+}
+
+.services-page-header {
+  padding: 56px 0 32px;
+  text-align: center;
+}
+
+.services-page-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: var(--hts-text);
+}
+
+/* ── Each service's own section ───────────────────────────
+   Exact dusky background sampled from the reference swatch,
+   used consistently for every service (not alternated).
+   Contained rounded card, not full-bleed — white page shows
+   through as the gap between sections. */
+.service-overview {
+  background: #ffffff;
+  padding: 20px 0;
+}
+
+.service-overview-inner {
+  background: #EFF0F5;
+  border-radius: 20px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.service-overview-inner.reverse .service-overview-media { order: 2; }
+.service-overview-inner.reverse .service-overview-text  { order: 1; }
+
+.service-overview-media {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(30,38,109,.10);
+}
+
+.service-overview-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.service-overview-text h2 {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-weight: 800;
+  color: var(--hts-navy);
+  margin-bottom: 18px;
+}
+
+.service-overview-text p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--hts-muted);
+  margin-bottom: 24px;
+  white-space: pre-line;
+}
+
+.service-overview-text .read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--hts-navy);
+  text-decoration: none;
+}
+
+.service-overview-text .read-more:hover { color: var(--hts-cyan); }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .service-overview-inner,
+  .service-overview-inner.reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 28px;
+  }
+  .service-overview-inner.reverse .service-overview-media,
+  .service-overview-inner.reverse .service-overview-text {
+    order: initial;
+  }
+}
