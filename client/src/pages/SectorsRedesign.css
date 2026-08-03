@@ -1,0 +1,338 @@
+/* SectorsRedesign.css */
+
+/* ── Hero Section ──────────────────────────────────────── */
+.sectors-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sectors-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, var(--hts-banner-start) 0%, var(--hts-banner-end) 100%);
+  opacity: 0.92;
+  z-index: 0;
+}
+
+.sectors-hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  color: #ffffff;
+}
+
+.sectors-hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 12px;
+}
+
+.sectors-hero-headline {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin-bottom: 18px;
+}
+
+.sectors-hero-sub {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,.80);
+  margin-bottom: 36px;
+}
+
+.sectors-hero-ctas {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Trust Metrics Strip ───────────────────────────────── */
+.sectors-metrics {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 48px 0;
+}
+
+.sectors-metrics-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  text-align: center;
+}
+
+.metric-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric-number {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: var(--hts-navy);
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+/* ── Tab Navigation ────────────────────────────────────── */
+.sectors-main {
+  background: #ffffff;
+  padding: 72px 0;
+}
+
+.sectors-tabs-container {
+  margin-bottom: 56px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+.sectors-tabs-list {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 12px;
+  min-width: min-content;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.sectors-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b7280;
+  transition: all 0.28s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -14px;
+}
+
+.sectors-tab:hover {
+  color: var(--hts-navy);
+}
+
+.sectors-tab.active {
+  color: var(--hts-banner-start);
+  border-bottom-color: var(--hts-banner-start);
+}
+
+.tab-icon {
+  font-size: 1.2rem;
+}
+
+/* ── Tab Content Panel ────────────────────────────────── */
+.sectors-tab-panel {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectors-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.sectors-content-media {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(79,68,176,.16);
+}
+
+.sectors-content-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.sectors-content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectors-content-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 900;
+  color: var(--hts-navy);
+  letter-spacing: -.01em;
+}
+
+.sectors-content-tagline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--hts-banner-end);
+}
+
+.sectors-content-description {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #4b5563;
+  max-width: 520px;
+}
+
+/* ── Case Study Callout ────────────────────────────────── */
+.sectors-case-study {
+  background: #EFF0F5;
+  border-left: 4px solid var(--hts-banner-start);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.case-study-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--hts-banner-start);
+  margin-bottom: 8px;
+}
+
+.case-study-text {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: #374151;
+  font-weight: 500;
+}
+
+.sectors-content-text .read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--hts-navy);
+  text-decoration: none;
+  margin-top: 8px;
+  transition: color 0.28s ease;
+}
+
+.sectors-content-text .read-more:hover {
+  color: var(--hts-banner-end);
+}
+
+/* ── Why HTS Strengths ────────────────────────────────── */
+.sectors-strengths {
+  background: linear-gradient(45deg, rgba(79,68,176,.04) 0%, rgba(81,169,190,.04) 100%);
+  padding: 72px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sectors-strengths-inner h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--hts-navy);
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.strength-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: all 0.28s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+}
+
+.strength-card:hover {
+  box-shadow: 0 12px 36px rgba(79,68,176,.12);
+  transform: translateY(-4px);
+  border-color: var(--hts-banner-end);
+}
+
+.strength-icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+}
+
+.strength-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--hts-navy);
+  margin-bottom: 12px;
+}
+
+.strength-card p {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #6b7280;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 920px) {
+  .sectors-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .sectors-tabs-list {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .sectors-hero-inner {
+    padding: 60px 16px;
+  }
+  
+  .sectors-hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sectors-main {
+    padding: 40px 0;
+  }
+
+  .sectors-strengths {
+    padding: 40px 0;
+  }
+
+  .strengths-grid {
+    grid-template-columns: 1fr;
+  }
+}
