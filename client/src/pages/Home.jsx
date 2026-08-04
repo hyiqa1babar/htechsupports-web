@@ -58,7 +58,7 @@ export default function Home() {
           <p className="hero-sub">{description}</p>
           <div className="hero-ctas">
             <a href="/pages/services/" className="btn-primary">Our Services</a>
-            <a href="#contact"         className="btn-outline">Get in Touch</a>
+            <a href="#contact"         className="btn-primary">Get in Touch</a>
           </div>
         </div>
 
