@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import siteData from '../data/siteData.json';
+import { usePartner } from './PartnerContext.jsx';
 import './Header.css';
 
 const NAV = siteData.navigation;
@@ -49,6 +50,7 @@ function NavItem({ item }) {
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const openPartner = usePartner();
 
   return (
     <header className="hts-header-outer" role="banner">
@@ -77,9 +79,9 @@ export default function Header() {
             </nav>
 
             {/* CTA button */}
-            <a href="/pages/contact-creative/" className="hts-partner-btn" aria-label="Become a partner">
+            <button onClick={openPartner} className="hts-partner-btn" aria-label="Become a partner">
               Become A Partner
-            </a>
+            </button>
 
             {/* Mobile hamburger */}
             <button
@@ -115,9 +117,9 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <a href="/pages/contact-creative/" className="hts-mobile-cta" onClick={() => setMobileOpen(false)}>
+              <button className="hts-mobile-cta" onClick={() => { setMobileOpen(false); openPartner(); }}>
                 Become A Partner
-              </a>
+              </button>
             </li>
           </ul>
         </nav>

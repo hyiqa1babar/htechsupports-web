@@ -29,25 +29,26 @@
 }
 
 .carousel-section--mini .carousel-card {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.16);
-  min-width: 110px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 130px;
   height: 56px;
   padding: 8px 16px;
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 
 .carousel-section--mini .carousel-card:hover {
-  background: rgba(255,255,255,.14);
-  transform: none;
-  box-shadow: none;
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
 }
 
 .carousel-section--mini .carousel-card img {
-  max-height: 30px;
-  max-width: 90px;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
+  max-height: 36px;
+  max-width: 100px;
+  filter: none;
+  opacity: 0.95;
 }
 
 .carousel-section--mini .carousel-card:hover img { opacity: 1; }
@@ -136,8 +137,8 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(20%);
-  transition: filter 0.2s;
+  filter: none;
+  transition: opacity 0.2s;
 }
 
-.carousel-card:hover img { filter: grayscale(0%); }
+.carousel-card:hover img { filter: none; opacity: 1; }

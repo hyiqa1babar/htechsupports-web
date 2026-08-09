@@ -93,12 +93,12 @@ export default function Footer() {
           <div className="footer-col">
             <h3 className="footer-col-title">Solutions & Sectors</h3>
             <ul>
-              <li><Link to="/pages/services/">Services</Link></li>
-              <li><Link to="/pages/sectors/">Sectors</Link></li>
-              <li><Link to="/pages/professional-service/">Professional Service</Link></li>
-              <li><Link to="/pages/wireless-survey/">Wireless Survey</Link></li>
-              <li><Link to="/pages/network-support/">Network Support</Link></li>
-              <li><Link to="/pages/structured-cabling/">Structured Cabling</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/sectors">Sectors</Link></li>
+              <li><Link to="/pages/professional-service">Professional Service</Link></li>
+              <li><Link to="/pages/wireless-survey">Wireless Survey</Link></li>
+              <li><Link to="/services">Network Support</Link></li>
+              <li><Link to="/services">Structured Cabling</Link></li>
             </ul>
           </div>
 
@@ -106,11 +106,11 @@ export default function Footer() {
           <div className="footer-col">
             <h3 className="footer-col-title">Company & Talent</h3>
             <ul>
-              <li><Link to="/pages/company/">Company</Link></li>
-              <li><Link to="/pages/careers/">Careers</Link></li>
-              <li><Link to="/resources/">Resources</Link></li>
-              <li><Link to="/blog-2/">Blog</Link></li>
-              <li><Link to="/pages/engineer/">Enter the Hub</Link></li>
+              <li><Link to="/company">Company</Link></li>
+              <li><Link to="/careers">Careers</Link></li>
+              <li><Link to="/resources">Resources</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="/engineer">Enter the Hub</Link></li>
             </ul>
           </div>
 

@@ -1,5 +1,5 @@
-/* src/pages/Home.jsx – Full home page with all sections */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import siteData      from '../data/siteData.json';
 import LogoCarousel   from '../components/LogoCarousel.jsx';
@@ -57,7 +57,7 @@ export default function Home() {
           </h1>
           <p className="hero-sub">{description}</p>
           <div className="hero-ctas">
-            <a href="/pages/services/" className="btn-primary">Our Services</a>
+            <Link to="/services" className="btn-primary">Our Services</Link>
             <a href="#contact"         className="btn-primary">Get in Touch</a>
           </div>
         </div>

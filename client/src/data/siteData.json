@@ -41,93 +41,93 @@
     },
     {
       "title": "Company",
-      "path": "/pages/company/"
+      "path": "/company"
     },
     {
       "title": "Services",
-      "path": "/pages/services/",
+      "path": "/services",
       "children": [
         {
           "title": "Professional Service",
-          "path": "/pages/professional-service/"
+          "path": "/pages/professional-service"
         },
         {
           "title": "Wireless Survey",
-          "path": "/pages/wireless-survey/"
+          "path": "/pages/wireless-survey"
         },
         {
           "title": "Network Support",
-          "path": "/pages/network-support/"
+          "path": "/pages/network-support"
         },
         {
           "title": "Structured Cabling",
-          "path": "/pages/structured-cabling/"
+          "path": "/pages/structured-cabling"
         },
         {
           "title": "End User Computing Support",
-          "path": "/pages/end-user-computing-support/"
+          "path": "/pages/end-user-computing-support"
         },
         {
-          "title": "ITAD \u2013 IT Asset Disposal",
-          "path": "/pages/itad-it-asset-disposal/"
+          "title": "ITAD – IT Asset Disposal",
+          "path": "/pages/itad-it-asset-disposal"
         },
         {
           "title": "Staff Augmentation",
-          "path": "/pages/staff-augmentation/"
+          "path": "/pages/staff-augmentation"
         }
       ]
     },
     {
       "title": "Sectors",
-      "path": "/pages/sectors/",
+      "path": "/sectors",
       "children": [
         {
           "title": "Retail",
-          "path": "/pages/retail/"
+          "path": "/pages/retail"
         },
         {
           "title": "Enterprise",
-          "path": "/pages/enterprise/"
+          "path": "/pages/enterprise"
         },
         {
           "title": "Data Center",
-          "path": "/pages/data-center/"
+          "path": "/pages/data-center"
         },
         {
           "title": "Carrier Network",
-          "path": "/pages/carrier-network/"
+          "path": "/pages/carrier-network"
         },
         {
           "title": "Manufacturing",
-          "path": "/pages/manufacturing/"
+          "path": "/pages/manufacturing"
         },
         {
           "title": "Government",
-          "path": "/pages/government/"
+          "path": "/pages/government"
         }
       ]
     },
     {
       "title": "Resources",
-      "path": "/resources/",
+      "path": "/resources",
       "children": [
         {
           "title": "Blog",
-          "path": "/blog-2/"
+          "path": "/blog"
         }
       ]
     },
     {
       "title": "Careers",
-      "path": "/pages/careers/"
+      "path": "/careers"
     },
     {
       "title": "Contact",
-      "path": "/pages/contact-creative/"
+      "path": "/contact"
     },
     {
       "title": "Enter the Hub",
-      "path": "/pages/engineer/"
+      "path": "/engineer"
     }
   ],
   "services": [
@@ -136,15 +136,15 @@
       "title": "Professional Service",
       "icon": "Support",
       "description": "Bringing Your Vision to Life: Professional AV Installation and Remote Support Services. Creating a dynamic and engaging audio-visual experience requires skilled professionals and a seamless integration process. We offer comprehensive AV installation services, coupled with remote IT deployment support, to ensure your project is completed efficiently and according to your specific needs.",
-      "link": "/pages/professional-service/",
+      "link": "/pages/professional-service",
       "image": "/assets/services/professional-service.jpg"
     },
     {
       "id": "wireless-survey",
       "title": "Wireless Survey",
       "icon": "Wifi",
-      "description": "Optimize Your Wireless Network with Ekahau Surveys \u2013 Performed by a Certified Partner. Looking to improve your Wi-Fi performance? We're a proud official partner of Ekahau, a leader in Wi-Fi network optimization solutions. Our team of experts can conduct a comprehensive Ekahau survey to identify and address any issues impacting your wireless network.",
-      "link": "/pages/wireless-survey/",
+      "description": "Optimize Your Wireless Network with Ekahau Surveys – Performed by a Certified Partner. Looking to improve your Wi-Fi performance? We're a proud official partner of Ekahau, a leader in Wi-Fi network optimization solutions. Our team of experts can conduct a comprehensive Ekahau survey to identify and address any issues impacting your wireless network.",
+      "link": "/pages/wireless-survey",
       "image": "/assets/services/wireless-survey.webp"
     },
     {
@@ -152,7 +152,7 @@
       "title": "Network Support",
       "icon": "Network",
       "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We offer a comprehensive suite of services to keep your network running smoothly, from planning and installation to troubleshooting and maintenance.",
-      "link": "/pages/network-support/",
+      "link": "/pages/network-support",
       "image": "/assets/services/network-support.webp"
     },
     {
@@ -160,23 +160,23 @@
       "title": "Structured Cabling",
       "icon": "Cabling",
       "description": "A well-designed and organized network cabling system is the backbone of any successful IT infrastructure. It provides a reliable foundation for data transmission, voice communication, and security systems. Our team of experts offers a comprehensive range of cabling and connectivity solutions to meet your specific needs.",
-      "link": "/pages/structured-cabling/",
+      "link": "/pages/structured-cabling",
       "image": "/assets/services/structured-cabling.jpg"
     },
     {
       "id": "end-user-computing-support",
       "title": "End User Computing Support",
       "icon": "Support",
-      "description": "Technology is an essential tool for business success, but technical issues can disrupt your workflow and cost valuable time. Our comprehensive IT support services ensure your systems run smoothly, allowing you to focus on what matters most \u2013 your business.",
-      "link": "/pages/end-user-computing-support/",
+      "description": "Technology is an essential tool for business success, but technical issues can disrupt your workflow and cost valuable time. Our comprehensive IT support services ensure your systems run smoothly, allowing you to focus on what matters most – your business.",
+      "link": "/pages/end-user-computing-support",
       "image": "/assets/services/end-user-computing-support.jpg"
     },
     {
       "id": "itad-it-asset-disposal",
-      "title": "ITAD \u2013 IT Asset Disposal",
+      "title": "ITAD – IT Asset Disposal",
       "icon": "Recycle",
       "description": "Supporting Your Transitions: Seamless Site Closure, Relocation & Device Disposal Solutions. As your business evolves, you may face the need to close a site, relocate to a new location, or dispose of outdated equipment. We understand the complexities involved in managing these transitions and offer comprehensive services to ensure a smooth and secure process.",
-      "link": "/pages/itad-it-asset-disposal/",
+      "link": "/pages/itad-it-asset-disposal",
       "image": "/assets/services/itad-it-asset-disposal.webp"
     },
     {
@@ -184,7 +184,7 @@
       "title": "Staff Augmentation",
       "icon": "Users",
       "description": "Building a Strong Foundation: Network Cabling and Connectivity Solutions. In today's globalized business environment, maintaining seamless technology operations across multiple locations is crucial. We offer comprehensive global dispatch and on-site tech support services to ensure your IT infrastructure stays up and running no matter where your business operates.",
-      "link": "/pages/staff-augmentation/",
+      "link": "/pages/staff-augmentation",
       "image": "/assets/services/staff-augmentation.jpg"
     }
   ],
@@ -194,21 +194,21 @@
       "title": "Retail",
       "icon": "Shop",
       "description": "Comprehensive site audits, IT health checks, and technology rollouts throughout EMEA retail estates.",
-      "link": "/pages/retail/"
+      "link": "/pages/retail"
     },
     {
       "id": "enterprise",
       "title": "Enterprise",
       "icon": "Building",
       "description": "Unified collaboration upgrades across multiple enterprise locations in Europe for global banking and corporate networks.",
-      "link": "/pages/enterprise/"
+      "link": "/pages/enterprise"
     },
     {
       "id": "datacenter",
       "title": "Data Center",
       "icon": "Database",
       "description": "Datacenter engineering services ranging from cable patching to full hardware deployment, racking, and support.",
-      "link": "/pages/data-center/"
+      "link": "/pages/data-center"
     }
   ],
   "contactForm": {
@@ -220,5 +220,189 @@
       "Business Owner"
     ],
     "recaptchaSiteKey": "6Lcr9SkpAAAAAPvheMRebSc25Uk9my0wET5_vX14"
+  },
+  "detailPages": {
+    "professional-service": {
+      "kind": "service",
+      "title": "Professional Service",
+      "tagline": "Bringing Your Vision to Life",
+      "description": "Creating a dynamic and engaging audio-visual experience requires skilled professionals and a seamless integration process. We deliver comprehensive professional AV installation and remote IT deployment support, so your project is completed efficiently and to your exact specification.",
+      "features": [
+        "Professional AV installation & integration",
+        "Remote IT deployment support",
+        "Project management and coordination",
+        "On-site delivery across global sites"
+      ],
+      "caseStudy": "A coordinated AV rollout across client locations delivered on time and on budget, with remote deployment support to keep every site online.",
+      "image": "/assets/images/hero-startup-1.png"
+    },
+    "wireless-survey": {
+      "kind": "service",
+      "title": "Wireless Survey",
+      "tagline": "Optimize Your Wi-Fi with Certified Ekahau Surveys",
+      "description": "A proud official partner of Ekahau, a leader in Wi-Fi network optimization. Our certified experts conduct comprehensive Ekahau surveys to identify and resolve anything that is impacting your wireless network.",
+      "features": [
+        "Certified Ekahau surveys",
+        "Wi-Fi coverage & capacity analysis",
+        "Interference and heat-map reporting",
+        "Actionable remediation guidance"
+      ],
+      "caseStudy": "A survey pinpointed dead zones and channel interference across a busy office estate, enabling a targeted AP upgrade that lifted performance.",
+      "image": "/assets/images/hero-startup-2.png"
+    },
+    "network-support": {
+      "kind": "service",
+      "title": "Network Support",
+      "tagline": "Ensuring Network Efficiency: Your One-Stop Shop for Network Services",
+      "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We support your network end-to-end — from planning and installation to migration, troubleshooting and maintenance.",
+      "features": [
+        "Network design, planning & installation",
+        "Migration and device replacement",
+        "Switch and access-point installs",
+        "LAN and hardware troubleshooting"
+      ],
+      "caseStudy": "A phased network migration across sites kept business traffic flowing with zero downtime during the cutover.",
+      "image": "/assets/images/hero-startup-1.png"
+    },
+    "structured-cabling": {
+      "kind": "service",
+      "title": "Structured Cabling",
+      "tagline": "The Backbone of Every Successful IT Infrastructure",
+      "description": "A well-designed and organized cabling system is the backbone of any successful IT infrastructure. We deliver a reliable foundation for data transmission, voice communication and security systems.",
+      "features": [
+        "Cabling design & documentation",
+        "Structured cable installation",
+        "Patch panels & connectivity",
+        "Testing and certification"
+      ],
+      "caseStudy": "A full structured cabling refresh tidied and stabilized a data centre, cutting fault-finding time across the estate.",
+      "image": "/assets/images/coverage-map.jpg"
+    },
+    "end-user-computing-support": {
+      "kind": "service",
+      "title": "End User Computing Support",
+      "tagline": "Keep Your People Productive",
+      "description": "Technology is an essential tool for business success, but issues can disrupt your workflow and cost valuable time. Our comprehensive IT support ensures your systems run smoothly so you can focus on your business.",
+      "features": [
+        "Deskside & break-fix support",
+        "Remote technical assistance",
+        "Hardware setup & IMAC",
+        "Backfill or fixed-term engineers"
+      ],
+      "caseStudy": "Deskside engineers supported a multi-site workforce through a laptop refresh, resolving tickets same-day.",
+      "image": "/assets/images/hero-startup-2.png"
+    },
+    "itad-it-asset-disposal": {
+      "kind": "service",
+      "title": "ITAD – IT Asset Disposal",
+      "tagline": "Supporting Your Transitions",
+      "description": "As your business evolves you may face the need to close a site, relocate, or dispose of outdated equipment. We manage these transitions end-to-end to ensure a smooth, secure, and compliant process.",
+      "features": [
+        "Secure data erasure & disposal",
+        "IT asset disposition (ITAD)",
+        "Site closure & relocation support",
+        "Compliance & audit documentation"
+      ],
+      "caseStudy": "A site consolidation decommissioned and securely disposed of equipment across multiple locations with full audit trails.",
+      "image": "/assets/images/hero-startup-1.png"
+    },
+    "staff-augmentation": {
+      "kind": "service",
+      "title": "Staff Augmentation",
+      "tagline": "Keeping You Connected Around the World",
+      "description": "In today's global business environment, seamless technology operations across multiple locations are crucial. We provide global dispatch and on-site tech support, plus staffing solutions to keep your infrastructure running wherever you operate.",
+      "features": [
+        "Global dispatch & on-site support",
+        "International deployment & worldwide on-site",
+        "Global tech rollouts & implementations",
+        "Backfill, fixed-term and FTE resourcing"
+      ],
+      "caseStudy": "On-demand engineers were deployed across 30 countries for a probe rollout, covering 180+ sites without interruption.",
+      "image": "/assets/images/coverage-map.jpg"
+    },
+    "retail": {
+      "kind": "sector",
+      "title": "Retail",
+      "tagline": "Global Rollouts & Modern POS Networks",
+      "description": "Seamless global rollouts and wireless / data communications to support modern POS and retail network environments, from site audits to comprehensive IT health checks across EMEA retail estates.",
+      "features": [
+        "Store rollouts & POS networking",
+        "Site audits & IT health checks",
+        "Wireless & data communications",
+        "EMEA retail estate support"
+      ],
+      "caseStudy": "A US sports manufacturer and retailer IT audit across its EMEA estate identified risks and optimised performance store-by-store.",
+      "image": "/assets/images/hero-startup-1.png"
+    },
+    "enterprise": {
+      "kind": "sector",
+      "title": "Enterprise",
+      "tagline": "Unified Collaboration & Multi-site Deployments",
+      "description": "Unified collaboration upgrades across multiple enterprise locations in Europe for global banking and corporate networks, delivered with backfill or fixed-term contracted engineers.",
+      "features": [
+        "Unified collaboration upgrades",
+        "Multi-location deployments",
+        "Deskside support & backfill",
+        "Vendor-engineered certifications"
+      ],
+      "caseStudy": "A global bank coordinated unified collaboration across multiple sites, including a Cisco IX5000 upgrade, with minimal disruption.",
+      "image": "/assets/images/hero-startup-2.png"
+    },
+    "data-center": {
+      "kind": "sector",
+      "title": "Data Center",
+      "tagline": "Hardware Deployment & Cable Patching",
+      "description": "Datacenter engineering services ranging from cable patching to full hardware deployment, racking and break/fix — we handle the complexity so you can focus on core operations.",
+      "features": [
+        "Rack & stack, hardware deployment",
+        "Cable patching & management",
+        "Break / fix and server maintenance",
+        "Spare parts & capacity support"
+      ],
+      "caseStudy": "Managed rack-and-stack and patching during a data centre expansion, keeping existing workloads online throughout.",
+      "image": "/assets/images/coverage-map.jpg"
+    },
+    "carrier-network": {
+      "kind": "sector",
+      "title": "Carrier Network",
+      "tagline": "Telecom Infrastructure Support",
+      "description": "Specialised support for carrier-grade infrastructure, network optimisation and 24/7 engineering for mission-critical telecom operations.",
+      "features": [
+        "Carrier-grade infrastructure support",
+        "Network optimisation",
+        "24/7 mission-critical engineering",
+        "Multi-country field force"
+      ],
+      "caseStudy": "Supported a probe rollout across 30 countries and 180+ sites with a coordinated on-site field force.",
+      "image": "/assets/images/hero-startup-2.png"
+    },
+    "manufacturing": {
+      "kind": "sector",
+      "title": "Manufacturing",
+      "tagline": "Supply Chain & Production Support",
+      "description": "Robust network infrastructure and smart-hands engineering to keep global supply chains and production facilities online — from facility audits to continuous support.",
+      "features": [
+        "Facility network audits",
+        "Smart-hands engineering",
+        "Production-critical IT support",
+        "Phased rollouts with minimal downtime"
+      ],
+      "caseStudy": "A wireless performance programme across production facilities improved reliability for factory-floor operations.",
+      "image": "/assets/images/hero-startup-1.png"
+    },
+    "government": {
+      "kind": "sector",
+      "title": "Government",
+      "tagline": "Secure & Compliant Operations",
+      "description": "Secure, compliant IT operations and consultative approaches, partnering directly with government entities. BPSS-cleared engineers and vetted processes as standard.",
+      "features": [
+        "BPSS-cleared engineers",
+        "Secure, compliant delivery",
+        "Windows & device migration",
+        "Vetted processes & audit readiness"
+      ],
+      "caseStudy": "A Windows 10 migration was delivered for a large public-sector organisation, moving ~2,500 users across departments.",
+      "image": "/assets/images/coverage-map.jpg"
+    }
   }
 }

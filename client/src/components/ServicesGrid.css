@@ -77,6 +77,23 @@
   line-height: 1.65;
 }
 
+/* ── View All CTA ────────────────────────────────────────── */
+.services-view-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.services-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 768px) {
   .services-grid { grid-template-columns: 1fr; }

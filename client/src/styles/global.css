@@ -27,6 +27,11 @@
   /* Real site palette — banner + footer only (from htechsupports.com kd-overlay) */
   --hts-banner-start: #4f44b0;
   --hts-banner-end:   #51a9be;
+
+  /* New design system additions */
+  --hts-dusk:        #4f44b0;   /* dusty blue-purple: form/detail card backgrounds */
+  --hts-dusk-2:      #1e3a8a;   /* deeper dusk for gradients */
+  --hts-navy-soft:   #6b74a8;   /* placeholder text on white fields */
 }
 
 /* ── Reset ──────────────────────────────────── */

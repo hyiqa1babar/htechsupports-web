@@ -1,5 +1,5 @@
-/* src/components/ServicesGrid.jsx */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import siteData from '../data/siteData.json';
 import './ServicesGrid.css';
 
@@ -64,6 +64,7 @@ const ICONS = {
 
 export default function ServicesGrid() {
   const { services } = siteData;
+  const topServices = services.slice(0, 4);
 
   return (
     <section className="services-section" aria-labelledby="services-title">
@@ -78,12 +79,12 @@ export default function ServicesGrid() {
           </p>
         </div>
 
-        {/* 2-column grid of horizontal cards */}
+        {/* 2x2 grid of top 4 horizontal cards */}
         <div className="services-grid" role="list">
-          {services.map((svc) => (
-            <a
+          {topServices.map((svc) => (
+            <Link
               key={svc.id}
-              href={svc.link}
+              to="/services"
               className="svc-card"
               role="listitem"
               aria-label={svc.title}
@@ -98,8 +99,15 @@ export default function ServicesGrid() {
                 <h3 className="svc-title">{svc.title}</h3>
                 <p className="svc-desc">{svc.description}</p>
               </div>
-            </a>
+            </Link>
           ))}
+        </div>
+
+        {/* View All Services CTA */}
+        <div className="services-view-all">
+          <Link to="/services" className="btn-primary services-view-all-btn">
+            View All Services <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>

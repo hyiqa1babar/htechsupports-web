@@ -1,0 +1,154 @@
+/* Careers.css */
+.careers-page { min-height: 100vh; }
+
+/* ── HERO CAROUSEL ── */
+.careers-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-slides { position: absolute; inset: 0; }
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94);
+  z-index: 1;
+}
+.hero-slide.active { opacity: 1; transform: none; z-index: 2; }
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(79, 68, 176, 0.85) 50%, rgba(10, 14, 30, 0.95) 100%);
+}
+.slide-content { position: relative; z-index: 1; max-width: 800px; animation: slide-in 0.8s cubic-bezier(.25,.46,.45,.94) both; }
+@keyframes slide-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.slide-badge {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--hts-cyan); background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.25);
+  padding: 8px 18px; border-radius: 999px; margin-bottom: 20px;
+}
+.hero-slide h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.15; color: #fff; letter-spacing: -0.02em; margin-bottom: 18px; }
+.hero-slide p { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.7; color: rgba(255,255,255,0.88); max-width: 60ch; margin-bottom: 32px; }
+.slide-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.slide-dots { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
+.slide-dots button { width: 10px; height: 10px; border-radius: 50%; border: none; background: rgba(255,255,255,0.4); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+.slide-dots button.active { background: #fff; transform: scale(1.25); }
+.slide-dots button:hover { background: #fff; }
+
+/* ── SECTION HEADER ── */
+.section-header { text-align: center; max-width: 700px; margin: 0 auto 3.5rem; }
+.section-header h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--hts-navy); margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+.section-header p { font-size: 1.05rem; color: var(--hts-text-muted); }
+
+/* ── INTRO / BENEFITS ── */
+.careers-intro { padding: 6rem 0; background: var(--hts-bg); }
+.benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.benefit-card {
+  padding: 2rem 1.5rem;
+  background: var(--hts-surface);
+  border: 1px solid var(--hts-border);
+  border-radius: 16px;
+  text-align: center;
+  opacity: 0; transform: translateY(16px);
+  animation: card-in 0.5s cubic-bezier(.25,.46,.45,.94) forwards;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.benefit-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(10,14,30,0.1); border-color: var(--hts-cyan); }
+@keyframes card-in { to { opacity: 1; transform: none; } }
+.benefit-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 1rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--hts-dusk) 0%, var(--hts-dusk-2) 100%);
+  color: #fff; box-shadow: 0 8px 20px rgba(79, 68, 176, 0.3);
+}
+.benefit-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--hts-navy); margin-bottom: 0.5rem; }
+.benefit-card p { font-size: 0.95rem; line-height: 1.6; color: var(--hts-text); margin: 0; }
+
+/* ── ROLES ── */
+.careers-roles { padding: 6rem 0; background: var(--hts-surface); }
+.roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.role-category {
+  padding: 2rem 1.5rem;
+  background: var(--hts-bg);
+  border: 1px solid var(--hts-border);
+  border-radius: 16px;
+  opacity: 0; transform: translateY(16px);
+  animation: card-in 0.5s cubic-bezier(.25,.46,.45,.94) forwards;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.role-category:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(10,14,30,0.1); border-color: var(--hts-cyan); }
+.role-category h3 { font-size: 1.15rem; font-weight: 700; color: var(--hts-navy); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--hts-border); }
+.role-category ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+.role-category li { font-size: 0.95rem; color: var(--hts-text); padding: 0.4rem 0; padding-left: 1.25rem; position: relative; }
+.role-category li::before { content: '→'; position: absolute; left: 0; color: var(--hts-cyan); font-weight: 700; }
+.role-link {
+  display: inline-block;
+  font-size: 0.85rem; font-weight: 700; color: var(--hts-cyan); text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+}
+.role-link:hover { color: var(--hts-dusk); }
+
+/* ── UPLOAD ── */
+.careers-upload { padding: 6rem 0; background: var(--hts-bg); }
+.upload-card { max-width: 640px; margin: 0 auto; }
+.upload-card header { text-align: center; margin-bottom: 2rem; }
+.upload-card h2 { font-size: 1.75rem; font-weight: 800; color: var(--hts-navy); margin-bottom: 0.5rem; }
+.upload-card p { font-size: 1rem; color: var(--hts-text-muted); }
+.upload-dropzone {
+  border: 2px dashed var(--hts-border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--hts-surface);
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.upload-dropzone:hover, .upload-dropzone.drag-over { border-color: var(--hts-cyan); background: rgba(6, 182, 212, 0.03); }
+.upload-dropzone.success { border-color: #10b981; border-style: solid; background: rgba(16, 185, 129, 0.05); }
+.upload-label { display: flex; flex-direction: column; align-items: center; gap: 1rem; cursor: pointer; }
+.upload-icon { color: var(--hts-cyan); }
+.upload-text { font-size: 1.05rem; font-weight: 600; color: var(--hts-navy); }
+.upload-hint { font-size: 0.85rem; color: var(--hts-text-muted); }
+.upload-status { margin-top: 1rem; font-size: 0.9rem; font-weight: 600; }
+.upload-status.loading { color: var(--hts-cyan); }
+.upload-status.success { color: #10b981; }
+.upload-status.error { color: #ef4444; }
+
+/* ── CTA ── */
+.careers-cta { padding: 5rem 0; background: linear-gradient(135deg, var(--hts-dusk) 0%, var(--hts-dusk-2) 100%); }
+.careers-cta-content { max-width: 720px; margin: 0 auto; text-align: center; }
+.careers-cta-content h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+.careers-cta-content > p { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; max-width: 55ch; margin-left: auto; margin-right: auto; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+/* ── BUTTONS ── */
+.hts-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-weight: 700; border-radius: 10px; border: none; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s; text-decoration: none; }
+.hts-btn-lg { padding: 14px 28px; font-size: 0.95rem; }
+.hts-btn-primary { background: #fff; color: var(--hts-navy); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+.hts-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
+.hts-btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+.hts-btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .careers-hero { min-height: 60vh; }
+  .careers-intro, .careers-roles, .careers-upload { padding: 4rem 0; }
+  .careers-cta { padding: 4rem 0; }
+  .hero-slide p { font-size: 1rem; }
+}
+@media (max-width: 640px) {
+  .careers-hero { min-height: 50vh; }
+  .slide-ctas { flex-direction: column; }
+  .slide-ctas .hts-btn { width: 100%; }
+}
