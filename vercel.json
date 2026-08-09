@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "client/package.json",
@@ -7,14 +6,19 @@
       "config": { "distDir": "client/dist" }
     },
     {
-      "src": "server/index.js",
-      "use": "@vercel/node",
-      "config": { "name": "htechsupports-server" }
+      "src": "server/package.json",
+      "use": "@vercel-node"
     }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "server/index.js" },
-    { "src": "/(.*)", "dest": "client/dist/index.html" }
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/server/index.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
