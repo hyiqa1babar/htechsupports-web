@@ -1,5 +1,5 @@
 /* Company.css */
-.company-page { min-height: 100vh; }
+.company-page { min-height: 100vh; font-size: 1rem; line-height: 1.6; }
 
 /* ── HERO ── */
 .company-hero {
@@ -151,11 +151,11 @@
 
 /* ── PARTNERS ── */
 .company-partners { padding: 5rem 0; background: var(--hts-surface); border-top: 1px solid var(--hts-border); }
-.partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; opacity: 0.7; transition: opacity 0.3s; }
+.partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; opacity: 1; transition: opacity 0.3s; }
 .partners-logos:hover { opacity: 1; }
-.partner-badge { filter: grayscale(1); transition: filter 0.3s, transform 0.3s; }
-.partner-badge:hover { filter: grayscale(0); transform: scale(1.05); }
-.partner-badge img { max-height: 50px; width: auto; }
+.partner-badge { filter: none; transition: transform 0.3s; }
+.partner-badge:hover { filter: none; transform: scale(1.05); }
+.partner-badge img { max-height: 80px; width: auto; }
 
 /* ── CLIENTS MARQUEE ── */
 .company-clients { padding: 5rem 0; background: var(--hts-bg); border-top: 1px solid var(--hts-border); }
