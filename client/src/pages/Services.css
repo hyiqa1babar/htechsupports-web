@@ -1,93 +1,228 @@
-/* Services.css */
+/* Services.css — Light theme, brand-cohesive redesign */
 
-.services-page {
-  background: #ffffff; /* page bg stays white */
+/* ── HERO ── */
+.svc-hero {
+  position: relative;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
-
-.services-page-header {
-  padding: 56px 0 32px;
-  text-align: center;
+.svc-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  filter: brightness(0.35);
 }
-
-.services-page-header h1 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 900;
+.svc-hero-bg.active { opacity: 1; }
+.svc-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 38, 109, 0.88) 0%,
+    rgba(79, 68, 176, 0.75) 50%,
+    rgba(10, 14, 30, 0.85) 100%
+  );
+}
+.svc-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  animation: svc-fadeUp .7s cubic-bezier(.25,.46,.45,.94) both;
+}
+@keyframes svc-fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+.svc-hero-badge {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #06b6d4;
+  background: rgba(6,182,212,.12);
+  border: 1px solid rgba(6,182,212,.25);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.svc-hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
   letter-spacing: -.02em;
-  color: var(--hts-text);
+  margin-bottom: 14px;
+}
+.svc-hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.7;
+  color: rgba(255,255,255,.85);
+  max-width: 56ch;
+  margin-bottom: 28px;
+}
+.svc-hero-dots {
+  display: flex;
+  gap: 8px;
+}
+.svc-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.5);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all .3s;
+}
+.svc-dot.active {
+  background: #06b6d4;
+  border-color: #06b6d4;
+  transform: scale(1.3);
 }
 
-/* ── Each service's own section ───────────────────────────
-   Exact dusky background sampled from the reference swatch,
-   used consistently for every service (not alternated).
-   Contained rounded card, not full-bleed — white page shows
-   through as the gap between sections. */
-.service-overview {
+/* ── SERVICE LIST ── */
+.svc-list {
   background: #ffffff;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
-.service-overview-inner {
-  background: #EFF0F5;
-  border-radius: 20px;
-  padding: 48px;
+/* ── SHOWCASE CARD ── */
+.svc-showcase {
+  padding: 28px 0;
+}
+.svc-showcase-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 56px;
   align-items: center;
+  background: #f1f5f9;
+  border-radius: 20px;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .6s ease, transform .6s ease;
 }
+.svc-showcase.visible .svc-showcase-inner {
+  opacity: 1;
+  transform: none;
+}
+.svc-showcase.reverse .svc-showcase-media { order: 2; }
+.svc-showcase.reverse .svc-showcase-text  { order: 1; }
 
-.service-overview-inner.reverse .service-overview-media { order: 2; }
-.service-overview-inner.reverse .service-overview-text  { order: 1; }
-
-.service-overview-media {
+.svc-showcase-media {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(30,38,109,.10);
 }
-
-.service-overview-media img {
+.svc-showcase-media img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
+  aspect-ratio: 16/10;
+  transition: transform .5s ease;
 }
-
-.service-overview-text h2 {
+.svc-showcase:hover .svc-showcase-media img {
+  transform: scale(1.04);
+}
+.svc-showcase-num {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: #1e266d;
+  opacity: .35;
+  margin-bottom: 8px;
+}
+.svc-showcase-text h2 {
   font-size: clamp(1.4rem, 2.6vw, 1.9rem);
   font-weight: 800;
-  color: var(--hts-navy);
-  margin-bottom: 18px;
+  color: #1e266d;
+  margin-bottom: 16px;
 }
-
-.service-overview-text p {
+.svc-showcase-text p {
   font-size: 1rem;
   line-height: 1.75;
-  color: var(--hts-muted);
+  color: #334155;
   margin-bottom: 24px;
-  white-space: pre-line;
 }
-
-.service-overview-text .read-more {
+.svc-showcase-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-weight: 700;
-  color: var(--hts-navy);
+  color: #1e266d;
   text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(30,38,109,.08);
+  transition: all .25s;
+}
+.svc-showcase-btn:hover {
+  color: #06b6d4;
+  box-shadow: 0 8px 24px rgba(6,182,212,.15);
+  transform: translateY(-2px);
 }
 
-.service-overview-text .read-more:hover { color: var(--hts-cyan); }
+/* ── CTA BAND ── */
+.svc-cta-band {
+  background: linear-gradient(135deg, #1e266d 0%, #4f44b0 100%);
+  padding: 64px 0;
+}
+.svc-cta-inner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.svc-cta-inner h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.svc-cta-inner p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 28px;
+}
+.svc-cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: .95rem;
+  color: #1e266d;
+  background: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  transition: transform .2s, box-shadow .2s;
+}
+.svc-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+}
 
-/* ── Responsive ────────────────────────────────────────── */
+/* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  .service-overview-inner,
-  .service-overview-inner.reverse {
+  .svc-showcase-inner,
+  .svc-showcase.reverse .svc-showcase-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 28px;
+    gap: 24px;
+    padding: 24px;
   }
-  .service-overview-inner.reverse .service-overview-media,
-  .service-overview-inner.reverse .service-overview-text {
+  .svc-showcase.reverse .svc-showcase-media,
+  .svc-showcase.reverse .svc-showcase-text {
     order: initial;
   }
+}
+@media (max-width: 640px) {
+  .svc-hero { min-height: 50vh; }
+  .svc-hero-title { font-size: 1.8rem; }
+  .svc-cta-band { padding: 48px 0; }
 }

@@ -7,12 +7,14 @@ import './Header.css';
 
 const NAV = siteData.navigation;
 
-function DropdownMenu({ items }) {
+function DropdownMenu({ items, onItemClick }) {
   return (
     <ul className="hts-dropdown">
       {items.map((child) => (
         <li key={child.title}>
-          <Link to={child.path}>{child.title}</Link>
+          <Link to={child.path} onClick={onItemClick}>
+            {child.title}
+          </Link>
         </li>
       ))}
     </ul>
@@ -25,25 +27,40 @@ function NavItem({ item }) {
 
   // Close on outside click
   useEffect(() => {
-    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
   if (item.children) {
     return (
-      <li ref={ref} className="hts-nav-item has-dropdown" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-        <button className="hts-nav-link" aria-haspopup="true" aria-expanded={open}>
+      <li
+        ref={ref}
+        className={`hts-nav-item has-dropdown ${open ? 'dropdown-open' : ''}`}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
+        <Link
+          to={item.path}
+          className="hts-nav-link"
+          onClick={() => setOpen(false)}
+          aria-haspopup="true"
+          aria-expanded={open}
+        >
           {item.title} <span className="hts-chevron">&#x2304;</span>
-        </button>
-        {open && <DropdownMenu items={item.children} />}
+        </Link>
+        {open && <DropdownMenu items={item.children} onItemClick={() => setOpen(false)} />}
       </li>
     );
   }
 
   return (
     <li className="hts-nav-item">
-      <Link to={item.path} className="hts-nav-link">{item.title}</Link>
+      <Link to={item.path} className="hts-nav-link">
+        {item.title}
+      </Link>
     </li>
   );
 }

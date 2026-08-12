@@ -134,10 +134,10 @@
     {
       "id": "professional-service",
       "title": "Professional Service",
-      "icon": "Support",
+      "icon": "Monitor",
       "description": "Bringing Your Vision to Life: Professional AV Installation and Remote Support Services. Creating a dynamic and engaging audio-visual experience requires skilled professionals and a seamless integration process. We offer comprehensive AV installation services, coupled with remote IT deployment support, to ensure your project is completed efficiently and according to your specific needs.",
       "link": "/pages/professional-service",
-      "image": "/assets/services/professional-service.jpg"
+      "image": "/assets/images/service-pro-av.png"
     },
     {
       "id": "wireless-survey",
@@ -145,7 +145,7 @@
       "icon": "Wifi",
       "description": "Optimize Your Wireless Network with Ekahau Surveys – Performed by a Certified Partner. Looking to improve your Wi-Fi performance? We're a proud official partner of Ekahau, a leader in Wi-Fi network optimization solutions. Our team of experts can conduct a comprehensive Ekahau survey to identify and address any issues impacting your wireless network.",
       "link": "/pages/wireless-survey",
-      "image": "/assets/services/wireless-survey.webp"
+      "image": "/assets/images/service-wireless.png"
     },
     {
       "id": "network-support",
@@ -153,7 +153,7 @@
       "icon": "Network",
       "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We offer a comprehensive suite of services to keep your network running smoothly, from planning and installation to troubleshooting and maintenance.",
       "link": "/pages/network-support",
-      "image": "/assets/services/network-support.webp"
+      "image": "/assets/images/company-services.png"
     },
     {
       "id": "structured-cabling",
@@ -161,7 +161,7 @@
       "icon": "Cabling",
       "description": "A well-designed and organized network cabling system is the backbone of any successful IT infrastructure. It provides a reliable foundation for data transmission, voice communication, and security systems. Our team of experts offers a comprehensive range of cabling and connectivity solutions to meet your specific needs.",
       "link": "/pages/structured-cabling",
-      "image": "/assets/services/structured-cabling.jpg"
+      "image": "/assets/images/company-mission.png"
     },
     {
       "id": "end-user-computing-support",
@@ -169,7 +169,7 @@
       "icon": "Support",
       "description": "Technology is an essential tool for business success, but technical issues can disrupt your workflow and cost valuable time. Our comprehensive IT support services ensure your systems run smoothly, allowing you to focus on what matters most – your business.",
       "link": "/pages/end-user-computing-support",
-      "image": "/assets/services/end-user-computing-support.jpg"
+      "image": "/assets/images/hero-startup-1.png"
     },
     {
       "id": "itad-it-asset-disposal",
@@ -177,7 +177,7 @@
       "icon": "Recycle",
       "description": "Supporting Your Transitions: Seamless Site Closure, Relocation & Device Disposal Solutions. As your business evolves, you may face the need to close a site, relocate to a new location, or dispose of outdated equipment. We understand the complexities involved in managing these transitions and offer comprehensive services to ensure a smooth and secure process.",
       "link": "/pages/itad-it-asset-disposal",
-      "image": "/assets/services/itad-it-asset-disposal.webp"
+      "image": "/assets/images/hero-startup-2.png"
     },
     {
       "id": "staff-augmentation",
@@ -185,7 +185,7 @@
       "icon": "Users",
       "description": "Building a Strong Foundation: Network Cabling and Connectivity Solutions. In today's globalized business environment, maintaining seamless technology operations across multiple locations is crucial. We offer comprehensive global dispatch and on-site tech support services to ensure your IT infrastructure stays up and running no matter where your business operates.",
       "link": "/pages/staff-augmentation",
-      "image": "/assets/services/staff-augmentation.jpg"
+      "image": "/assets/images/company-hero.png"
     }
   ],
   "sectors": [

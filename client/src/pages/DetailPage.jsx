@@ -1,11 +1,23 @@
 // src/pages/DetailPage.jsx
-// Shared detail page for all 13 service/sector pages — data-driven from siteData.json
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import siteData from '../data/siteData.json';
 import { Link } from 'react-router-dom';
 import { usePartner } from '../components/PartnerContext.jsx';
 import './DetailPage.css';
+
+function FadeIn({ children, className = '', delay = 0 }) {
+  const ref = useRef(null);
+  const [vis, setVis] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } }, { threshold: 0.12 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return <div ref={ref} className={`${className} fade-section ${vis ? 'visible' : ''}`} style={{ transitionDelay: `${delay}ms` }}>{children}</div>;
+}
 
 function DetailPage({ slug }) {
   const page = siteData.detailPages?.[slug];
@@ -14,17 +26,8 @@ function DetailPage({ slug }) {
   if (!page) {
     return (
       <div className="detail-page not-found">
-        <Helmet>
-          <title>Page Not Found — HTech Supports</title>
-          <meta name="description" content="The requested page could not be found." />
-        </Helmet>
-        <section className="detail-hero">
-          <div className="container">
-            <h1>Page Not Found</h1>
-            <p>The page you're looking for doesn't exist or has been moved.</p>
-            <Link to="/services" className="hts-btn hts-btn-primary">← Back to Services</Link>
-          </div>
-        </section>
+        <Helmet><title>Page Not Found — HTech Supports</title><meta name="description" content="The requested page could not be found." /></Helmet>
+        <section className="detail-hero"><div className="container"><h1>Page Not Found</h1><p>The page you're looking for doesn't exist or has been moved.</p><Link to="/services" className="dp-btn dp-btn-primary">← Back to Services</Link></div></section>
       </div>
     );
   }
@@ -40,63 +43,54 @@ function DetailPage({ slug }) {
         <meta property="og:title" content={`${page.title} | HTech Supports`} />
         <meta property="og:description" content={page.tagline} />
         <meta property="og:image" content={page.image} />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${page.title} | HTech Supports`} />
-        <meta name="twitter:description" content={page.tagline} />
-        <meta name="twitter:image" content={page.image} />
       </Helmet>
 
       {/* ── HERO ── */}
-      <section className="detail-hero" aria-labelledby="detail-title">
-        <div className="detail-hero-bg" style={{ backgroundImage: `url(${page.image})` }} aria-hidden="true" />
-        <div className="detail-hero-overlay" />
-        <div className="container detail-hero-content">
-          <span className="detail-kind-badge">{kindLabel}</span>
-          <h1 id="detail-title">{page.title}</h1>
-          <p className="detail-tagline">{page.tagline}</p>
-          <div className="detail-hero-ctas">
-            <button onClick={openPartner} className="hts-btn hts-btn-primary hts-btn-lg">
-              Become A Partner
-            </button>
-            <Link to={isService ? '/services' : '/sectors'} className="hts-btn hts-btn-outline hts-btn-lg">
-              ← All {isService ? 'Services' : 'Sectors'}
-            </Link>
+      <section className="dp-hero" aria-labelledby="dp-title">
+        <img src={page.image} alt="" className="dp-hero-bg" aria-hidden="true" />
+        <div className="dp-hero-overlay" />
+        <div className="container dp-hero-content">
+          <span className="dp-badge">{kindLabel}</span>
+          <h1 id="dp-title">{page.title}</h1>
+          <p className="dp-tagline">{page.tagline}</p>
+          <div className="dp-hero-ctas">
+            <button onClick={openPartner} className="dp-btn dp-btn-white">Become A Partner</button>
+            <Link to={isService ? '/services' : '/sectors'} className="dp-btn dp-btn-outline">← All {isService ? 'Services' : 'Sectors'}</Link>
           </div>
         </div>
       </section>
 
-      {/* ── INTRO / DESCRIPTION ── */}
-      <section className="detail-intro" aria-labelledby="intro-heading">
-        <div className="container detail-intro-grid">
-          <div className="detail-intro-text">
-            <h2 id="intro-heading">What We Deliver</h2>
+      {/* ── INTRO ── */}
+      <FadeIn className="dp-intro">
+        <div className="container dp-intro-grid">
+          <div className="dp-intro-text">
+            <h2>What We Deliver</h2>
             <p>{page.description}</p>
           </div>
-          <div className="detail-intro-media" aria-hidden="true">
-            <div className="detail-media-card">
-              <img src={page.image} alt="" loading="lazy" />
-            </div>
+          <div className="dp-intro-media">
+            <img src={page.image} alt="" loading="lazy" />
           </div>
         </div>
-      </section>
+      </FadeIn>
 
-      {/* ── FEATURES GRID ── */}
-      {page.features?.length && (
-        <section className="detail-features" aria-labelledby="features-heading">
+      {/* ── FEATURES ── */}
+      {page.features?.length > 0 && (
+        <section className="dp-features">
           <div className="container">
-            <header className="detail-section-header">
-              <h2 id="features-heading">Key Capabilities</h2>
+            <FadeIn className="dp-section-header">
+              <h2>Key Capabilities</h2>
               <p>Core competencies that define our {isService ? 'service delivery' : 'sector expertise'}</p>
-            </header>
-            <ul className="detail-features-grid" role="list">
-              {page.features.map((feature, i) => (
-                <li key={feature} className="detail-feature-card" style={{ animationDelay: `${i * 80}ms` }}>
-                  <span className="detail-feature-icon" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  </span>
-                  <span className="detail-feature-text">{feature}</span>
-                </li>
+            </FadeIn>
+            <ul className="dp-features-grid" role="list">
+              {page.features.map((f, i) => (
+                <FadeIn key={f} delay={i * 100}>
+                  <li className="dp-feature-card">
+                    <span className="dp-feature-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <span className="dp-feature-label">{f}</span>
+                  </li>
+                </FadeIn>
               ))}
             </ul>
           </div>
@@ -105,31 +99,27 @@ function DetailPage({ slug }) {
 
       {/* ── CASE STUDY ── */}
       {page.caseStudy && (
-        <section className="detail-case-study" aria-labelledby="case-heading">
+        <FadeIn className="dp-case">
           <div className="container">
-            <div className="detail-case-card">
-              <div className="detail-case-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <div className="dp-case-card">
+              <div className="dp-case-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
               </div>
-              <h3 id="case-heading">Case Study</h3>
+              <h3>Case Study</h3>
               <p>{page.caseStudy}</p>
             </div>
           </div>
-        </section>
+        </FadeIn>
       )}
 
-      {/* ── CTA BAND ── */}
-      <section className="detail-cta-band" aria-labelledby="cta-heading">
-        <div className="container detail-cta-content">
-          <h2 id="cta-heading">Ready to Get Started?</h2>
+      {/* ── CTA ── */}
+      <section className="dp-cta-band">
+        <div className="container dp-cta-content">
+          <h2>Ready to Get Started?</h2>
           <p>Talk to our team about your requirements and discover how we can support your operations.</p>
-          <div className="detail-cta-actions">
-            <button onClick={openPartner} className="hts-btn hts-btn-primary hts-btn-lg">
-              Become A Partner
-            </button>
-            <a href="/contact" className="hts-btn hts-btn-outline hts-btn-lg">
-              Contact Us
-            </a>
+          <div className="dp-cta-actions">
+            <button onClick={openPartner} className="dp-btn dp-btn-white">Become A Partner</button>
+            <Link to="/contact" className="dp-btn dp-btn-outline">Contact Us</Link>
           </div>
         </div>
       </section>

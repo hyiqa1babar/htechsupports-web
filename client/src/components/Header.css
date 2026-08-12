@@ -69,18 +69,28 @@
 /* ── Dropdown ──────────────────────────────────────────── */
 .hts-dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 4px);
   left: 50%;
   transform: translateX(-50%);
   background: #ffffff;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  box-shadow: 0 12px 40px rgba(30,38,109,.16);
-  min-width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(30, 38, 109, 0.18);
+  min-width: 240px;
   padding: 8px 0;
   list-style: none;
-  z-index: 100;
+  z-index: 1000;
   animation: dropIn .18s ease;
+}
+
+.hts-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
 }
 
 @keyframes dropIn {
