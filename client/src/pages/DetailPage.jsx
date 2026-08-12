@@ -1,4 +1,4 @@
-// src/pages/DetailPage.jsx
+// src/pages/DetailPage.jsx — Premium service detail
 import React, { useRef, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import siteData from '../data/siteData.json';
@@ -6,37 +6,32 @@ import { Link } from 'react-router-dom';
 import { usePartner } from '../components/PartnerContext.jsx';
 import './DetailPage.css';
 
-function FadeIn({ children, className = '', delay = 0 }) {
+function Reveal({ children, className = '', delay = 0, tag: Tag = 'div' }) {
   const ref = useRef(null);
-  const [vis, setVis] = useState(false);
+  const [v, setV] = useState(false);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } }, { threshold: 0.12 });
-    obs.observe(el);
-    return () => obs.disconnect();
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setV(true); obs.disconnect(); } }, { threshold: 0.1 });
+    obs.observe(el); return () => obs.disconnect();
   }, []);
-  return <div ref={ref} className={`${className} fade-section ${vis ? 'visible' : ''}`} style={{ transitionDelay: `${delay}ms` }}>{children}</div>;
+  return <Tag ref={ref} className={`${className} rv ${v ? 'rv-in' : ''}`} style={{ transitionDelay: `${delay}ms` }}>{children}</Tag>;
 }
 
 function DetailPage({ slug }) {
   const page = siteData.detailPages?.[slug];
   const openPartner = usePartner();
 
-  if (!page) {
-    return (
-      <div className="detail-page not-found">
-        <Helmet><title>Page Not Found — HTech Supports</title><meta name="description" content="The requested page could not be found." /></Helmet>
-        <section className="detail-hero"><div className="container"><h1>Page Not Found</h1><p>The page you're looking for doesn't exist or has been moved.</p><Link to="/services" className="dp-btn dp-btn-primary">← Back to Services</Link></div></section>
-      </div>
-    );
-  }
+  if (!page) return (
+    <div className="dp"><Helmet><title>Not Found — HTech Supports</title></Helmet>
+      <div className="dp-empty container"><h1>Page Not Found</h1><Link to="/services">← Back to Services</Link></div>
+    </div>
+  );
 
   const isService = page.kind === 'service';
-  const kindLabel = isService ? 'Service' : 'Sector';
+  const allServices = siteData.services?.filter(s => s.id !== slug).slice(0, 3) || [];
 
   return (
-    <div className="detail-page">
+    <div className="dp">
       <Helmet>
         <title>{page.title} — HTech Supports</title>
         <meta name="description" content={page.tagline} />
@@ -45,81 +40,112 @@ function DetailPage({ slug }) {
         <meta property="og:image" content={page.image} />
       </Helmet>
 
-      {/* ── HERO ── */}
-      <section className="dp-hero" aria-labelledby="dp-title">
-        <img src={page.image} alt="" className="dp-hero-bg" aria-hidden="true" />
-        <div className="dp-hero-overlay" />
-        <div className="container dp-hero-content">
-          <span className="dp-badge">{kindLabel}</span>
-          <h1 id="dp-title">{page.title}</h1>
-          <p className="dp-tagline">{page.tagline}</p>
-          <div className="dp-hero-ctas">
-            <button onClick={openPartner} className="dp-btn dp-btn-white">Become A Partner</button>
-            <Link to={isService ? '/services' : '/sectors'} className="dp-btn dp-btn-outline">← All {isService ? 'Services' : 'Sectors'}</Link>
+      {/* ═══ SPLIT HERO ═══ */}
+      <section className="dp-hero">
+        <div className="dp-hero-img-side">
+          <img src={page.image} alt={page.title} />
+          <div className="dp-hero-img-overlay" />
+        </div>
+        <div className="dp-hero-text-side">
+          <div className="dp-hero-inner">
+            <span className="dp-pill">{isService ? 'Service' : 'Sector'}</span>
+            <h1>{page.title}</h1>
+            <p className="dp-hero-tagline">{page.tagline}</p>
+            <div className="dp-hero-btns">
+              <button onClick={openPartner} className="dp-btn dp-btn-accent">Become A Partner</button>
+              <Link to={isService ? '/services' : '/sectors'} className="dp-btn dp-btn-outline">
+                ← All {isService ? 'Services' : 'Sectors'}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── INTRO ── */}
-      <FadeIn className="dp-intro">
-        <div className="container dp-intro-grid">
-          <div className="dp-intro-text">
+      {/* ═══ DESCRIPTION ═══ */}
+      <Reveal className="dp-desc">
+        <div className="container dp-desc-grid">
+          <div className="dp-desc-content">
+            <span className="dp-pill">Overview</span>
             <h2>What We Deliver</h2>
             <p>{page.description}</p>
           </div>
-          <div className="dp-intro-media">
-            <img src={page.image} alt="" loading="lazy" />
+          <div className="dp-desc-visual">
+            <div className="dp-desc-card">
+              <img src={page.image} alt="" loading="lazy" />
+            </div>
+            {/* Decorative floating accent */}
+            <div className="dp-desc-accent" aria-hidden="true" />
           </div>
         </div>
-      </FadeIn>
+      </Reveal>
 
-      {/* ── FEATURES ── */}
+      {/* ═══ FEATURES ═══ */}
       {page.features?.length > 0 && (
-        <section className="dp-features">
+        <section className="dp-feats">
           <div className="container">
-            <FadeIn className="dp-section-header">
+            <Reveal className="dp-feats-head">
+              <span className="dp-pill">Capabilities</span>
               <h2>Key Capabilities</h2>
-              <p>Core competencies that define our {isService ? 'service delivery' : 'sector expertise'}</p>
-            </FadeIn>
-            <ul className="dp-features-grid" role="list">
+            </Reveal>
+            <div className="dp-feats-grid">
               {page.features.map((f, i) => (
-                <FadeIn key={f} delay={i * 100}>
-                  <li className="dp-feature-card">
-                    <span className="dp-feature-icon">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </span>
-                    <span className="dp-feature-label">{f}</span>
-                  </li>
-                </FadeIn>
+                <Reveal key={f} className="dp-feat" delay={i * 100} tag="div">
+                  <div className="dp-feat-num">0{i + 1}</div>
+                  <h3>{f}</h3>
+                  <div className="dp-feat-bar"><div className="dp-feat-bar-fill" /></div>
+                </Reveal>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
 
-      {/* ── CASE STUDY ── */}
+      {/* ═══ CASE STUDY ═══ */}
       {page.caseStudy && (
-        <FadeIn className="dp-case">
+        <Reveal className="dp-case">
           <div className="container">
             <div className="dp-case-card">
-              <div className="dp-case-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-              </div>
-              <h3>Case Study</h3>
+              <div className="dp-case-deco" aria-hidden="true" />
+              <span className="dp-pill">Case Study</span>
               <p>{page.caseStudy}</p>
             </div>
           </div>
-        </FadeIn>
+        </Reveal>
       )}
 
-      {/* ── CTA ── */}
-      <section className="dp-cta-band">
-        <div className="container dp-cta-content">
+      {/* ═══ RELATED SERVICES ═══ */}
+      {allServices.length > 0 && (
+        <section className="dp-related">
+          <div className="container">
+            <Reveal className="dp-related-head">
+              <h2>Explore More Services</h2>
+            </Reveal>
+            <div className="dp-related-grid">
+              {allServices.map((s, i) => (
+                <Reveal key={s.id} delay={i * 100}>
+                  <Link to={s.link} className="dp-related-card">
+                    <img src={s.image} alt={s.title} loading="lazy" />
+                    <div className="dp-related-body">
+                      <h3>{s.title}</h3>
+                      <span className="dp-related-arrow">→</span>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══ CTA ═══ */}
+      <section className="dp-cta">
+        <div className="dp-cta-glow" aria-hidden="true" />
+        <div className="container dp-cta-inner">
           <h2>Ready to Get Started?</h2>
           <p>Talk to our team about your requirements and discover how we can support your operations.</p>
-          <div className="dp-cta-actions">
+          <div className="dp-cta-btns">
             <button onClick={openPartner} className="dp-btn dp-btn-white">Become A Partner</button>
-            <Link to="/contact" className="dp-btn dp-btn-outline">Contact Us</Link>
+            <Link to="/contact" className="dp-btn dp-btn-ghost-light">Contact Us</Link>
           </div>
         </div>
       </section>
