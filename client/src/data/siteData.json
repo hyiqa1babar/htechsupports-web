@@ -153,7 +153,7 @@
       "icon": "Network",
       "description": "Maintaining a robust and reliable network infrastructure is essential for any business today. We offer a comprehensive suite of services to keep your network running smoothly, from planning and installation to troubleshooting and maintenance.",
       "link": "/pages/network-support",
-      "image": "/assets/images/company-services.png"
+      "image": "/assets/images/service-network-support.png"
     },
     {
       "id": "structured-cabling",
@@ -161,7 +161,7 @@
       "icon": "Cabling",
       "description": "A well-designed and organized network cabling system is the backbone of any successful IT infrastructure. It provides a reliable foundation for data transmission, voice communication, and security systems. Our team of experts offers a comprehensive range of cabling and connectivity solutions to meet your specific needs.",
       "link": "/pages/structured-cabling",
-      "image": "/assets/images/company-mission.png"
+      "image": "/assets/images/service-structured-cabling.png"
     },
     {
       "id": "end-user-computing-support",
@@ -169,7 +169,7 @@
       "icon": "Support",
       "description": "Technology is an essential tool for business success, but technical issues can disrupt your workflow and cost valuable time. Our comprehensive IT support services ensure your systems run smoothly, allowing you to focus on what matters most – your business.",
       "link": "/pages/end-user-computing-support",
-      "image": "/assets/images/hero-startup-1.png"
+      "image": "/assets/images/service-end-user-computing.png"
     },
     {
       "id": "itad-it-asset-disposal",
@@ -177,7 +177,7 @@
       "icon": "Recycle",
       "description": "Supporting Your Transitions: Seamless Site Closure, Relocation & Device Disposal Solutions. As your business evolves, you may face the need to close a site, relocate to a new location, or dispose of outdated equipment. We understand the complexities involved in managing these transitions and offer comprehensive services to ensure a smooth and secure process.",
       "link": "/pages/itad-it-asset-disposal",
-      "image": "/assets/images/hero-startup-2.png"
+      "image": "/assets/images/service-itad.png"
     },
     {
       "id": "staff-augmentation",
@@ -185,7 +185,7 @@
       "icon": "Users",
       "description": "Building a Strong Foundation: Network Cabling and Connectivity Solutions. In today's globalized business environment, maintaining seamless technology operations across multiple locations is crucial. We offer comprehensive global dispatch and on-site tech support services to ensure your IT infrastructure stays up and running no matter where your business operates.",
       "link": "/pages/staff-augmentation",
-      "image": "/assets/images/company-hero.png"
+      "image": "/assets/images/service-staff-augmentation.png"
     }
   ],
   "sectors": [
@@ -234,7 +234,7 @@
         "On-site delivery across global sites"
       ],
       "caseStudy": "A coordinated AV rollout across client locations delivered on time and on budget, with remote deployment support to keep every site online.",
-      "image": "/assets/images/hero-startup-1.png"
+      "image": "/assets/images/service-pro-av.png"
     },
     "wireless-survey": {
       "kind": "service",
@@ -248,7 +248,7 @@
         "Actionable remediation guidance"
       ],
       "caseStudy": "A survey pinpointed dead zones and channel interference across a busy office estate, enabling a targeted AP upgrade that lifted performance.",
-      "image": "/assets/images/hero-startup-2.png"
+      "image": "/assets/images/service-wireless.png"
     },
     "network-support": {
       "kind": "service",
@@ -262,7 +262,7 @@
         "LAN and hardware troubleshooting"
       ],
       "caseStudy": "A phased network migration across sites kept business traffic flowing with zero downtime during the cutover.",
-      "image": "/assets/images/hero-startup-1.png"
+      "image": "/assets/images/service-network-support.png"
     },
     "structured-cabling": {
       "kind": "service",
@@ -276,7 +276,7 @@
         "Testing and certification"
       ],
       "caseStudy": "A full structured cabling refresh tidied and stabilized a data centre, cutting fault-finding time across the estate.",
-      "image": "/assets/images/coverage-map.jpg"
+      "image": "/assets/images/service-structured-cabling.png"
     },
     "end-user-computing-support": {
       "kind": "service",
@@ -290,7 +290,7 @@
         "Backfill or fixed-term engineers"
       ],
       "caseStudy": "Deskside engineers supported a multi-site workforce through a laptop refresh, resolving tickets same-day.",
-      "image": "/assets/images/hero-startup-2.png"
+      "image": "/assets/images/service-end-user-computing.png"
     },
     "itad-it-asset-disposal": {
       "kind": "service",
@@ -304,7 +304,7 @@
         "Compliance & audit documentation"
       ],
       "caseStudy": "A site consolidation decommissioned and securely disposed of equipment across multiple locations with full audit trails.",
-      "image": "/assets/images/hero-startup-1.png"
+      "image": "/assets/images/service-itad.png"
     },
     "staff-augmentation": {
       "kind": "service",
@@ -318,7 +318,7 @@
         "Backfill, fixed-term and FTE resourcing"
       ],
       "caseStudy": "On-demand engineers were deployed across 30 countries for a probe rollout, covering 180+ sites without interruption.",
-      "image": "/assets/images/coverage-map.jpg"
+      "image": "/assets/images/service-staff-augmentation.png"
     },
     "retail": {
       "kind": "sector",
@@ -332,7 +332,7 @@
         "EMEA retail estate support"
       ],
       "caseStudy": "A US sports manufacturer and retailer IT audit across its EMEA estate identified risks and optimised performance store-by-store.",
-      "image": "/assets/images/hero-startup-1.png"
+      "image": "/assets/images/sector-retail.png"
     },
     "enterprise": {
       "kind": "sector",
@@ -346,7 +346,7 @@
         "Vendor-engineered certifications"
       ],
       "caseStudy": "A global bank coordinated unified collaboration across multiple sites, including a Cisco IX5000 upgrade, with minimal disruption.",
-      "image": "/assets/images/hero-startup-2.png"
+      "image": "/assets/images/company-vision.png"
     },
     "data-center": {
       "kind": "sector",
@@ -360,7 +360,7 @@
         "Spare parts & capacity support"
       ],
       "caseStudy": "Managed rack-and-stack and patching during a data centre expansion, keeping existing workloads online throughout.",
-      "image": "/assets/images/coverage-map.jpg"
+      "image": "/assets/images/company-services.png"
     },
     "carrier-network": {
       "kind": "sector",
@@ -374,7 +374,7 @@
         "Multi-country field force"
       ],
       "caseStudy": "Supported a probe rollout across 30 countries and 180+ sites with a coordinated on-site field force.",
-      "image": "/assets/images/hero-startup-2.png"
+      "image": "/assets/images/posts/network_opt_placeholder_1785838438877.png"
     },
     "manufacturing": {
       "kind": "sector",
@@ -402,7 +402,7 @@
         "Vetted processes & audit readiness"
       ],
       "caseStudy": "A Windows 10 migration was delivered for a large public-sector organisation, moving ~2,500 users across departments.",
-      "image": "/assets/images/coverage-map.jpg"
+      "image": "/assets/images/company-mission.png"
     }
   }
 }

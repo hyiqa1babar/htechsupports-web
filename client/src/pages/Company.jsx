@@ -156,11 +156,8 @@ export default function Company() {
             </p>
             
             <div className="hero-ctas">
-              <button onClick={openPartner} className="hts-btn hts-btn-navy hts-btn-lg">
-                Become A Partner <ArrowRight className="btn-icon" />
-              </button>
-              <Link to="/contact" className="hts-btn hts-btn-outline-navy hts-btn-lg">
-                Contact Sales
+              <Link to="/contact" className="hts-btn hts-btn-navy hts-btn-lg">
+                Contact Us <ArrowRight className="btn-icon" />
               </Link>
             </div>
 
@@ -428,16 +425,13 @@ export default function Company() {
         <div className="container">
           <div className="cta-box-light">
             <span className="cta-eyebrow-navy">START YOUR DEPLOYMENT</span>
-            <h2>Ready to Partner with HTech?</h2>
+            <h2>Ready to Get Started?</h2>
             <p>
               Whether you need a single-site deployment or a multi-country rollout, our team is ready to design, dispatch, and deliver.
             </p>
             <div className="cta-actions">
-              <button onClick={openPartner} className="hts-btn hts-btn-navy hts-btn-lg">
-                Become A Partner <ArrowRight className="btn-icon" />
-              </button>
-              <Link to="/contact" className="hts-btn hts-btn-outline-navy hts-btn-lg">
-                Start a Conversation
+              <Link to="/contact" className="hts-btn hts-btn-navy hts-btn-lg">
+                Contact Us <ArrowRight className="btn-icon" />
               </Link>
             </div>
           </div>

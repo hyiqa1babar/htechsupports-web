@@ -52,7 +52,7 @@ function DetailPage({ slug }) {
             <h1>{page.title}</h1>
             <p className="dp-hero-tagline">{page.tagline}</p>
             <div className="dp-hero-btns">
-              <button onClick={openPartner} className="dp-btn dp-btn-accent">Become A Partner</button>
+              <Link to="/contact" className="dp-btn dp-btn-accent">Contact Us</Link>
               <Link to={isService ? '/services' : '/sectors'} className="dp-btn dp-btn-outline">
                 ← All {isService ? 'Services' : 'Sectors'}
               </Link>
@@ -144,8 +144,7 @@ function DetailPage({ slug }) {
           <h2>Ready to Get Started?</h2>
           <p>Talk to our team about your requirements and discover how we can support your operations.</p>
           <div className="dp-cta-btns">
-            <button onClick={openPartner} className="dp-btn dp-btn-white">Become A Partner</button>
-            <Link to="/contact" className="dp-btn dp-btn-ghost-light">Contact Us</Link>
+            <Link to="/contact" className="dp-btn dp-btn-accent">Contact Us</Link>
           </div>
         </div>
       </section>

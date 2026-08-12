@@ -79,7 +79,6 @@ export default function Engineer() {
           <p className="hero-subtitle">Your command centre for global deployments. Dispatch, job packs, certifications, evidence capture, travel, and performance — unified.</p>
           <div className="hero-ctas">
             <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Request Access</Link>
-            <button onClick={openPartner} className="hts-btn hts-btn-outline hts-btn-lg">Become A Partner</button>
           </div>
           <p className="hero-note">Secure SSO login for active engineers and approved partners.</p>
         </div>
@@ -149,23 +148,13 @@ export default function Engineer() {
         </div>
       </section>
 
-      {/* ── PARTNER CTA ── */}
-      <section className="engineer-partner-cta" aria-labelledby="partner-heading">
-        <div className="container partner-cta-content">
-          <h2 id="partner-heading">Service Partner?</h2>
-          <p>Join our vetted global partner network. Access deployments, shared resources, and competitive rates.</p>
-          <button onClick={openPartner} className="hts-btn hts-btn-primary hts-btn-lg">Become A Partner</button>
-        </div>
-      </section>
-
       {/* ── FOOTER CTA ── */}
       <section className="engineer-cta" aria-labelledby="final-cta-heading">
         <div className="container engineer-cta-content">
-          <h2 id="final-cta-heading">Ready to Deploy?</h2>
-          <p>Whether you're an engineer looking for your next mission or a partner with capacity to share — let's talk.</p>
+          <h2 id="final-cta-heading">Ready to Get Started?</h2>
+          <p>Whether you're an engineer looking for your next mission or need technical resources — let's talk.</p>
           <div className="cta-actions">
-            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Get in Touch</Link>
-            <button onClick={openPartner} className="hts-btn hts-btn-outline hts-btn-lg">Become A Partner</button>
+            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Contact Us</Link>
           </div>
         </div>
       </section>

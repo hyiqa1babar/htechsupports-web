@@ -8,8 +8,11 @@ import './Services.css';
 const HERO_IMAGES = [
   '/assets/images/service-pro-av.png',
   '/assets/images/service-wireless.png',
-  '/assets/images/company-services.png',
-  '/assets/images/company-hero.png',
+  '/assets/images/service-network-support.png',
+  '/assets/images/service-structured-cabling.png',
+  '/assets/images/service-end-user-computing.png',
+  '/assets/images/service-itad.png',
+  '/assets/images/service-staff-augmentation.png',
 ];
 
 function useInView(threshold = 0.15) {
@@ -114,11 +117,10 @@ export default function Services() {
       <section className="sv-cta">
         <div className="sv-cta-bg" />
         <div className="container sv-cta-inner">
-          <h2>Ready to Transform Your IT Infrastructure?</h2>
+          <h2>Ready to Get Started?</h2>
           <p>Partner with us for scalable, reliable technology services worldwide.</p>
           <div className="sv-cta-actions">
             <Link to="/contact" className="sv-btn sv-btn-white">Contact Us</Link>
-            <Link to="/company" className="sv-btn sv-btn-ghost-light">About HTech</Link>
           </div>
         </div>
       </section>

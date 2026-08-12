@@ -14,7 +14,7 @@ const SECTORS_ENHANCED = [
     caseStudy: 'A multi-location UK retail chain achieved 99.9% uptime across 200+ stores through our coordinated network infrastructure upgrades.',
     icon: '🛒',
     color: 'from-emerald-500 to-teal-600',
-    image: '/assets/images/hero-startup-1.png',
+    image: '/assets/images/sector-retail.png',
   },
   {
     id: 'enterprise',
@@ -24,7 +24,7 @@ const SECTORS_ENHANCED = [
     caseStudy: 'A global banking institution coordinated unified collaboration upgrades across 15 locations without a single hour of downtime.',
     icon: '🏢',
     color: 'from-blue-500 to-cyan-600',
-    image: '/assets/images/hero-startup-2.png',
+    image: '/assets/images/company-vision.png',
   },
   {
     id: 'datacenter',
@@ -34,7 +34,7 @@ const SECTORS_ENHANCED = [
     caseStudy: 'Deployed 500+ servers across a Tier-3 datacenter in under 2 weeks, with zero downtime for existing workloads.',
     icon: '⚙️',
     color: 'from-purple-500 to-pink-600',
-    image: '/assets/images/coverage-map.jpg',
+    image: '/assets/images/company-services.png',
   },
   {
     id: 'manufacturing',
@@ -54,7 +54,7 @@ const SECTORS_ENHANCED = [
     caseStudy: 'Delivered BPSS-compliant infrastructure refresh for a UK government agency, meeting all security and compliance requirements on schedule.',
     icon: '🏛️',
     color: 'from-slate-600 to-slate-800',
-    image: '/assets/images/hero-startup-2.png',
+    image: '/assets/images/company-mission.png',
   },
   {
     id: 'carrier-network',
@@ -64,7 +64,7 @@ const SECTORS_ENHANCED = [
     caseStudy: 'Supported a major carrier through a nationwide 5G rollout across 50+ cities with zero service interruptions.',
     icon: '📡',
     color: 'from-indigo-500 to-blue-600',
-    image: '/assets/images/coverage-map.jpg',
+    image: '/assets/images/posts/network_opt_placeholder_1785838438877.png',
   },
 ];
 

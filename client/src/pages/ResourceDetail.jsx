@@ -147,11 +147,10 @@ export default function ResourceDetail() {
 
           {/* CTA */}
           <aside className="resource-cta">
-            <h3>Need Expert Support?</h3>
+            <h3>Ready to Get Started?</h3>
             <p>Talk to our team about your infrastructure challenges.</p>
             <div className="resource-cta-actions">
-              <button onClick={openPartner} className="hts-btn hts-btn-primary">Become A Partner</button>
-              <Link to="/contact" className="hts-btn hts-btn-outline">Contact Us</Link>
+              <Link to="/contact" className="hts-btn hts-btn-primary">Contact Us</Link>
             </div>
           </aside>
 

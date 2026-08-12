@@ -116,8 +116,7 @@ export default function Careers() {
                 <h1>{s.title}</h1>
                 <p>{s.subtitle}</p>
                 <div className="slide-ctas">
-                  <Link to="#roles" className="hts-btn hts-btn-primary hts-btn-lg">View Open Roles</Link>
-                  <button onClick={openPartner} className="hts-btn hts-btn-outline hts-btn-lg">Become A Partner</button>
+                  <a href="#roles" className="hts-btn hts-btn-primary hts-btn-lg">View Open Roles</a>
                 </div>
               </div>
             </div>
@@ -196,11 +195,10 @@ export default function Careers() {
       {/* ── CTA ── */}
       <section className="careers-cta" aria-labelledby="cta-heading">
         <div className="container careers-cta-content">
-          <h2 id="cta-heading">Ready to Deploy?</h2>
+          <h2 id="cta-heading">Ready to Get Started?</h2>
           <p>Join a team that builds the backbone of global connectivity. Your next mission starts here.</p>
           <div className="cta-actions">
-            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Apply Now</Link>
-            <button onClick={openPartner} className="hts-btn hts-btn-outline hts-btn-lg">Become A Partner</button>
+            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Contact Us</Link>
           </div>
         </div>
       </section>
