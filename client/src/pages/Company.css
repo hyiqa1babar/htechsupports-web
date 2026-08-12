@@ -667,15 +667,31 @@
   width: max-content;
 }
 
-.marquee-badge-light {
+.client-logo-card-light {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
-  background: #f8fafc;
+  justify-content: center;
+  padding: 14px 28px;
+  background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 999px;
-  white-space: nowrap;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(30, 38, 109, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  min-width: 140px;
+  height: 80px;
+}
+
+.client-logo-card-light:hover {
+  transform: translateY(-3px);
+  border-color: #1e266d;
+}
+
+.client-logo-card-light img {
+  max-height: 52px;
+  max-width: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .client-dot-navy {

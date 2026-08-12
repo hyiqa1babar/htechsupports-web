@@ -1,5 +1,5 @@
 // src/pages/Company.jsx
-// Redesigned Light Theme Company page with exact fact-checked copy from htechsupports.com
+// Redesigned Light Theme Company page with exact fact-checked copy and actual client logo assets
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -36,10 +36,31 @@ const PARTNERS = [
   { name: 'Ekahau', logo: '/assets/partners/2017_Ekahau_logo_black-640x360-1-300x169.png' },
 ];
 
-const CLIENTS = [
-  'Barclays', 'HSBC', 'Vodafone', 'BT', 'Ericsson',
-  'Nokia', 'Cisco', 'Juniper', 'Arista', 'Dell',
-  'HPE', 'Lenovo', 'VMware', 'Nutanix', 'Red Hat',
+// Actual Client Logo Assets from htechsupports.com
+const CLIENT_LOGOS = [
+  '/assets/clients/351.png',
+  '/assets/clients/36.png',
+  '/assets/clients/34.png',
+  '/assets/clients/33.png',
+  '/assets/clients/32.jpg',
+  '/assets/clients/31.png',
+  '/assets/clients/30.jpg',
+  '/assets/clients/29.png',
+  '/assets/clients/28.jpg',
+  '/assets/clients/27.png',
+  '/assets/clients/26.png',
+  '/assets/clients/25.png',
+  '/assets/clients/24.png',
+  '/assets/clients/23.jpg',
+  '/assets/clients/22.png',
+  '/assets/clients/21.png',
+  '/assets/clients/008.jpg',
+  '/assets/clients/07.jpg',
+  '/assets/clients/01.png',
+  '/assets/clients/06.jpg',
+  '/assets/clients/005.jpg',
+  '/assets/clients/03.png',
+  '/assets/clients/02.png'
 ];
 
 // Fact-checked Why HTech Support 4 Pillars
@@ -376,28 +397,26 @@ export default function Company() {
         </div>
       </section>
 
-      {/* ── CLIENTS MARQUEE ── */}
+      {/* ── CLIENTS LOGOS MARQUEE ── */}
       <section className="company-clients-light">
         <div className="container">
           <header className="section-header-light">
             <span className="section-eyebrow-navy">ENTERPRISE FOOTPRINT</span>
-            <h2>Clients</h2>
+            <h2>CLIENTS</h2>
             <p>Some of our awesome clients we’ve had great pleasure working with!</p>
           </header>
         </div>
 
-        <div className="clients-marquee-light" aria-hidden="true">
+        <div className="clients-marquee-light" aria-label="Client logos slider">
           <div className="marquee-track-light">
-            {CLIENTS.map((c) => (
-              <div key={c} className="marquee-badge-light">
-                <span className="client-dot-navy" />
-                <span className="client-name-navy">{c}</span>
+            {CLIENT_LOGOS.map((logoPath, idx) => (
+              <div key={`client-logo-${idx}`} className="client-logo-card-light">
+                <img src={logoPath} alt="HTech Client Logo" loading="lazy" />
               </div>
             ))}
-            {CLIENTS.map((c) => (
-              <div key={`${c}-repeat`} className="marquee-badge-light">
-                <span className="client-dot-navy" />
-                <span className="client-name-navy">{c}</span>
+            {CLIENT_LOGOS.map((logoPath, idx) => (
+              <div key={`client-logo-repeat-${idx}`} className="client-logo-card-light">
+                <img src={logoPath} alt="HTech Client Logo" loading="lazy" />
               </div>
             ))}
           </div>
