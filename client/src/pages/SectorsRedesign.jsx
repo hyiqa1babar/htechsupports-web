@@ -64,7 +64,7 @@ const SECTORS_ENHANCED = [
     caseStudy: 'Supported a major carrier through a nationwide 5G rollout across 50+ cities with zero service interruptions.',
     icon: '📡',
     color: 'from-indigo-500 to-blue-600',
-    image: '/assets/images/posts/network_opt_placeholder_1785838438877.png',
+    image: '/assets/images/sector-carrier-network.png',
   },
 ];
 
