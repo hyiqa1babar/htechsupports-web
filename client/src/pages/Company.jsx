@@ -1,4 +1,5 @@
 // src/pages/Company.jsx
+// Redesigned Light Theme Company page with exact fact-checked copy from htechsupports.com
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -9,7 +10,10 @@ import {
   ShieldCheck,
   Target,
   Compass,
-  Award,
+  Heart,
+  Brain,
+  CheckCircle2,
+  Key,
   Monitor,
   Wifi,
   Layers,
@@ -17,10 +21,11 @@ import {
   Shield,
   Users,
   ArrowRight,
-  CheckCircle2,
   MapPin,
   Activity,
-  Zap
+  Zap,
+  Mail,
+  ChevronRight
 } from 'lucide-react';
 import './Company.css';
 
@@ -37,11 +42,32 @@ const CLIENTS = [
   'HPE', 'Lenovo', 'VMware', 'Nutanix', 'Red Hat',
 ];
 
-const VALUE_ITEMS = [
-  { title: 'Engineering Excellence', desc: 'Certified, vetted, and fully accountable experts.' },
-  { title: 'Client-First Agility', desc: 'Rapid SLA response and speed without compromise.' },
-  { title: 'Global Reach, Local Touch', desc: '50+ countries with unified quality standards.' },
-  { title: 'Integrity & Compliance', desc: 'BPSS-cleared engineers and audit-ready execution.' }
+// Fact-checked Why HTech Support 4 Pillars
+const WHY_HTECH_PILLARS = [
+  {
+    title: 'Honesty and Integrity',
+    icon: Heart,
+    color: '#4f46e5',
+    desc: 'We stand by our ethos: say what you are going to do and then deliver upon it. If we can’t do it, we will tell you we can’t.'
+  },
+  {
+    title: 'Empathy and Diligence',
+    icon: Brain,
+    color: '#0284c7',
+    desc: 'We will understand your position then work with you until it is brought to a satisfactory conclusion.'
+  },
+  {
+    title: 'Be Prepared',
+    icon: CheckCircle2,
+    color: '#059669',
+    desc: 'We will always be prepared to do what is required to get the job done in a timely and professional manner.'
+  },
+  {
+    title: 'Trust',
+    icon: Key,
+    color: '#d97706',
+    desc: 'Our relationships are built on trust — trust to deliver what we say we will deliver. Quite simple: if there’s no trust, there’s no relationship.'
+  }
 ];
 
 const DELIVERABLES = [
@@ -82,7 +108,7 @@ export default function Company() {
   const openPartner = usePartner();
 
   return (
-    <div className="company-page">
+    <div className="company-page light-theme">
       <Helmet>
         <title>Company — HTech Supports</title>
         <meta name="description" content={company.tagline} />
@@ -92,13 +118,11 @@ export default function Company() {
       </Helmet>
 
       {/* ── HERO SECTION ── */}
-      <section className="company-hero" aria-labelledby="company-title">
-        <div className="company-hero-bg" aria-hidden="true" />
-        <div className="company-hero-glow" aria-hidden="true" />
-        
+      <section className="company-hero-light" aria-labelledby="company-title">
+        <div className="hero-pattern-bg" aria-hidden="true" />
         <div className="container company-hero-grid">
           <div className="hero-text-col">
-            <div className="hero-badge">
+            <div className="hero-badge-light">
               <Zap className="badge-icon" />
               <span>Global IT Infrastructure & Support</span>
             </div>
@@ -106,27 +130,29 @@ export default function Company() {
               Everything You Need. <br />
               <span className="hero-title-accent">Global IT Support & Infrastructure.</span>
             </h1>
-            <p className="hero-subtitle">{company.description}</p>
+            <p className="hero-subtitle-light">
+              HTS has a strong global presence, delivering solutions across more than 50 countries. Our engineers, many of whom are multilingual, range from Level 1 through to Level 3 across a broad spectrum of vendor technologies.
+            </p>
             
             <div className="hero-ctas">
-              <button onClick={openPartner} className="hts-btn hts-btn-primary hts-btn-lg">
+              <button onClick={openPartner} className="hts-btn hts-btn-navy hts-btn-lg">
                 Become A Partner <ArrowRight className="btn-icon" />
               </button>
-              <Link to="/contact" className="hts-btn hts-btn-outline hts-btn-lg">
+              <Link to="/contact" className="hts-btn hts-btn-outline-navy hts-btn-lg">
                 Contact Sales
               </Link>
             </div>
 
-            <div className="hero-trust-pills">
-              <div className="trust-pill">
+            <div className="hero-trust-pills-light">
+              <div className="trust-pill-light">
                 <Globe2 className="pill-icon" />
                 <span>50+ Countries</span>
               </div>
-              <div className="trust-pill">
+              <div className="trust-pill-light">
                 <ShieldCheck className="pill-icon" />
                 <span>BPSS Cleared</span>
               </div>
-              <div className="trust-pill">
+              <div className="trust-pill-light">
                 <Activity className="pill-icon" />
                 <span>24/7 SLA Response</span>
               </div>
@@ -134,14 +160,14 @@ export default function Company() {
           </div>
 
           <div className="hero-visual-col">
-            <div className="visual-card-wrapper">
+            <div className="visual-card-wrapper-light">
               <img
                 src="/assets/images/company-hero.png"
-                alt="Global IT Infrastructure Command Center"
+                alt="HTech Supports Global Operations"
                 className="hero-main-img"
               />
-              <div className="hero-float-card glass-card">
-                <div className="float-card-icon">
+              <div className="hero-float-card-light glass-card-light">
+                <div className="float-card-icon-light">
                   <Activity className="pulse-icon" />
                 </div>
                 <div className="float-card-info">
@@ -149,8 +175,8 @@ export default function Company() {
                   <span className="float-card-val">99.9% On-Time Dispatch</span>
                 </div>
               </div>
-              <div className="hero-float-card-2 glass-card">
-                <div className="float-card-icon cyan">
+              <div className="hero-float-card-2-light glass-card-light">
+                <div className="float-card-icon-light cyan">
                   <MapPin />
                 </div>
                 <div className="float-card-info">
@@ -163,86 +189,120 @@ export default function Company() {
         </div>
       </section>
 
-      {/* ── MISSION / VISION / VALUES ── */}
-      <section className="company-mvv" aria-labelledby="mvv-heading">
+      {/* ── COMPANY OVERVIEW SECTION ── */}
+      <section className="company-overview-section">
         <div className="container">
-          <header className="section-header">
-            <span className="section-eyebrow">OUR CORE PRINCIPLES</span>
-            <h2 id="mvv-heading">Our Foundation</h2>
-            <p>The principles that guide every decision, deployment, and delivery.</p>
-          </header>
-
-          <div className="mvv-showcase-grid">
-            {/* Mission Card */}
-            <article className="mvv-feature-card mission-card">
-              <div className="card-image-holder">
-                <img src="/assets/images/company-mission.png" alt="HTech Supports Mission" loading="lazy" />
-                <div className="image-overlay" />
-                <span className="card-badge">
-                  <Target className="badge-icon" /> Mission
-                </span>
-              </div>
-              <div className="card-content-body">
-                <h3>Our Mission</h3>
-                <p>
-                  Delivering global IT infrastructure and support with scale, agility, and unmatched engineering expertise — wherever our clients operate.
-                </p>
-              </div>
-            </article>
-
-            {/* Vision Card */}
-            <article className="mvv-feature-card vision-card">
-              <div className="card-image-holder">
-                <img src="/assets/images/company-vision.png" alt="HTech Supports Vision" loading="lazy" />
-                <div className="image-overlay" />
-                <span className="card-badge vision">
-                  <Compass className="badge-icon" /> Vision
-                </span>
-              </div>
-              <div className="card-content-body">
-                <h3>Our Vision</h3>
-                <p>
-                  To be the world's most trusted partner for mission-critical IT deployments — seamless, secure, and sustainable across every continent.
-                </p>
-              </div>
-            </article>
-          </div>
-
-          {/* Values Section */}
-          <div className="company-values-box">
-            <div className="values-header">
-              <Award className="values-main-icon" />
-              <h3>Core Operating Values</h3>
+          <div className="overview-card-light">
+            <div className="overview-text-side">
+              <span className="section-eyebrow-navy">ABOUT HTECH SUPPORTS</span>
+              <h2>Delivering With Scale and Agility</h2>
+              <p>
+                Our global services are provisioned through the use of our own engineers and our highly approved service partners. Servicing client requirements in multiple sectors from simple smart hands engineering to the more complicated consultative approach that enables us to build solutions partnered alongside our clients.
+              </p>
+              <p>
+                HTS can support you in Datacenter, Unified collaboration, Deskside support with back fill or fixed term contracted engineers, Wireless and Data communications, global roll outs, and forward stocking locations to ease international shipping.
+              </p>
             </div>
-            <div className="values-grid">
-              {VALUE_ITEMS.map((item, idx) => (
-                <div key={idx} className="value-card">
-                  <div className="value-check">
-                    <CheckCircle2 />
-                  </div>
-                  <div className="value-text">
-                    <h4>{item.title}</h4>
-                    <p>{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="overview-image-side">
+              <img src="/assets/images/company-services.png" alt="HTech Capabilities" loading="lazy" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── COVERAGE STATS ── */}
-      <section className="company-coverage" aria-labelledby="coverage-heading">
+      {/* ── MISSION & VISION SHOWCASE ── */}
+      <section className="company-mv-section">
         <div className="container">
-          <div className="coverage-wrapper">
+          <header className="section-header-light">
+            <span className="section-eyebrow-navy">PURPOSE & DIRECTION</span>
+            <h2>Mission & Vision</h2>
+            <p>Our commitment to delivering excellence for clients worldwide.</p>
+          </header>
+
+          <div className="mv-dual-grid">
+            {/* Mission Statement Card */}
+            <article className="mv-card-light mission">
+              <div className="mv-card-image">
+                <img src="/assets/images/company-mission.png" alt="HTech Supports Mission" loading="lazy" />
+                <div className="mv-badge-pill">
+                  <Target className="pill-svg" /> Mission Statement
+                </div>
+              </div>
+              <div className="mv-card-body">
+                <h3>Our Mission</h3>
+                <blockquote className="mv-quote">
+                  “To provide exceptional technical support and innovative solutions to our clients worldwide. We strive to keep their IT systems running seamlessly, enabling them to focus on their core business.”
+                </blockquote>
+                <div className="mv-action">
+                  <a href="mailto:sales@htechsupports.com" className="hts-btn hts-btn-navy hts-btn-sm">
+                    <Mail className="btn-icon-sm" /> Let’s Get In Touch
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Vision Statement Card */}
+            <article className="mv-card-light vision">
+              <div className="mv-card-image">
+                <img src="/assets/images/company-vision.png" alt="HTech Supports Vision" loading="lazy" />
+                <div className="mv-badge-pill vision-pill">
+                  <Compass className="pill-svg" /> Vision Statement
+                </div>
+              </div>
+              <div className="mv-card-body">
+                <h3>Our Vision</h3>
+                <blockquote className="mv-quote">
+                  “We envision Htech Supports as the go-to partner for organizations seeking reliable, forward-thinking IT services. Our commitment to excellence, agility, and global reach positions us as leaders in the industry, driving digital transformation and technological advancements.”
+                </blockquote>
+                <div className="mv-action">
+                  <Link to="/services" className="hts-btn hts-btn-outline-navy hts-btn-sm">
+                    Our Services <ChevronRight className="btn-icon-sm" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY HTECH SUPPORT (4 CORE PILLARS) ── */}
+      <section className="company-why-section">
+        <div className="container">
+          <header className="section-header-light">
+            <span className="section-eyebrow-navy">OUR CORE VALUES</span>
+            <h2>Why HTech Support</h2>
+            <p>You can always count on HTech Support because we know the values.</p>
+          </header>
+
+          <div className="why-pillars-grid">
+            {WHY_HTECH_PILLARS.map((pillar, idx) => {
+              const IconComp = pillar.icon;
+              return (
+                <div key={idx} className="pillar-card-light">
+                  <div className="pillar-icon-wrapper" style={{ backgroundColor: `${pillar.color}15`, color: pillar.color }}>
+                    <IconComp className="pillar-icon" />
+                  </div>
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── GLOBAL FOOTPRINT COVERAGE ── */}
+      <section className="company-coverage-light">
+        <div className="container">
+          <div className="coverage-wrapper-light">
             <div className="coverage-info-col">
-              <header className="section-header align-left">
-                <span className="section-eyebrow">GLOBAL REACH</span>
-                <h2 id="coverage-heading">Global Footprint</h2>
-                <p>Engineers deployed and services delivered seamlessly across five major regions worldwide.</p>
+              <header className="section-header-light align-left">
+                <span className="section-eyebrow-navy">GLOBAL REACH</span>
+                <h2>Global Footprint</h2>
+                <p>Engineers deployed and services delivered across five major regions worldwide.</p>
               </header>
 
-              <div className="coverage-map-preview">
+              <div className="coverage-map-box">
                 <img src="/assets/images/coverage-map.jpg" alt="HTech Supports Coverage Map" loading="lazy" />
                 <div className="map-glow-pin pin-1" title="Europe" />
                 <div className="map-glow-pin pin-2" title="North America" />
@@ -253,11 +313,11 @@ export default function Company() {
             </div>
 
             <div className="coverage-stats-col">
-              <div className="coverage-grid">
+              <div className="coverage-grid-light">
                 {company.coverageStats.map((region, i) => (
-                  <div key={region.region} className="coverage-card" style={{ animationDelay: `${i * 100}ms` }}>
-                    <div className="coverage-ring" style={{ '--pct': region.percentage }}>
-                      <span className="coverage-value">{region.percentage}%</span>
+                  <div key={region.region} className="coverage-card-light">
+                    <div className="coverage-ring-light" style={{ '--pct': region.percentage }}>
+                      <span className="coverage-value-light">{region.percentage}%</span>
                     </div>
                     <h3>{region.region}</h3>
                   </div>
@@ -268,93 +328,76 @@ export default function Company() {
         </div>
       </section>
 
-      {/* ── WHAT WE DELIVER ── */}
-      <section className="company-services" aria-labelledby="services-heading">
+      {/* ── WHAT WE DELIVER (CAPABILITIES) ── */}
+      <section className="company-deliverables-section">
         <div className="container">
-          <header className="section-header">
-            <span className="section-eyebrow">CAPABILITIES</span>
-            <h2 id="services-heading">What We Deliver</h2>
+          <header className="section-header-light">
+            <span className="section-eyebrow-navy">CAPABILITIES</span>
+            <h2>What We Deliver</h2>
             <p>End-to-end infrastructure lifecycle — from design to decommission.</p>
           </header>
 
-          <div className="deliverables-layout">
-            <div className="deliverables-graphic-col">
-              <div className="deliverables-graphic-card">
-                <img src="/assets/images/company-services.png" alt="HTech Enterprise Capabilities" loading="lazy" />
-                <div className="graphic-content-overlay">
-                  <div className="overlay-pill">Full Lifecycle IT</div>
-                  <h4>Single Source Global IT Operations</h4>
-                  <p>Consolidate multi-country dispatch, cabling, hardware deployments, and 24/7 SLA field services under one trusted team.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="deliverables-grid-col">
-              <div className="services-summary-grid">
-                {DELIVERABLES.map((svc, i) => {
-                  const Icon = svc.icon;
-                  return (
-                    <article key={svc.title} className="svc-summary-card" style={{ animationDelay: `${i * 80}ms` }}>
-                      <div className="svc-icon-wrapper" aria-hidden="true">
-                        <Icon className="svc-icon-svg" />
-                      </div>
-                      <div className="svc-card-content">
-                        <h3>{svc.title}</h3>
-                        <p>{svc.desc}</p>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
+          <div className="services-summary-grid-light">
+            {DELIVERABLES.map((svc, i) => {
+              const Icon = svc.icon;
+              return (
+                <article key={svc.title} className="svc-card-light">
+                  <div className="svc-icon-box" aria-hidden="true">
+                    <Icon className="svc-icon-svg" />
+                  </div>
+                  <div className="svc-card-body">
+                    <h3>{svc.title}</h3>
+                    <p>{svc.desc}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── PARTNERS ── */}
-      <section className="company-partners" aria-labelledby="partners-heading">
+      {/* ── OUR PARTNERS ── */}
+      <section className="company-partners-light">
         <div className="container">
-          <header className="section-header">
-            <span className="section-eyebrow">ECOSYSTEM</span>
-            <h2 id="partners-heading">Trusted Partners</h2>
+          <header className="section-header-light">
+            <span className="section-eyebrow-navy">ECOSYSTEM</span>
+            <h2>Our Partners</h2>
             <p>Collaborating with industry leaders to deliver best-in-class solutions.</p>
           </header>
 
-          <div className="partners-grid-wrapper">
-            <div className="partners-logos">
-              {PARTNERS.map((p) => (
-                <div key={p.name} className="partner-badge-card" title={p.name}>
-                  <img src={p.logo} alt={p.name} loading="lazy" />
-                  <span className="partner-name">{p.name}</span>
-                </div>
-              ))}
-            </div>
+          <div className="partners-grid-light">
+            {PARTNERS.map((p) => (
+              <div key={p.name} className="partner-card-light" title={p.name}>
+                <img src={p.logo} alt={p.name} loading="lazy" />
+                <span className="partner-name-light">{p.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── CLIENTS MARQUEE ── */}
-      <section className="company-clients" aria-labelledby="clients-heading">
+      <section className="company-clients-light">
         <div className="container">
-          <header className="section-header">
-            <span className="section-eyebrow">ENTERPRISE FOOTPRINT</span>
-            <h2 id="clients-heading">Clients & Deployments</h2>
-            <p>Serving global enterprises, financial institutions, carriers, and public sector.</p>
+          <header className="section-header-light">
+            <span className="section-eyebrow-navy">ENTERPRISE FOOTPRINT</span>
+            <h2>Clients</h2>
+            <p>Some of our awesome clients we’ve had great pleasure working with!</p>
           </header>
         </div>
 
-        <div className="clients-marquee-container" aria-hidden="true">
-          <div className="marquee-track">
+        <div className="clients-marquee-light" aria-hidden="true">
+          <div className="marquee-track-light">
             {CLIENTS.map((c) => (
-              <div key={c} className="marquee-item-card">
-                <span className="client-dot" />
-                <span className="client-name">{c}</span>
+              <div key={c} className="marquee-badge-light">
+                <span className="client-dot-navy" />
+                <span className="client-name-navy">{c}</span>
               </div>
             ))}
             {CLIENTS.map((c) => (
-              <div key={`${c}-repeat`} className="marquee-item-card">
-                <span className="client-dot" />
-                <span className="client-name">{c}</span>
+              <div key={`${c}-repeat`} className="marquee-badge-light">
+                <span className="client-dot-navy" />
+                <span className="client-name-navy">{c}</span>
               </div>
             ))}
           </div>
@@ -362,24 +405,21 @@ export default function Company() {
       </section>
 
       {/* ── CTA BAND ── */}
-      <section className="company-cta" aria-labelledby="cta-heading">
+      <section className="company-cta-light">
         <div className="container">
-          <div className="company-cta-box">
-            <div className="cta-glow-bg" />
-            <div className="company-cta-content">
-              <span className="cta-eyebrow">START YOUR DEPLOYMENT</span>
-              <h2 id="cta-heading">Ready to Partner with HTech?</h2>
-              <p>
-                Whether you need a single-site deployment or a multi-country rollout, our team is ready to design, dispatch, and deliver.
-              </p>
-              <div className="cta-actions">
-                <button onClick={openPartner} className="hts-btn hts-btn-primary hts-btn-lg">
-                  Become A Partner <ArrowRight className="btn-icon" />
-                </button>
-                <Link to="/contact" className="hts-btn hts-btn-outline hts-btn-lg">
-                  Start a Conversation
-                </Link>
-              </div>
+          <div className="cta-box-light">
+            <span className="cta-eyebrow-navy">START YOUR DEPLOYMENT</span>
+            <h2>Ready to Partner with HTech?</h2>
+            <p>
+              Whether you need a single-site deployment or a multi-country rollout, our team is ready to design, dispatch, and deliver.
+            </p>
+            <div className="cta-actions">
+              <button onClick={openPartner} className="hts-btn hts-btn-navy hts-btn-lg">
+                Become A Partner <ArrowRight className="btn-icon" />
+              </button>
+              <Link to="/contact" className="hts-btn hts-btn-outline-navy hts-btn-lg">
+                Start a Conversation
+              </Link>
             </div>
           </div>
         </div>
