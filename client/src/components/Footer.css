@@ -174,19 +174,30 @@
 /* ── App store badges ───────────────────────────────────── */
 .app-badges {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
 }
 
-.app-badge img {
-  height: 38px;
-  width: auto;
-  filter: brightness(0.85) invert(0);
-  transition: filter 0.2s;
+.app-badge {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.app-badge:hover img { filter: brightness(1); }
+.app-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.3);
+}
+
+.app-badge img {
+  height: 40px;
+  width: auto;
+  transition: opacity 0.2s;
+}
+
+.app-badge:hover img { opacity: 1; }
 
 /* ── Copyright bar ──────────────────────────────────────── */
 .footer-bottom {
@@ -208,23 +219,24 @@
   font-size: 0.82rem;
 }
 
-.footer-socials { display: flex; gap: 12px; }
+.footer-socials { display: flex; gap: 14px; }
 
 .footer-social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,.07);
-  color: rgba(255,255,255,.6);
-  transition: background 0.2s, color 0.2s;
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.8);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
 .footer-social-icon:hover {
-  background: var(--hts-banner-end);
+  background: rgba(255,255,255,.25);
   color: #ffffff;
+  transform: translateY(-2px);
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
