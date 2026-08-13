@@ -1,15 +1,22 @@
-// src/components/ResourceFilters.jsx
+// client/src/components/ResourceFilters.jsx
 import React, { useState, useEffect } from 'react';
+import { Search, X, SlidersHorizontal } from 'lucide-react';
+import './ResourceFilters.css';
 
-export default function ResourceFilters({ posts, onChange }) {
+export default function ResourceFilters({ posts = [], onChange, totalFiltered = 0 }) {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
 
   // Extract unique categories from posts
   useEffect(() => {
-    const cats = Array.from(new Set(posts.map((p) => p.category).filter(Boolean)));
-    setCategories(cats);
+    const catCounts = {};
+    posts.forEach((p) => {
+      if (p.category) {
+        catCounts[p.category] = (catCounts[p.category] || 0) + 1;
+      }
+    });
+    setCategories(Object.entries(catCounts));
   }, [posts]);
 
   // Notify parent on filter change
@@ -17,38 +24,66 @@ export default function ResourceFilters({ posts, onChange }) {
     onChange({ search, category });
   }, [search, category, onChange]);
 
+  const handleClearSearch = () => {
+    setSearch('');
+  };
+
   return (
-    <section className="sticky top-0 z-10 bg-white shadow-sm py-4">
-      <div className="container flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4">
-        {/* Search Input */}
-        <input
-          type="text"
-          placeholder="Search resources..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 w-full md:w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand"
-        />
-        {/* Category Pills */}
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setCategory('')}
-            className={`px-3 py-1 rounded-full text-sm ${category === '' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-800'}`}
-          >
-            All
-          </button>
-          {categories.map((cat) => (
+    <div className="hts-filters-sticky-wrap">
+      <div className="container">
+        <div className="hts-filters-bar">
+          {/* Search Box */}
+          <div className="hts-search-box">
+            <Search className="hts-search-icon" size={18} />
+            <input
+              type="text"
+              placeholder="Search resources, articles, guides..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="hts-search-input"
+            />
+            {search && (
+              <button
+                type="button"
+                onClick={handleClearSearch}
+                className="hts-search-clear"
+                aria-label="Clear search"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="hts-category-pills">
             <button
-              key={cat}
               type="button"
-              onClick={() => setCategory(cat)}
-              className={`px-3 py-1 rounded-full text-sm ${category === cat ? 'bg-brand text-white' : 'bg-gray-100 text-gray-800'}`}
+              onClick={() => setCategory('')}
+              className={`hts-pill ${category === '' ? 'active' : ''}`}
             >
-              {cat}
+              <span>All Posts</span>
+              <span className="hts-pill-count">{posts.length}</span>
             </button>
-          ))}
+
+            {categories.map(([catName, count]) => (
+              <button
+                key={catName}
+                type="button"
+                onClick={() => setCategory(catName)}
+                className={`hts-pill ${category === catName ? 'active' : ''}`}
+              >
+                <span>{catName}</span>
+                <span className="hts-pill-count">{count}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="hts-results-count">
+            <SlidersHorizontal size={14} />
+            <span>Showing {totalFiltered} {totalFiltered === 1 ? 'article' : 'articles'}</span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

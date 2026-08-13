@@ -1,5 +1,7 @@
-// src/components/NewsletterBanner.jsx
+// client/src/components/NewsletterBanner.jsx
 import React, { useState } from 'react';
+import { Mail, CheckCircle2, Send } from 'lucide-react';
+import './NewsletterBanner.css';
 
 export default function NewsletterBanner() {
   const [email, setEmail] = useState('');
@@ -7,37 +9,54 @@ export default function NewsletterBanner() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simple client‑side validation
     if (email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setSubmitted(true);
-      // In a real app you would POST to an API here.
     }
   };
 
   return (
-    <section className="newsletter-banner relative py-12 text-center text-white" style={{ background: 'linear-gradient(135deg, var(--hts-banner-start), var(--hts-banner-end))' }}>
+    <section className="hts-newsletter-section">
       <div className="container">
-        {submitted ? (
-          <h2 className="text-2xl font-bold">Thank you for subscribing!</h2>
-        ) : (
-          <>
-            <h2 className="text-3xl font-bold mb-4">Stay Updated with HTS Insights</h2>
-            <p className="mb-6">Get the latest resources, case studies, and industry news delivered to your inbox.</p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row justify-center items-center gap-3 max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white text-gray-900"
-                required
-              />
-              <button type="submit" className="px-6 py-2 bg-white text-gray-800 font-medium rounded-md hover:bg-gray-100 transition-colors">
-                Subscribe
-              </button>
-            </form>
-          </>
-        )}
+        <div className="hts-newsletter-card">
+          <div className="hts-newsletter-content">
+            {submitted ? (
+              <div className="hts-newsletter-success">
+                <CheckCircle2 size={48} className="hts-success-icon" />
+                <h3>Thank You for Subscribing!</h3>
+                <p>You will receive our latest IT insights, whitepapers, and tech updates directly in your inbox.</p>
+              </div>
+            ) : (
+              <>
+                <div className="hts-newsletter-header">
+                  <div className="hts-newsletter-badge">
+                    <Mail size={16} />
+                    <span>Stay Ahead</span>
+                  </div>
+                  <h2>Subscribe to HTech Supports Insights</h2>
+                  <p>Get curated industry insights, IT support guides, and enterprise tech news straight to your inbox.</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="hts-newsletter-form">
+                  <div className="hts-newsletter-input-group">
+                    <Mail className="hts-input-icon" size={18} />
+                    <input
+                      type="email"
+                      placeholder="Enter your corporate email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="hts-newsletter-input"
+                      required
+                    />
+                    <button type="submit" className="hts-newsletter-btn">
+                      <span>Subscribe</span>
+                      <Send size={16} />
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

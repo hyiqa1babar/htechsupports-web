@@ -1,0 +1,184 @@
+/* client/src/components/PostCard.css */
+.hts-post-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(30, 38, 109, 0.05);
+  position: relative;
+}
+
+.hts-post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(30, 38, 109, 0.12);
+  border-color: rgba(6, 182, 212, 0.4);
+}
+
+.hts-card-image-link {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.hts-card-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1e266d;
+}
+
+.hts-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hts-post-card:hover .hts-card-img {
+  transform: scale(1.06);
+}
+
+.hts-card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(30, 38, 109, 0.1) 0%, rgba(30, 38, 109, 0.4) 100%);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.hts-post-card:hover .hts-card-img-overlay {
+  opacity: 0.3;
+}
+
+.hts-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(30, 38, 109, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #06b6d4;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  z-index: 2;
+}
+
+.hts-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.hts-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.825rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.hts-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.hts-meta-icon {
+  color: #06b6d4;
+}
+
+.hts-meta-divider {
+  color: #cbd5e1;
+}
+
+.hts-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1e266d;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hts-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hts-card-title a:hover {
+  color: #06b6d4;
+}
+
+.hts-card-excerpt {
+  font-size: 0.925rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.hts-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+}
+
+.hts-card-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.hts-author-icon {
+  color: #1e266d;
+}
+
+.hts-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e266d;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.hts-card-btn:hover {
+  color: #06b6d4;
+}
+
+.hts-btn-arrow {
+  transition: transform 0.2s ease;
+}
+
+.hts-card-btn:hover .hts-btn-arrow {
+  transform: translateX(4px);
+}

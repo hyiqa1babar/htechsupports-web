@@ -1,12 +1,7 @@
+// client/src/pages/Blog.jsx
 import React from 'react';
+import Resources from './Resources.jsx';
 
-function Blog() {
-  return (
-    <div className="container">
-      <h1>Blog Page (Placeholder)</h1>
-      <p>This is a placeholder for the Blog page. Replace with actual content.</p>
-    </div>
-  );
+export default function Blog() {
+  return <Resources />;
 }
-
-export default Blog;

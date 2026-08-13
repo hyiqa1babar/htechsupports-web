@@ -1,117 +1,81 @@
-// src/pages/ResourceDetail.jsx
-// Blog post / resource detail page
-import React, { useEffect, useState } from 'react';
+// client/src/pages/ResourceDetail.jsx
+import React, { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from 'react-router-dom';
-import { usePartner } from '../components/PartnerContext.jsx';
+import postsData from '../data/postsData.json';
+import { Calendar, Clock, User, ArrowLeft, Share2, Sparkles, ChevronRight, CheckCircle } from 'lucide-react';
+import PostCard from '../components/PostCard.jsx';
 import './ResourceDetail.css';
 
 export default function ResourceDetail() {
   const { slug } = useParams();
-  const openPartner = usePartner();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  useEffect(() => {
-    // In production, fetch from CMS/API. For now, mock data based on slug.
-    const mockPosts = {
-      'global-rollout-case-study': {
-        title: 'Global Rollout: 180 Sites Across 30 Countries',
-        category: 'Case Study',
-        date: '2026-06-15',
-        readTime: '8 min',
-        author: 'HTech Solutions Team',
-        image: '/assets/images/hero-startup-1.png',
-        excerpt: 'How we delivered a coordinated probe rollout across 180+ sites in 30 countries with zero downtime.',
-        content: `
-          <h2>Challenge</h2>
-          <p>A multinational client needed to deploy network probes across 180+ locations in 30 countries within a 90-day window. The complexity lay in coordinating local field engineers, managing customs clearance for equipment, and ensuring zero disruption to ongoing operations.</p>
-          <h2>Solution</h2>
-          <p>HTech Supports mobilized a dedicated program management office and leveraged our global partner network. We pre-staged equipment at forward stocking locations, deployed BPSS-cleared engineers for sensitive sites, and used real-time tracking dashboards for stakeholder visibility.</p>
-          <h2>Results</h2>
-          <ul>
-            <li>180+ sites deployed on schedule</li>
-            <li>Zero unplanned downtime</li>
-            <li>98% first-time fix rate</li>
-            <li>Real-time visibility for client leadership</li>
-          </ul>
-        `
-      },
-      'ekahau-wifi-optimization': {
-        title: 'Ekahau Wi-Fi Optimization: Eliminating Dead Zones',
-        category: 'Technical Guide',
-        date: '2026-05-22',
-        readTime: '6 min',
-        author: 'Wireless Engineering Team',
-        image: '/assets/images/hero-startup-2.png',
-        excerpt: 'Step-by-step guide to conducting certified Ekahau surveys and optimizing enterprise Wi-Fi performance.',
-        content: `
-          <h2>Why Wi-Fi Surveys Matter</h2>
-          <p>Wireless networks degrade over time due to environmental changes, new interference sources, and growing device density. Regular Ekahau surveys identify issues before they impact productivity.</p>
-          <h2>Our Survey Process</h2>
-          <ol>
-            <li>Pre-survey planning & floor plan import</li>
-            <li>On-site spectrum analysis & AP placement validation</li>
-            <li>Heat-map generation for coverage, capacity, interference</li>
-            <li>Remediation report with prioritized actions</li>
-          </ol>
-          <h2>Typical Outcomes</h2>
-          <p>Clients typically see 30-50% improvement in throughput and significant reduction in support tickets after implementing our recommendations.</p>
-        `
-      },
-      'datacenter-expansion-case-study': {
-        title: 'Data Centre Expansion: Rack & Stack at Scale',
-        category: 'Case Study',
-        date: '2026-04-10',
-        readTime: '7 min',
-        author: 'Datacenter Operations',
-        image: '/assets/images/coverage-map.jpg',
-        excerpt: 'Managing a phased data centre expansion while keeping existing workloads online.',
-        content: `
-          <h2>Project Overview</h2>
-          <p>A hyperscale client needed to expand their data centre footprint by 40 racks while maintaining 99.99% uptime for existing workloads.</p>
-          <h2>Execution</h2>
-          <p>Our team delivered rack-and-stack, cable patching, and hardware deployment in phased windows coordinated with the client's change advisory board. All work was performed by certified data centre engineers following strict ESD and safety protocols.</p>
-          <h2>Key Metrics</h2>
-          <ul>
-            <li>40 racks deployed in 3 phases</li>
-            <li>Zero SLA breaches during expansion</li>
-            <li>100% cable certification pass rate</li>
-          </ul>
-        `
-      }
-    };
-
-    const found = mockPosts[slug];
-    setPost(found || null);
-    setLoading(false);
+  const post = useMemo(() => {
+    return postsData.find((p) => p.slug === slug) || null;
   }, [slug]);
 
-  if (loading) {
-    return (
-      <div className="resource-detail loading">
-        <div className="container"><div className="skeleton" /></div>
-      </div>
-    );
-  }
+  const relatedPosts = useMemo(() => {
+    if (!post) return [];
+    return postsData
+      .filter((p) => p.slug !== slug)
+      .slice(0, 3);
+  }, [post, slug]);
+
+  // Scroll reading progress calculation
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const currentProgress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(Math.min(100, Math.max(0, currentProgress)));
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: post?.title,
+        url: window.location.href,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Article link copied to clipboard!');
+    }
+  };
 
   if (!post) {
     return (
-      <div className="resource-detail not-found">
+      <div className="hts-detail-not-found">
         <Helmet>
           <title>Article Not Found — HTech Supports</title>
         </Helmet>
         <div className="container">
-          <h1>Article Not Found</h1>
-          <p>The resource you're looking for doesn't exist or has been removed.</p>
-          <Link to="/resources" className="hts-btn hts-btn-primary">← Back to Resources</Link>
+          <div className="hts-not-found-card">
+            <h1>Article Not Found</h1>
+            <p>The resource you are looking for does not exist or may have been moved.</p>
+            <Link to="/resources" className="hts-detail-btn-primary">
+              <ArrowLeft size={16} /> Back to Resources
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 
+  const formattedDate = post.date
+    ? new Date(post.date).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    : 'Recent';
+
   return (
-    <div className="resource-detail">
+    <div className="hts-article-detail-page">
       <Helmet>
         <title>{post.title} — HTech Supports</title>
         <meta name="description" content={post.excerpt} />
@@ -119,45 +83,127 @@ export default function ResourceDetail() {
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.image} />
         <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${post.title} | HTech Supports`} />
-        <meta name="twitter:description" content={post.excerpt} />
-        <meta name="twitter:image" content={post.image} />
       </Helmet>
 
-      <article>
-        {/* Hero */}
-        <header className="resource-hero">
-          <div className="resource-hero-bg" style={{ backgroundImage: `url(${post.image})` }} aria-hidden="true" />
-          <div className="resource-hero-overlay" />
-          <div className="container resource-hero-content">
-            <span className="resource-category">{post.category}</span>
-            <h1>{post.title}</h1>
-            <div className="resource-meta">
-              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> {post.readTime}</span>
+      {/* Reading Progress Bar */}
+      <div
+        className="hts-reading-progress"
+        style={{ width: `${scrollProgress}%` }}
+        aria-hidden="true"
+      />
+
+      {/* Header & Breadcrumb */}
+      <header className="hts-article-header">
+        <div className="container">
+          <nav className="hts-breadcrumb">
+            <Link to="/">Home</Link>
+            <ChevronRight size={14} />
+            <Link to="/resources">Resources</Link>
+            <ChevronRight size={14} />
+            <span>{post.category || 'Article'}</span>
+          </nav>
+
+          {post.category && <span className="hts-article-category-badge">{post.category}</span>}
+
+          <h1 className="hts-article-hero-title">{post.title}</h1>
+
+          <div className="hts-article-meta-row">
+            <div className="hts-meta-author">
+              <div className="hts-author-avatar">
+                <User size={18} />
+              </div>
+              <div>
+                <span className="hts-author-name">{post.author || 'HTech Solutions Team'}</span>
+                <span className="hts-author-role">IT Infrastructure Specialists</span>
+              </div>
             </div>
-            <p className="resource-author">By {post.author}</p>
+
+            <div className="hts-meta-details">
+              <span className="hts-meta-detail-item">
+                <Calendar size={15} />
+                {formattedDate}
+              </span>
+              <span className="hts-meta-detail-item">
+                <Clock size={15} />
+                {post.readTime || '5 min read'}
+              </span>
+              <button type="button" onClick={handleShare} className="hts-share-btn" title="Share Article">
+                <Share2 size={16} />
+                <span>Share</span>
+              </button>
+            </div>
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* Content */}
-        <div className="container resource-body">
-          <div className="resource-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+      {/* Featured Banner Image */}
+      <div className="container">
+        <div className="hts-article-banner-wrap">
+          <img
+            src={post.image || '/assets/images/hero-startup-1.png'}
+            alt={post.title}
+            className="hts-article-banner-img"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/assets/images/service-pro-av.png';
+            }}
+          />
+        </div>
+      </div>
 
-          {/* CTA */}
-          <aside className="resource-cta">
-            <h3>Ready to Get Started?</h3>
-            <p>Talk to our team about your infrastructure challenges.</p>
-            <div className="resource-cta-actions">
-              <Link to="/contact" className="hts-btn hts-btn-primary">Contact Us</Link>
+      {/* Main Content Layout */}
+      <main className="container hts-article-container">
+        <div className="hts-article-layout">
+          {/* Left Column: Article Body */}
+          <article className="hts-article-body">
+            <div
+              className="hts-formatted-content"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+
+            {/* Back to Resources Footer CTA */}
+            <div className="hts-article-footer-nav">
+              <Link to="/resources" className="hts-back-link">
+                <ArrowLeft size={18} />
+                <span>Back to Resources & Blog</span>
+              </Link>
+            </div>
+          </article>
+
+          {/* Right Column: Sticky Sidebar */}
+          <aside className="hts-article-sidebar">
+            <div className="hts-sidebar-cta-card">
+              <div className="hts-cta-icon-wrap">
+                <Sparkles size={24} />
+              </div>
+              <h3>Need Global IT Support?</h3>
+              <p>
+                From dispatch engineering to Ekahau Wi-Fi surveys, HTech Supports delivers Level 1–3 IT support across 50+ countries.
+              </p>
+              <ul className="hts-cta-features">
+                <li><CheckCircle size={15} /> 24/7 Rapid On-Site Support</li>
+                <li><CheckCircle size={15} /> Multi-vendor Certified Engineers</li>
+                <li><CheckCircle size={15} /> Global FSL & Deployment</li>
+              </ul>
+              <Link to="/contact" className="hts-sidebar-btn">
+                Contact Our Team
+              </Link>
             </div>
           </aside>
-
-          {/* Back link */}
-          <Link to="/resources" className="resource-back">← Back to Resources</Link>
         </div>
-      </article>
+
+        {/* Related Articles Section */}
+        {relatedPosts.length > 0 && (
+          <section className="hts-related-section">
+            <h2 className="hts-related-title">Related Articles & Case Studies</h2>
+            <div className="hts-related-grid">
+              {relatedPosts.map((rel) => (
+                <PostCard key={rel.id || rel.slug} post={rel} />
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
     </div>
   );
 }
