@@ -70,7 +70,8 @@ function App() {
             </Routes>
           </main>
           <Footer />
-        </Router>
+          </Router>
+        <AuthProvider>
       </PartnerProvider>
     </HelmetProvider>
   );
