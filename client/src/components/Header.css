@@ -52,7 +52,7 @@
   padding: 7px 11px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #1e266d;
+  color: var(--hts-deep-teal);
   border-radius: 7px;
   white-space: nowrap;
   transition: background 0.18s, color 0.18s;
@@ -103,7 +103,7 @@
   padding: 9px 18px;
   font-size: 0.86rem;
   font-weight: 500;
-  color: #1e266d;
+  color: var(--hts-deep-teal);
   transition: background 0.15s;
 }
 
@@ -112,7 +112,7 @@
 /* ── CTA partner button ────────────────────────────────── */
 .hts-partner-btn {
   flex-shrink: 0;
-  background: #1e266d;
+  background: var(--hts-midnight-navy);
   color: #ffffff;
   font-size: 0.82rem;
   font-weight: 700;
@@ -145,7 +145,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #1e266d;
+  background: var(--hts-midnight-navy);
   border-radius: 2px;
   transition: 0.2s;
 }
@@ -169,7 +169,7 @@
   display: block;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #1e266d;
+  color: var(--hts-deep-teal);
   padding: 8px 0;
   border-bottom: 1px solid #f0f4ff;
 }
@@ -180,7 +180,7 @@
 .hts-mobile-cta {
   display: inline-block;
   margin-top: 0.75rem;
-  background: #1e266d;
+  background: var(--hts-midnight-navy);
   color: #fff;
   padding: 9px 20px;
   border-radius: 8px;

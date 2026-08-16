@@ -7,12 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'hts-navy':    '#1e266d',
-        'hts-blue':    '#1e3a8a',
-        'hts-cyan':    '#06b6d4',
-        'hts-purple':  '#7c3aed',
-        'hts-dark':    '#121824',
-        'hts-offwhite':'#f4f6fb',
+        'hts-bright-teal': '#09AAAA',
+        'hts-deep-teal': '#047777',
+        'hts-dark-pine': '#055457',
+        'hts-midnight': '#063138',
+        'hts-pure-white': '#FFFFFF',
+        'hts-midnight-navy': '#070E18',
+        'hts-ocean-blue': '#0F587E',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

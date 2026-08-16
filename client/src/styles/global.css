@@ -10,12 +10,13 @@
 
 /* ── Design Tokens ──────────────────────────── */
 :root {
-  --hts-navy:      #1e266d;   /* primary brand blue */
-  --hts-blue:      #1e3a8a;   /* card/section blue  */
-  --hts-cyan:      #06b6d4;   /* accent cyan        */
-  --hts-purple:    #7c3aed;   /* accent purple      */
-  --hts-dark:      #121824;   /* footer dark        */
-  --hts-offwhite:  #f4f6fb;   /* section bg         */
+  --hts-bright-teal:   #09AAAA;   /* Bright Teal */
+  --hts-deep-teal:    #047777;   /* Deep Teal */
+  --hts-dark-pine:    #055457;   /* Dark Pine Teal */
+  --hts-midnight:    #063138;   /* Midnight Teal */
+  --hts-pure-white:   #FFFFFF;   /* Pure White */
+  --hts-midnight-navy:#070E18;   /* Midnight Navy */
+  --hts-ocean-blue:  #0F587E;   /* Ocean Blue */
   --hts-white:     #ffffff;
   --hts-text:      #1f2937;
   --hts-muted:     #6b7280;

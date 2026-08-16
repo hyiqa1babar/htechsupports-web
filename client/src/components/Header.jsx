@@ -78,12 +78,12 @@ export default function Header() {
           <div className="hts-floating-card">
             {/* Logo */}
             <Link to="/" className="hts-logo" aria-label="HTech Supports – Home">
-              <img
-                src="/assets/logos/logo-dark.png"
-                alt="HTech Supports Logo"
-                height={52}
-                loading="eager"
-              />
+                <img
+                  src="/assets/logos/logo-main.svg"
+                  alt="HTech Supports Logo"
+                  className="logo-image"
+                  loading="eager"
+                />
             </Link>
 
             {/* Desktop navigation */}
