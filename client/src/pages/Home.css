@@ -1,4 +1,7 @@
-/* Home.css */
+:root {
+  --hts-heading: var(--hts-midnight-navy);
+  --hts-body: rgba(255,255,255,.75);
+}
 
 /* ── Hero ───────────────────────────────────────────────── */
 .hero {
@@ -54,7 +57,7 @@
   font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 900;
   line-height: 1.15;
-  color: #ffffff;
+  color: var(--hts-heading);
   letter-spacing: -.03em;
   margin-bottom: 20px;
 }
@@ -86,8 +89,8 @@
 
 .btn-primary {
   display: inline-block;
-  background: var(--hts-cyan);
-  color: #0f172a;
+  background: var(--hts-deep-teal);
+  color: var(--hts-pure-white);
   font-size: 0.9rem;
   font-weight: 700;
   padding: 13px 28px;
@@ -96,14 +99,14 @@
 }
 
 .btn-primary:hover {
-  background: #22d3ee;
+  background: var(--hts-midnight-navy);
   transform: translateY(-2px);
 }
 
 .btn-outline {
   display: inline-block;
   background: transparent;
-  color: #ffffff;
+  color: var(--hts-pure-white);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 13px 28px;
@@ -113,7 +116,7 @@
 }
 
 .btn-outline:hover {
-  border-color: #ffffff;
+  border-color: var(--hts-pure-white);
   background: rgba(255,255,255,.08);
 }
 

@@ -1,0 +1,37 @@
+.admin-layout{display:flex;min-height:100vh;background:#0a1628;color:#fff}
+.admin-sidebar{width:250px;background:rgba(255,255,255,.03);border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;padding:1.5rem 0}
+.admin-brand{padding:0 1.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.admin-brand h2{font-size:1.3rem;color:#00b4d8}
+.admin-nav{flex:1;padding:1rem 0}
+.admin-nav-item{display:flex;align-items:center;gap:.75rem;width:100%;padding:.85rem 1.5rem;background:none;border:none;color:rgba(255,255,255,.6);font-size:.95rem;cursor:pointer;transition:.2s}
+.admin-nav-item:hover,.admin-nav-item.active{background:rgba(0,180,216,.1);color:#fff;border-left:3px solid #00b4d8}
+.nav-icon{font-size:1.1rem}
+.admin-logout-btn{margin:1rem 1.5rem;padding:.7rem;background:rgba(239,71,111,.15);border:1px solid rgba(239,71,111,.3);color:#ef476f;border-radius:8px;cursor:pointer;font-size:.9rem;transition:.2s}
+.admin-logout-btn:hover{background:rgba(239,71,111,.25)}
+.admin-main{flex:1;display:flex;flex-direction:column}
+.admin-header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.admin-header h1{font-size:1.5rem;color:#fff}
+.admin-user{color:rgba(255,255,255,.6);font-size:.9rem}
+.admin-content{padding:2rem;flex:1}
+.dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.stat-card{background:rgba(255,255,255,.04);border-radius:12px;padding:1.5rem;border-top:3px solid;border-left:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.stat-card h3{color:rgba(255,255,255,.6);font-size:.85rem;margin-bottom:.5rem}
+.stat-value{font-size:2.2rem;font-weight:700}
+.admin-panel{background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.06);overflow:hidden}
+.panel-header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.panel-header h2{font-size:1.1rem}
+.admin-action-btn{padding:.6rem 1.2rem;background:linear-gradient(135deg,#00b4d8,#0077b6);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;transition:.2s}
+.admin-action-btn:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(0,180,216,.3)}
+.admin-table{width:100%;border-collapse:collapse}
+.admin-table th{text-align:left;padding:.85rem 1.5rem;color:rgba(255,255,255,.5);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid rgba(255,255,255,.06)}
+.admin-table td{padding:.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.8);font-size:.9rem}
+.admin-table tr:hover{background:rgba(255,255,255,.02)}
+.status-badge{padding:.3rem .8rem;border-radius:20px;font-size:.75rem;font-weight:600}
+.status-badge.published{background:rgba(6,214,160,.15);color:#06d6a0}
+.edit-btn{padding:.35rem .8rem;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.3);border-radius:6px;cursor:pointer;font-size:.8rem;margin-right:.4rem}
+.delete-btn{padding:.35rem .8rem;background:rgba(239,71,111,.1);color:#ef476f;border:1px solid rgba(239,71,111,.2);border-radius:6px;cursor:pointer;font-size:.8rem}
+.settings-form{padding:1.5rem}
+.setting-group{margin-bottom:1.25rem}
+.setting-group label{display:block;color:rgba(255,255,255,.7);margin-bottom:.4rem;font-size:.9rem}
+.setting-group input{width:100%;padding:.7rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#fff;font-size:.95rem;box-sizing:border-box}
+.setting-group input:focus{outline:none;border-color:#00b4d8}

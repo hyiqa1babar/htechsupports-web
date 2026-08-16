@@ -26,7 +26,7 @@
   display: flex;
   align-items: flex-start;
   gap: 24px;
-  background: var(--hts-navy);
+  background: var(--hts-midnight-navy);
   border-radius: var(--radius-card);
   padding: 32px 28px;
   color: #ffffff;
@@ -39,7 +39,7 @@
 .svc-card:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-3px);
-  background: #162d8e;
+  background: var(--hts-deep-teal);
 }
 
 /* ── Icon area ─────────────────────────────────────────── */

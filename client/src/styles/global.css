@@ -10,6 +10,8 @@
 
 /* ── Design Tokens ──────────────────────────── */
 :root {
+  --hts-heading: var(--hts-deep-teal); /* heading color for contrast */
+  --hts-body: var(--hts-midnight-navy); /* body text color */
   --hts-bright-teal:   #09AAAA;   /* Bright Teal */
   --hts-deep-teal:    #047777;   /* Deep Teal */
   --hts-dark-pine:    #055457;   /* Dark Pine Teal */
