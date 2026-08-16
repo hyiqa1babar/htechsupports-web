@@ -43,8 +43,9 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--hts-white);
-  color: var(--hts-text);
+  color: var(--hts-midnight-navy);
   line-height: 1.6;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -67,7 +68,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -.02em;
-  color: var(--hts-navy);
+  color: var(--hts-deep-teal);
 }
 
 .section-sub {

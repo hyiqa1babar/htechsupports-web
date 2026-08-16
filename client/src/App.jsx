@@ -1,6 +1,10 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext.jsx';
+import RequireAuth from './components/RequireAuth.jsx';
+import Login from './pages/Login.jsx';
+import SimpleAdmin from './pages/SimpleAdmin.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
@@ -23,9 +27,10 @@ function App() {
   return (
     <HelmetProvider>
       <PartnerProvider>
-        <Router>
-          <Header />
-          <main id="main-content">
+        <AuthProvider>
+          <Router>
+            <Header />
+            <main id="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
@@ -51,6 +56,8 @@ function App() {
               <Route path="/careers" element={<Careers />} />
               <Route path="/engineer" element={<Engineer />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={<SimpleAdmin />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/terms-and-conditions" element={<Terms />} />
               <Route path="/privacy-policy" element={<Privacy />} />
