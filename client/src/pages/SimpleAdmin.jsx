@@ -10,30 +10,42 @@ const SimpleAdmin = () => {
 
   const [activeTab, setActiveTab] = useState('dashboard');
 
-  // Simulated data - will be replaced by API calls
   const [pages, setPages] = useState([]);
   const [posts, setPosts] = useState([]);
   const [services, setServices] = useState([]);
   const [messages, setMessages] = useState([]);
 
-  // API integration
-  useEffect(() => {
-    const fetchData = async () => {
+  // Form state
+  const [formData, setFormData] = useState({});
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+
+  // Resource -> API base mapping (server uses /api/contact for messages)
+  const apiBaseFor = (resource) => {
+    if (resource === 'messages') return 'contact';
+    return resource; // pages, posts, services
+  };
+
+  // Centralized fetch
+  const fetchData = async () => {
+    try {
       const [p, po, s, m] = await Promise.all([
         axios.get('/api/pages'),
         axios.get('/api/posts'),
         axios.get('/api/services'),
-        axios.get('/api/messages')
+        axios.get('/api/contact')
       ]);
-      setPages(p.data);
-      setPosts(po.data);
-      setServices(s.data);
-      setMessages(m.data);
-    );
-    };
+      setPages(p.data || []);
+      setPosts(po.data || []);
+      setServices(s.data || []);
+      setMessages(m.data || []);
+    } catch (err) {
+      console.error('Failed to fetch admin data', err);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
-    // Fetch on tab change
-    return () => setTimeout(fetchData, 100);
   }, [activeTab]);
 
   const handleLogout = () => {
@@ -41,57 +53,110 @@ const SimpleAdmin = () => {
     navigate('/');
   };
 
-  // Form state
-  const [formData, setFormData] = useState({});
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [editMode, setEditMode] = useState(false);
-
   // Handlers
-  const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
-  const handleFileChange = (e) => { formData.image_url = e.target.files?.[0]?.name; };
+  const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = () => {
-    if (!formData.title || !formData.content || !formData.image_url) return;
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    // server-side upload not implemented yet; store filename for now
+    setFormData(prev => ({ ...prev, image_url: file.name }));
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // basic validation
+    if (!formData.title || !formData.content) return;
+
+    const base = apiBaseFor(activeTab);
     const apiData = {
       title: formData.title,
       content: formData.content,
-      image_url: formData.image_url,
-      status: 'published'
+      image_url: formData.image_url || '',
+      status: formData.status || 'published'
     };
 
-    if (selectedItem) {
-      // Update
-      axios.put(`/api/${activeTab}s/${selectedItem.id}`, apiData)
-        .then(() => { setEditMode(false); fetchData(); });
-    } else {
-      // Create
-      axios.post(`/api/${activeTab}s`, apiData)
-        .then(() => { setEditMode(false); setFormData({}); fetchData(); });
+    try {
+      if (selectedItem) {
+        await axios.put(`/api/${base}/${selectedItem.id}`, apiData);
+      } else {
+        // For messages/contact the server expects POST /api/contact/submit (public form)
+        if (activeTab === 'messages') {
+          await axios.post(`/api/${base}/submit`, apiData);
+        } else {
+          await axios.post(`/api/${base}`, apiData);
+        }
+      }
+
+      setEditMode(false);
+      setSelectedItem(null);
+      setFormData({});
+      await fetchData();
+    } catch (err) {
+      console.error('Save failed', err);
     }
   };
 
-  // Status toggle
-  const toggleStatus = (id) => {
-    const status = selectedItem?.status === 'published' ? 'draft' : 'published';
-
-axios.put(`/api/${activeTab}s/${id}/status`, { status})
-      .then(() => { fetchData(); });
+  // Toggle status by updating via PUT
+  const toggleStatus = async (id) => {
+    try {
+      const listMap = { pages, posts, services, messages };
+      const list = listMap[activeTab] || [];
+      const item = list.find(i => i.id === id);
+      const newStatus = (item?.status === 'published') ? 'draft' : 'published';
+      const base = apiBaseFor(activeTab);
+      await axios.put(`/api/${base}/${id}`, { status: newStatus });
+      await fetchData();
+    } catch (err) {
+      console.error('Toggle status failed', err);
+    }
   };
 
-  // Delete handler
-  const handleDelete = (id) => {
-    if (window.confirm('Are you sure?')) {
-      axios.delete(`/api/${activeTab}s/${id}`)
-        .then(() => { fetchData(); });
+  const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure?')) return;
+    try {
+      const base = apiBaseFor(activeTab);
+      await axios.delete(`/api/${base}/${id}`);
+      await fetchData();
+    } catch (err) {
+      console.error('Delete failed', err);
     }
+  };
+
+  const startCreate = () => {
+    console.log('startCreate clicked');
+    setFormData({});
+    setSelectedItem(null);
+    setEditMode(true);
+  };
+
+  const startEdit = (item) => {
+    console.log('startEdit clicked', item);
+    setSelectedItem(item);
+    setFormData(item);
+    setEditMode(true);
+  };
+
+  // current list for activeTab
+  const currentList = () => {
+    if (activeTab === 'pages') return pages;
+    if (activeTab === 'posts') return posts;
+    if (activeTab === 'services') return services;
+    if (activeTab === 'messages') return messages;
+    return [];
   };
 
   return (
     <div className="admin-layout">
-      {/* Sidebar (same as before) */}
       <aside className="admin-sidebar">
-        {/* → (same code as before) */}
+        <nav>
+          <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
+          <button onClick={() => setActiveTab('pages')}>Pages</button>
+          <button onClick={() => setActiveTab('posts')}>Posts</button>
+          <button onClick={() => setActiveTab('services')}>Services</button>
+          <button onClick={() => setActiveTab('messages')}>Messages</button>
+          <button onClick={handleLogout}>Logout</button>
+        </nav>
       </aside>
 
       <main className="admin-main">
@@ -100,18 +165,16 @@ axios.put(`/api/${activeTab}s/${id}/status`, { status})
         </header>
 
         <div className="admin-content">
-          {/* Toggle between tabs */}
-          {activeTab === 'dashboard' && (/* Dashboard content */)}
-          {activeTab === 'pages' && (
-            <div className="admin-panel">
-              <h2>Manage Pages</h2>
-              <button className="admin-action-btn" onClick={() => {
-                setFormData({});
-                setSelectedItem(null);
-                setEditMode(true);
-              }}>+</button>
+          {activeTab === 'dashboard' && (<div>Welcome to admin</div>)}
 
-              {/* Display/update form here - controlled component with formData */}
+          {['pages', 'posts', 'services', 'messages'].includes(activeTab) && (
+            <div className="admin-panel">
+              <h2>Manage {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
+              <button className="admin-action-btn" onClick={startCreate}>+</button>
+
+              {/* debug indicator */}
+              {editMode && <div style={{ padding: 8, background: '#fffbcc', marginBottom: 8 }}>Edit mode active</div>}
+
               {editMode && (
                 <form onSubmit={handleSubmit}>
                   <div>
@@ -124,10 +187,7 @@ axios.put(`/api/${activeTab}s/${id}/status`, { status})
                     />
                   </div>
                   <div>
-                    <img src={formData.image_url || '/'}
-                         alt="Thumbnail"
-                         onChange={handleFileChange}
-                      style="max-width:200px" />
+                    <img src={formData.image_url || '/'} alt="Thumbnail" style={{ maxWidth: '200px' }} />
                     <input
                       type="file"
                       name="image_url"
@@ -141,38 +201,38 @@ axios.put(`/api/${activeTab}s/${id}/status`, { status})
                       placeholder="Content"
                       value={formData.content || ''}
                       onChange={handleChange}
-                    ></textarea>
+                    />
                   </div>
                   <div>
                     <button
                       type="button"
-                      onClick={() => { if (selectedItem) setEditMode(false); setFormData({}); }}
+                      onClick={() => { setEditMode(false); setSelectedItem(null); setFormData({}); }}
                     >Cancel</button>
                     <button type="submit" className="btn-primary">Save</button>
                   </div>
                 </form>
               )}
+
               <table className="admin-table">
                 <thead>
                   <tr><th>Title</th><th>Status</th><th>Actions</th></tr>
                 </thead>
                 <tbody>
-                  {pages.map(p => (
+                  {currentList().map(p => (
                     <tr key={p.id}>
                       <td>{p.title}</td>
+                      <td>{p.status}</td>
                       <td>
-                        <button onClick={() => { setSelectedItem(p); setEditMode(true); }}>Edit</button>
-                        <button onClick={() => toggleStatus(p.id)}>{p.status}</button>
+                        <button onClick={() => startEdit(p)}>Edit</button>
+                        <button onClick={() => toggleStatus(p.id)}>{p.status === 'published' ? 'Unpublish' : 'Publish'}</button>
                         <button onClick={() => handleDelete(p.id)}>Delete</button>
                       </td>
                     </tr>
-                  )}
+                  ))}
                 </tbody>
               </table>
             </div>
           )}
-          }
-          {/* Similar structures for posts, services, and messages */}
         </div>
       </main>
     </div>
