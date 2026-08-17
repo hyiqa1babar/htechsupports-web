@@ -1,0 +1,4 @@
+Trigger Vercel redeploy
+
+This file was added to trigger a redeploy after admin updates.
+Timestamp: 2026-08-17T11:55:00Z
