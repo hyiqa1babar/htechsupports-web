@@ -1,4 +1,29 @@
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+const path = require('path');
+
+const DATA_DIR = path.join(__dirname, '..', 'content');
+const MESSAGES_FILE = path.join(DATA_DIR, 'messages.json');
+
+function readMessagesFile() {
+  try {
+    const raw = fs.readFileSync(MESSAGES_FILE, 'utf8');
+    return JSON.parse(raw);
+  } catch (_) {
+    return [];
+  }
+}
+
+function writeMessagesFile(data) {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+  fs.writeFileSync(MESSAGES_FILE, JSON.stringify(data, null, 2));
+}
+
+function nextId() {
+  return Date.now().toString();
+}
 
 exports.handleContactSubmission = async (req, res) => {
   try {
@@ -11,9 +36,25 @@ exports.handleContactSubmission = async (req, res) => {
       });
     }
 
-    console.log('Received contact submission:', { name, phone, email, role, message });
+    // Save message to JSON file
+    const newMessage = {
+      id: nextId(),
+      name,
+      phone: phone || '',
+      email,
+      role: role || 'General Inquiry',
+      message,
+      status: 'unread',
+      createdAt: new Date().toISOString()
+    };
 
-    // Optional Nodemailer transporter setup (configured via environment variables)
+    const messages = readMessagesFile();
+    messages.push(newMessage);
+    writeMessagesFile(messages);
+
+    console.log('Received contact submission:', newMessage);
+
+    // Optional Nodemailer transporter setup
     if (process.env.SMTP_HOST && process.env.SMTP_USER) {
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
@@ -44,4 +85,34 @@ exports.handleContactSubmission = async (req, res) => {
       error: 'An internal server error occurred while processing your submission.'
     });
   }
+};
+
+exports.getMessages = (req, res) => {
+  const messages = readMessagesFile();
+  res.json(messages);
+};
+
+exports.updateMessageStatus = (req, res) => {
+  const messages = readMessagesFile();
+  const index = messages.findIndex(m => m.id === req.params.id);
+  if (index === -1) return res.status(404).json({ error: 'Message not found' });
+
+  const updated = {
+    ...messages[index],
+    ...req.body,
+    updatedAt: new Date().toISOString()
+  };
+  messages[index] = updated;
+  writeMessagesFile(messages);
+  res.json(updated);
+};
+
+exports.deleteMessage = (req, res) => {
+  const messages = readMessagesFile();
+  const filtered = messages.filter(m => m.id !== req.params.id);
+  if (messages.length === filtered.length) {
+    return res.status(404).json({ error: 'Message not found' });
+  }
+  writeMessagesFile(filtered);
+  res.status(204).end();
 };
