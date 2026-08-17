@@ -59,6 +59,10 @@ ul { list-style: none; }
 
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
+/* Logo sizing — ensure visibility across breakpoints */
+.logo { height: 56px; width: auto; display: inline-block; }
+@media (min-width: 1024px) { .logo { height: 72px; } }
+
 /* ── Utility ─────────────────────────────────── */
 .container {
   max-width: 1260px;
