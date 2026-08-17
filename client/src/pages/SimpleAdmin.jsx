@@ -19,6 +19,8 @@ const SimpleAdmin = () => {
   const [formData, setFormData] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [notice, setNotice] = useState('');
 
   // Resource -> API base mapping (server uses /api/contact for messages)
   const apiBaseFor = (resource) => {
@@ -41,6 +43,7 @@ const SimpleAdmin = () => {
       setMessages(m.data || []);
     } catch (err) {
       console.error('Failed to fetch admin data', err);
+      setNotice('Failed to load data');
     }
   };
 
@@ -59,30 +62,41 @@ const SimpleAdmin = () => {
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    // server-side upload not implemented yet; store filename for now
-    setFormData(prev => ({ ...prev, image_url: file.name }));
+    // store File object for FormData submission
+    setFormData(prev => ({ ...prev, image_file: file, image_url: file.name }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // basic validation
-    if (!formData.title || !formData.content) return;
+    setLoading(true);
+    setNotice('');
 
     const base = apiBaseFor(activeTab);
-    const apiData = {
-      title: formData.title,
-      content: formData.content,
-      image_url: formData.image_url || '',
-      status: formData.status || 'published'
-    };
 
     try {
-      if (selectedItem) {
-        await axios.put(`/api/${base}/${selectedItem.id}`, apiData);
+      // build FormData if there's a file
+      if (formData.image_file) {
+        const fd = new FormData();
+        fd.append('title', formData.title || '');
+        fd.append('content', formData.content || '');
+        fd.append('status', formData.status || 'published');
+        fd.append('image', formData.image_file);
+
+        if (selectedItem) {
+          await axios.put(`/api/${base}/${selectedItem.id}`, fd);
+        } else {
+          await axios.post(`/api/${base}`, fd);
+        }
       } else {
-        // For messages/contact the server expects POST /api/contact/submit (public form)
-        if (activeTab === 'messages') {
-          await axios.post(`/api/${base}/submit`, apiData);
+        const apiData = {
+          title: formData.title,
+          content: formData.content,
+          image_url: formData.image_url || '',
+          status: formData.status || 'published'
+        };
+
+        if (selectedItem) {
+          await axios.put(`/api/${base}/${selectedItem.id}`, apiData);
         } else {
           await axios.post(`/api/${base}`, apiData);
         }
@@ -92,8 +106,12 @@ const SimpleAdmin = () => {
       setSelectedItem(null);
       setFormData({});
       await fetchData();
+      setNotice('Saved');
     } catch (err) {
       console.error('Save failed', err);
+      setNotice('Save failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,6 +127,7 @@ const SimpleAdmin = () => {
       await fetchData();
     } catch (err) {
       console.error('Toggle status failed', err);
+      setNotice('Status toggle failed');
     }
   };
 
@@ -118,8 +137,10 @@ const SimpleAdmin = () => {
       const base = apiBaseFor(activeTab);
       await axios.delete(`/api/${base}/${id}`);
       await fetchData();
+      setNotice('Deleted');
     } catch (err) {
       console.error('Delete failed', err);
+      setNotice('Delete failed');
     }
   };
 
@@ -133,7 +154,7 @@ const SimpleAdmin = () => {
   const startEdit = (item) => {
     console.log('startEdit clicked', item);
     setSelectedItem(item);
-    setFormData(item);
+    setFormData({ ...item });
     setEditMode(true);
   };
 
@@ -175,6 +196,8 @@ const SimpleAdmin = () => {
               {/* debug indicator */}
               {editMode && <div style={{ padding: 8, background: '#fffbcc', marginBottom: 8 }}>Edit mode active</div>}
 
+              {notice && <div style={{ padding: 8, background: '#eef', marginBottom: 8 }}>{notice}</div>}
+
               {editMode && (
                 <form onSubmit={handleSubmit}>
                   <div>
@@ -187,10 +210,10 @@ const SimpleAdmin = () => {
                     />
                   </div>
                   <div>
-                    <img src={formData.image_url || '/'} alt="Thumbnail" style={{ maxWidth: '200px' }} />
+                    {formData.image_url && <img src={formData.image_url} alt="Thumbnail" style={{ maxWidth: '200px' }} />}
                     <input
                       type="file"
-                      name="image_url"
+                      name="image"
                       accept="image/*"
                       onChange={handleFileChange}
                     />
@@ -208,7 +231,7 @@ const SimpleAdmin = () => {
                       type="button"
                       onClick={() => { setEditMode(false); setSelectedItem(null); setFormData({}); }}
                     >Cancel</button>
-                    <button type="submit" className="btn-primary">Save</button>
+                    <button type="submit" className="btn-primary" disabled={loading}>{loading ? 'Saving...' : 'Save'}</button>
                   </div>
                 </form>
               )}

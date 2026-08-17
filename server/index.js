@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -7,6 +8,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use('/api', cors());
 app.use(express.json());
+
+// Serve uploaded assets (runtime fallback)
+app.use('/uploads', express.static(path.join(__dirname, 'content', 'uploads')));
 
 // API Routes
 app.use('/api/posts', require('./routes/posts'));
