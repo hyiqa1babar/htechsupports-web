@@ -4,6 +4,29 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SimpleAdmin.css';
 
+// Inline fallback styles to ensure admin appears even if external CSS fails to load
+const INLINE_ADMIN_STYLES = `
+.admin-layout{display:flex;min-height:100vh;background:#071426;color:#fff;font-family:Inter,system-ui,sans-serif}
+.admin-sidebar{width:250px;background:#0b1b2a;padding:1.5rem 1rem;display:flex;flex-direction:column}
+.admin-brand h2{color:#00b4d8;margin:0 0 1rem 0}
+.admin-nav{display:flex;flex-direction:column;gap:8px}
+.admin-nav-item{padding:.6rem .8rem;background:transparent;color:rgba(255,255,255,.9);border-radius:6px;text-align:left;cursor:pointer}
+.admin-nav-item.active,.admin-nav-item:hover{background:rgba(0,180,216,.08);color:#fff}
+.admin-logout-btn{margin-top:auto;padding:.6rem;border-radius:8px;background:#ef476f;color:#fff}
+.admin-main{flex:1;display:flex;flex-direction:column}
+.admin-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.03)}
+.admin-content{padding:1.25rem}
+.admin-panel{background:rgba(255,255,255,.02);padding:1rem;border-radius:8px}
+.admin-action-btn{padding:.5rem .9rem;background:#00b4d8;color:#fff;border-radius:6px}
+.admin-table{width:100%;border-collapse:collapse;margin-top:1rem}
+.admin-table th{color:rgba(255,255,255,.7);text-align:left;padding:.5rem}
+.admin-table td{padding:.5rem}
+.status-badge{padding:.25rem .6rem;border-radius:16px;font-size:.8rem}
+.status-badge.published{background:rgba(6,214,160,.15);color:#06d6a0}
+.edit-btn{padding:.3rem .6rem;margin-right:.3rem;border-radius:6px;background:rgba(0,180,216,.08);color:#00b4d8}
+.delete-btn{padding:.3rem .6rem;border-radius:6px;background:rgba(239,71,111,.06);color:#ef476f}
+`;
+
 const SimpleAdmin = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -145,14 +168,12 @@ const SimpleAdmin = () => {
   };
 
   const startCreate = () => {
-    console.log('startCreate clicked');
     setFormData({});
     setSelectedItem(null);
     setEditMode(true);
   };
 
   const startEdit = (item) => {
-    console.log('startEdit clicked', item);
     setSelectedItem(item);
     setFormData({ ...item });
     setEditMode(true);
@@ -169,71 +190,87 @@ const SimpleAdmin = () => {
 
   return (
     <div className="admin-layout">
+      <style dangerouslySetInnerHTML={{ __html: INLINE_ADMIN_STYLES }} />
       <aside className="admin-sidebar">
-        <nav>
-          <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
-          <button onClick={() => setActiveTab('pages')}>Pages</button>
-          <button onClick={() => setActiveTab('posts')}>Posts</button>
-          <button onClick={() => setActiveTab('services')}>Services</button>
-          <button onClick={() => setActiveTab('messages')}>Messages</button>
-          <button onClick={handleLogout}>Logout</button>
-        </nav>
+        <div className="admin-brand">
+          <h2>H-Tech Admin</h2>
+        </div>
+        <div className="admin-nav">
+          <button className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>Dashboard</button>
+          <button className={`admin-nav-item ${activeTab === 'pages' ? 'active' : ''}`} onClick={() => setActiveTab('pages')}>Manage Pages</button>
+          <button className={`admin-nav-item ${activeTab === 'posts' ? 'active' : ''}`} onClick={() => setActiveTab('posts')}>Blog Posts</button>
+          <button className={`admin-nav-item ${activeTab === 'services' ? 'active' : ''}`} onClick={() => setActiveTab('services')}>Services</button>
+          <button className={`admin-nav-item ${activeTab === 'messages' ? 'active' : ''}`} onClick={() => setActiveTab('messages')}>Contact Messages</button>
+        </div>
+        <button className="admin-logout-btn" onClick={handleLogout}>Logout</button>
       </aside>
 
       <main className="admin-main">
         <header className="admin-header">
           <h1>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h1>
+          <div className="admin-user">Admin</div>
         </header>
 
         <div className="admin-content">
-          {activeTab === 'dashboard' && (<div>Welcome to admin</div>)}
+          {activeTab === 'dashboard' && (
+            <div className="dashboard-grid">
+              <div className="stat-card"><h3>Total Pages</h3><div className="stat-value">{pages.length}</div></div>
+              <div className="stat-card"><h3>Blog Posts</h3><div className="stat-value">{posts.length}</div></div>
+              <div className="stat-card"><h3>Services</h3><div className="stat-value">{services.length}</div></div>
+              <div className="stat-card"><h3>Messages</h3><div className="stat-value">{messages.length}</div></div>
+            </div>
+          )}
 
           {['pages', 'posts', 'services', 'messages'].includes(activeTab) && (
             <div className="admin-panel">
-              <h2>Manage {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
-              <button className="admin-action-btn" onClick={startCreate}>+</button>
-
-              {/* debug indicator */}
-              {editMode && <div style={{ padding: 8, background: '#fffbcc', marginBottom: 8 }}>Edit mode active</div>}
+              <div className="panel-header">
+                <h2>Manage {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
+                <button className="admin-action-btn" onClick={startCreate}>+ Add</button>
+              </div>
 
               {notice && <div style={{ padding: 8, background: '#eef', marginBottom: 8 }}>{notice}</div>}
 
               {editMode && (
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <input
-                      type="text"
-                      name="title"
-                      placeholder="Title"
-                      value={formData.title || ''}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    {formData.image_url && <img src={formData.image_url} alt="Thumbnail" style={{ maxWidth: '200px' }} />}
-                    <input
-                      type="file"
-                      name="image"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      name="content"
-                      placeholder="Content"
-                      value={formData.content || ''}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => { setEditMode(false); setSelectedItem(null); setFormData({}); }}
-                    >Cancel</button>
-                    <button type="submit" className="btn-primary" disabled={loading}>{loading ? 'Saving...' : 'Save'}</button>
-                  </div>
-                </form>
+                <div className="settings-form">
+                  <form onSubmit={handleSubmit}>
+                    <div className="setting-group">
+                      <label>Title</label>
+                      <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        value={formData.title || ''}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="setting-group">
+                      <label>Image</label>
+                      {formData.image_url && <img src={formData.image_url} alt="Thumbnail" style={{ maxWidth: '200px', display: 'block', marginBottom: 8 }} />}
+                      <input
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                    <div className="setting-group">
+                      <label>Content</label>
+                      <textarea
+                        name="content"
+                        placeholder="Content"
+                        value={formData.content || ''}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button
+                        type="button"
+                        onClick={() => { setEditMode(false); setSelectedItem(null); setFormData({}); }}
+                      >Cancel</button>
+                      <button type="submit" className="btn-primary" disabled={loading}>{loading ? 'Saving...' : 'Save'}</button>
+                    </div>
+                  </form>
+                </div>
               )}
 
               <table className="admin-table">
@@ -244,11 +281,11 @@ const SimpleAdmin = () => {
                   {currentList().map(p => (
                     <tr key={p.id}>
                       <td>{p.title}</td>
-                      <td>{p.status}</td>
+                      <td><span className={`status-badge ${p.status}`}>{p.status}</span></td>
                       <td>
-                        <button onClick={() => startEdit(p)}>Edit</button>
-                        <button onClick={() => toggleStatus(p.id)}>{p.status === 'published' ? 'Unpublish' : 'Publish'}</button>
-                        <button onClick={() => handleDelete(p.id)}>Delete</button>
+                        <button className="edit-btn" onClick={() => startEdit(p)}>Edit</button>
+                        <button className="edit-btn" onClick={() => toggleStatus(p.id)}>{p.status === 'published' ? 'Unpublish' : 'Publish'}</button>
+                        <button className="delete-btn" onClick={() => handleDelete(p.id)}>Delete</button>
                       </td>
                     </tr>
                   ))}
