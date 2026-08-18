@@ -3,7 +3,10 @@
   --hts-body: rgba(255,255,255,.75);
 }
 
-/* ── Hero ───────────────────────────────────────────────── */
+/* ── Hero ──
+   Solid primary-dark background with white text.
+   Removed background image/video carousel.
+   CTAs use teal-bright with white text. */
 .hero {
   position: relative;
   min-height: 560px;
@@ -11,29 +14,17 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  background: var(--primary-dark); /* solid dark background */
+  color: var(--neutral-white);     /* white text for contrast */
 }
 
-/* Real background photo, full-bleed */
-.hero-bg-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-/* Translucent gradient "mirror" layer in front of the photo.
-   Real site colors (from the live kd-overlay class): 45deg, indigo to teal.
-   Straight base — no wave/curve clip-path. */
+/* Remove the background image and gradient overlay layers */
+.hero-bg-image,
 .hero-gradient-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(45deg, var(--hts-banner-start) 0%, var(--hts-banner-end) 100%);
-  opacity: 0.85;
+  display: none !important;
 }
 
+/* Keep hero-inner for layout but reset its colors */
 .hero-inner {
   position: relative;
   z-index: 2;
@@ -42,14 +33,17 @@
   margin: 0 auto;
   padding-top: 80px;
   padding-bottom: 40px;
+  /* Ensure text remains white if inherited */
+  color: var(--neutral-white);
 }
 
+/* Text colors */
 .hero-eyebrow {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--hts-cyan);
+  color: var(--teal-bright);       /* teal-bright for eyebrow */
   margin-bottom: 14px;
 }
 
@@ -57,11 +51,12 @@
   font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 900;
   line-height: 1.15;
-  color: var(--hts-heading);
+  color: var(--neutral-white);     /* white headline */
   letter-spacing: -.03em;
   margin-bottom: 20px;
 }
 
+/* Rotator remains same */
 .hero-rotator {
   display: inline-block;
   background: linear-gradient(90deg, var(--hts-cyan), #a78bfa);
@@ -79,34 +74,27 @@
   margin: 0 auto 36px;
 }
 
-.hero-ctas {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 56px;
-}
-
+/* CTAs - use solid teal-bright background with white text */
 .btn-primary {
   display: inline-block;
-  background: var(--hts-deep-teal);
-  color: var(--hts-pure-white);
+  background: var(--teal-bright);
+  color: var(--neutral-white);
   font-size: 0.9rem;
   font-weight: 700;
   padding: 13px 28px;
   border-radius: 8px;
   transition: background 0.2s, transform 0.15s;
 }
-
 .btn-primary:hover {
-  background: var(--hts-midnight-navy);
+  background: var(--teal-deep);
   transform: translateY(-2px);
 }
 
+/* Outline buttons can stay unchanged or be updated similarly */
 .btn-outline {
   display: inline-block;
   background: transparent;
-  color: var(--hts-pure-white);
+  color: var(--neutral-white);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 13px 28px;
@@ -114,9 +102,8 @@
   border: 2px solid rgba(255,255,255,.35);
   transition: border-color 0.2s, background 0.2s;
 }
-
 .btn-outline:hover {
-  border-color: var(--hts-pure-white);
+  border-color: var(--neutral-white);
   background: rgba(255,255,255,.08);
 }
 

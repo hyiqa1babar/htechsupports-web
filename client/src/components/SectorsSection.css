@@ -1,13 +1,13 @@
-/* SectorsSection.css – original dark vertical card style preserved */
+/* SectorsSection.css – teal-midnight cards with teal-bright icons */
 
 .sectors-section {
-  background: var(--hts-navy);
   padding: 88px 0;
 }
 
+/* Section header */
 .sectors-header {
   text-align: center;
-  margin-bottom: 52px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,45 +19,44 @@
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--hts-cyan);
+  color: var(--teal-bright);
 }
 
-.sectors-header .section-title { color: #ffffff; }
-.sectors-header .section-sub   { color: rgba(255,255,255,.65); }
+.sectors-header .section-title { color: var(--neutral-white); }
+.sectors-header .section-sub   { color: rgba(255,255,255,.72); }
 
-/* ── 3-column grid (matches original layout) ───────────── */
+/* ── 3x2 grid of sector cards ──────────────────────────── */
 .sectors-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
-/* ── Individual vertical card ──────────────────────────── */
+/* Individual sector card */
 .sector-card {
+  background: var(--teal-midnight);
+  border: 1px solid var(--teal-bright);
+  border-radius: var(--radius-card);
+  padding: 28px 24px;
+  color: var(--neutral-white);
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: var(--radius-card);
-  padding: 36px 28px;
-  color: #ffffff;
-  text-decoration: none;
-  transition: background var(--transition), transform var(--transition), border-color var(--transition);
-  position: relative;
+  gap: 12px;
 }
 
 .sector-card:hover {
-  background: rgba(255,255,255,.12);
-  border-color: var(--hts-cyan);
-  transform: translateY(-4px);
+  background: var(--teal-deep);
+  border-color: var(--teal-bright);
+  color: var(--neutral-white);
 }
 
 .sector-icon {
-  width: 48px;
-  height: 48px;
-  color: var(--hts-cyan);
+  width: 40px;
+  height: 40px;
+  color: var(--teal-bright);
 }
 
 .sector-icon svg { width: 100%; height: 100%; }
@@ -65,24 +64,15 @@
 .sector-title {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--neutral-white);
 }
 
 .sector-desc {
   font-size: 0.875rem;
-  color: rgba(255,255,255,.72);
-  line-height: 1.65;
+  color: rgba(255,255,255,.8);
+  line-height: 1.5;
   flex: 1;
 }
-
-.sector-link-arrow {
-  font-size: 1.1rem;
-  color: var(--hts-cyan);
-  margin-top: auto;
-  transition: transform 0.2s;
-}
-
-.sector-card:hover .sector-link-arrow { transform: translateX(5px); }
 
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) { .sectors-grid { grid-template-columns: repeat(2, 1fr); } }

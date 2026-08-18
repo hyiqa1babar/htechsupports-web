@@ -61,12 +61,14 @@ export default function Home() {
             <a href="#contact"         className="btn-primary">Get in Touch</a>
           </div>
         </div>
+      </section>
 
-        {/* Moving brand carousel, embedded within the hero band itself */}
+      {/* ── 2. Client Logos – dedicated white ribbon below the hero ──── */}
+      <section className="client-ribbon" aria-label="Client logos">
         <LogoCarousel variant="mini" />
       </section>
 
-      {/* ── 2. What We Do – Services Grid ─────────────────── */}
+      {/* ── 3. What We Do – Services Grid ─────────────────── */}
       <ServicesGrid />
 
       {/* ── 3. The Company (particles) ────────────────────── */}
