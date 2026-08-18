@@ -1,6 +1,6 @@
 /* =============================================
    HTECH SUPPORTS – GLOBAL DESIGN SYSTEM
-   =============================================
+   ============================================= */
 
 /* Tailwind v4 */
 @import "tailwindcss";
@@ -8,8 +8,7 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* –– Design Tokens –––––––
-
+/* ── Design Tokens ──────────────────────────── */
 :root {
   --primary-dark: #070E18; /* Midnight Navy */
   --teal-bright: #09AAAA;   /* Bright Teal */
@@ -36,5 +35,66 @@
   --hts-navy-soft: #6b74a8;    /* placeholder text on white fields */
 }
 
-/* –– Reset –––––––––––.
-... (rest of the file remains unchanged)
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--hts-white);
+  color: var(--hts-midnight-navy);
+  line-height: 1.6;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+ul { list-style: none; }
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* Logo sizing — ensure visibility across breakpoints */
+.logo { height: 56px; width: auto; display: inline-block; }
+@media (min-width: 1024px) { .logo { height: 72px; } }
+
+/* ── Utility ─────────────────────────────────── */
+.container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--hts-deep-teal);
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--hts-muted);
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+/* ── Footer ──────────────────────────────────── */
+.footer {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--teal-midnight) 60%, var(--teal-dark) 100%);
+  color: var(--neutral-white);
+  padding: 4rem 0 2rem;
+}
+
+.footer a:hover {
+  color: var(--teal-bright);
+}
+
+/* ── WCAG AA Contrast Utilities ─────────────── */
+.text-primary-dark { color: var(--primary-dark); }
+.bg-primary-dark { background: var(--primary-dark); }
+.text-teal-bright { color: var(--teal-bright); }
+.bg-teal-midnight { background: var(--teal-midnight); }
