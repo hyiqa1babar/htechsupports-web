@@ -1,6 +1,7 @@
-/* SectorsRedesign.css */
+/* SectorsRedesign.css — Teal Brand Redesign */
 
-/* ── Hero Section ──────────────────────────────────────── */
+/* ── Hero Section ────────────────────────────────────────
+   Background: --primary-dark (#070E18) fading into --teal-midnight (#063138) */
 .sectors-hero {
   position: relative;
   min-height: 480px;
@@ -8,13 +9,14 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  background: var(--primary-dark);
 }
 
 .sectors-hero-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, var(--hts-banner-start) 0%, var(--hts-banner-end) 100%);
-  opacity: 0.92;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--teal-midnight) 100%);
+  opacity: 0.95;
   z-index: 0;
 }
 
@@ -22,33 +24,34 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 80px 20px;
-  color: #ffffff;
+  padding: 88px 20px 80px;
+  color: var(--neutral-white);
 }
 
 .sectors-hero-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.85);
-  margin-bottom: 12px;
+  color: var(--teal-bright);
+  margin-bottom: 14px;
 }
 
 .sectors-hero-headline {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: -.02em;
-  margin-bottom: 18px;
+  color: var(--neutral-white);
+  margin-bottom: 20px;
 }
 
 .sectors-hero-sub {
-  font-size: 1.08rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,.80);
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .88);
   margin-bottom: 36px;
 }
 
@@ -61,9 +64,10 @@
 
 /* ── Trust Metrics Strip ───────────────────────────────── */
 .sectors-metrics {
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 48px 0;
+  background: var(--teal-midnight);
+  border-top: 1px solid var(--teal-dark);
+  border-bottom: 1px solid var(--teal-dark);
+  padding: 44px 0;
 }
 
 .sectors-metrics-inner {
@@ -76,78 +80,93 @@
 .metric-block {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .metric-number {
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
   font-weight: 900;
-  color: var(--hts-navy);
+  color: var(--teal-bright);
 }
 
 .metric-label {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: var(--neutral-white);
 }
 
 /* ── Tab Navigation ────────────────────────────────────── */
 .sectors-main {
-  background: #ffffff;
-  padding: 72px 0;
+  background: var(--neutral-white);
+  padding: 80px 0;
 }
 
 .sectors-tabs-container {
-  margin-bottom: 56px;
+  margin-bottom: 48px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  scrollbar-color: #d1d5db #f3f4f6;
+  scrollbar-color: var(--teal-bright) #f3f4f6;
+  padding-bottom: 4px;
 }
 
 .sectors-tabs-list {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   padding-bottom: 12px;
   min-width: min-content;
   border-bottom: 2px solid #e5e7eb;
 }
 
+/* Inactive tabs: #6B7280 with hover to --teal-deep */
 .sectors-tab {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 12px 22px;
   border: none;
   background: transparent;
   cursor: pointer;
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #6b7280;
-  transition: all 0.28s cubic-bezier(.4,0,.2,1);
+  font-weight: 700;
+  color: #6B7280;
+  transition: all 0.25s ease;
   white-space: nowrap;
   border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
   margin-bottom: -14px;
+  border-radius: 6px 6px 0 0;
 }
 
 .sectors-tab:hover {
-  color: var(--hts-navy);
+  color: var(--teal-deep);
+  background: rgba(9, 170, 170, 0.05);
 }
 
+/* Active tab: Top/bottom accent border in --teal-bright #09AAAA with bold text */
 .sectors-tab.active {
-  color: var(--hts-banner-start);
-  border-bottom-color: var(--hts-banner-start);
+  color: var(--primary-dark);
+  font-weight: 800;
+  border-bottom-color: var(--teal-bright);
+  border-top-color: var(--teal-bright);
+  background: rgba(9, 170, 170, 0.08);
 }
 
 .tab-icon {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
-/* ── Tab Content Panel ────────────────────────────────── */
+/* ── Tab Content Display Area ───────────────────────────
+   Container: White card with border: 1px solid #E5E7EB and box-shadow: 0 4px 20px rgba(0,0,0,0.05) */
 .sectors-tab-panel {
   animation: fadeInUp 0.4s ease-out;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 24px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes fadeInUp {
@@ -164,14 +183,15 @@
 .sectors-content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 56px;
   align-items: center;
 }
 
 .sectors-content-media {
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(79,68,176,.16);
+  box-shadow: 0 12px 36px rgba(7, 14, 24, 0.1);
+  border: 1px solid #e2e8f0;
 }
 
 .sectors-content-media img {
@@ -187,77 +207,93 @@
   gap: 16px;
 }
 
+/* Headings styled with --primary-dark and --teal-deep */
 .sectors-content-title {
-  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-  font-weight: 900;
-  color: var(--hts-navy);
+  font-size: clamp(1.8rem, 2.8vw, 2.3rem);
+  font-weight: 800;
+  color: var(--primary-dark);
   letter-spacing: -.01em;
 }
 
 .sectors-content-tagline {
   font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--hts-banner-end);
+  font-weight: 800;
+  color: var(--teal-deep);
 }
 
 .sectors-content-description {
   font-size: 1rem;
   line-height: 1.75;
-  color: #4b5563;
+  color: #475569;
   max-width: 520px;
 }
 
 /* ── Case Study Callout ────────────────────────────────── */
 .sectors-case-study {
-  background: #EFF0F5;
-  border-left: 4px solid var(--hts-banner-start);
-  border-radius: 8px;
+  background: #F4F8F9;
+  border-left: 4px solid var(--teal-bright);
+  border-radius: 10px;
   padding: 20px 24px;
-  margin: 24px 0;
+  margin: 16px 0;
+  border-top: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .case-study-label {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--hts-banner-start);
-  margin-bottom: 8px;
+  color: var(--teal-deep);
+  margin-bottom: 6px;
 }
 
 .case-study-text {
-  font-size: 0.96rem;
+  font-size: 0.98rem;
   line-height: 1.65;
-  color: #374151;
-  font-weight: 500;
+  color: var(--primary-dark);
+  font-weight: 600;
 }
 
+/* "Learn More" Link: Accent text in --teal-deep with arrow animated on hover (transform: translateX(4px)) */
 .sectors-content-text .read-more {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-weight: 700;
-  color: var(--hts-navy);
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--teal-deep);
   text-decoration: none;
   margin-top: 8px;
-  transition: color 0.28s ease;
+  transition: color 0.2s ease;
 }
 
 .sectors-content-text .read-more:hover {
-  color: var(--hts-banner-end);
+  color: var(--teal-bright);
+}
+
+.read-more-arrow {
+  display: inline-block;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.sectors-content-text .read-more:hover .read-more-arrow {
+  transform: translateX(4px);
 }
 
 /* ── Why HTS Strengths ────────────────────────────────── */
 .sectors-strengths {
-  background: linear-gradient(45deg, rgba(79,68,176,.04) 0%, rgba(81,169,190,.04) 100%);
-  padding: 72px 0;
+  background: var(--hts-offwhite);
+  padding: 88px 0;
   border-top: 1px solid #e5e7eb;
 }
 
 .sectors-strengths-inner h2 {
   font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 900;
-  color: var(--hts-navy);
+  font-weight: 800;
+  color: var(--primary-dark);
   text-align: center;
   margin-bottom: 56px;
 }
@@ -265,73 +301,65 @@
 .strengths-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
+  gap: 28px;
 }
 
 .strength-card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
   padding: 36px 28px;
   text-align: center;
-  transition: all 0.28s cubic-bezier(.4,0,.2,1);
-  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  box-shadow: 0 4px 18px rgba(7, 14, 24, 0.04);
 }
 
 .strength-card:hover {
-  box-shadow: 0 12px 36px rgba(79,68,176,.12);
+  box-shadow: 0 16px 36px rgba(9, 170, 170, .15);
   transform: translateY(-4px);
-  border-color: var(--hts-banner-end);
+  border-color: var(--teal-bright);
 }
 
 .strength-icon {
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   margin-bottom: 16px;
 }
 
 .strength-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 800;
-  color: var(--hts-navy);
+  color: var(--primary-dark);
   margin-bottom: 12px;
 }
 
 .strength-card p {
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   line-height: 1.65;
-  color: #6b7280;
+  color: #475569;
 }
 
 /* ── Responsive ────────────────────────────────────────── */
-@media (max-width: 920px) {
+@media (max-width: 960px) {
+  .sectors-tab-panel {
+    padding: 32px 24px;
+  }
   .sectors-content-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .sectors-tabs-list {
-    justify-content: flex-start;
+    gap: 36px;
   }
 }
 
 @media (max-width: 640px) {
   .sectors-hero-inner {
-    padding: 60px 16px;
+    padding: 64px 16px;
   }
-  
   .sectors-hero-ctas {
     flex-direction: column;
     align-items: stretch;
   }
-
-  .sectors-main {
-    padding: 40px 0;
+  .sectors-main, .sectors-strengths {
+    padding: 56px 0;
   }
-
-  .sectors-strengths {
-    padding: 40px 0;
-  }
-
   .strengths-grid {
     grid-template-columns: 1fr;
   }

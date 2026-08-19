@@ -2,7 +2,7 @@
 // Modern interactive Sectors page with tab navigation and micro-animations
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import siteData from '../data/siteData.json';
+import { Link } from 'react-router-dom';
 import './SectorsRedesign.css';
 
 const SECTORS_ENHANCED = [
@@ -13,7 +13,6 @@ const SECTORS_ENHANCED = [
     description: 'Seamless global rollouts and wireless/data communications to support modern POS and retail network environments. From site audits to comprehensive IT health checks across EMEA retail estates.',
     caseStudy: 'A multi-location UK retail chain achieved 99.9% uptime across 200+ stores through our coordinated network infrastructure upgrades.',
     icon: '🛒',
-    color: 'from-emerald-500 to-teal-600',
     image: '/assets/images/sector-retail.png',
   },
   {
@@ -23,17 +22,15 @@ const SECTORS_ENHANCED = [
     description: 'Comprehensive datacenter management, unified collaboration upgrades, and deskside support with backfill or fixed-term contracted engineers. Multi-location deployments across Europe for global banking and corporate networks.',
     caseStudy: 'A global banking institution coordinated unified collaboration upgrades across 15 locations without a single hour of downtime.',
     icon: '🏢',
-    color: 'from-blue-500 to-cyan-600',
     image: '/assets/images/company-vision.png',
   },
   {
-    id: 'datacenter',
+    id: 'data-center',
     title: 'Data Center',
     tagline: 'Hardware Deployment & Cable Patching',
     description: 'Datacenter engineering services ranging from cable patching to full hardware deployment, racking, and support. We handle the complexity so you can focus on core operations.',
     caseStudy: 'Deployed 500+ servers across a Tier-3 datacenter in under 2 weeks, with zero downtime for existing workloads.',
     icon: '⚙️',
-    color: 'from-purple-500 to-pink-600',
     image: '/assets/images/company-services.png',
   },
   {
@@ -43,7 +40,6 @@ const SECTORS_ENHANCED = [
     description: 'Robust network infrastructure and smart hands engineering to keep global supply chains and production facilities online. From facility audits to continuous support.',
     caseStudy: 'A large global manufacturer maintained production across 8 facilities during a critical network refresh, thanks to our phased deployment strategy.',
     icon: '🏭',
-    color: 'from-orange-500 to-red-600',
     image: '/assets/images/hero-startup-1.png',
   },
   {
@@ -53,7 +49,6 @@ const SECTORS_ENHANCED = [
     description: 'Secure, compliant IT operations and consultative approaches to build solutions partnered directly alongside government entities. BPSS-cleared engineers and vetted processes.',
     caseStudy: 'Delivered BPSS-compliant infrastructure refresh for a UK government agency, meeting all security and compliance requirements on schedule.',
     icon: '🏛️',
-    color: 'from-slate-600 to-slate-800',
     image: '/assets/images/company-mission.png',
   },
   {
@@ -63,14 +58,13 @@ const SECTORS_ENHANCED = [
     description: 'Specialized support for carrier-grade infrastructure, network optimization, and 24/7 engineering for mission-critical telecom operations.',
     caseStudy: 'Supported a major carrier through a nationwide 5G rollout across 50+ cities with zero service interruptions.',
     icon: '📡',
-    color: 'from-indigo-500 to-blue-600',
     image: '/assets/images/sector-carrier-network.png',
   },
 ];
 
 function SectorsRedesign() {
   const [activeTab, setActiveTab] = useState('retail');
-  const activeSector = SECTORS_ENHANCED.find((s) => s.id === activeTab);
+  const activeSector = SECTORS_ENHANCED.find((s) => s.id === activeTab) || SECTORS_ENHANCED[0];
 
   return (
     <>
@@ -95,8 +89,8 @@ function SectorsRedesign() {
             From smart hands engineering to complex consultative solutions. We partner with clients across multiple industries to deliver seamless global rollouts and datacenter management.
           </p>
           <div className="sectors-hero-ctas">
-            <a href="#contact" className="btn-primary">Discuss Your Project</a>
-            <a href="/pages/services/" className="btn-outline">View Our Services</a>
+            <Link to="/contact" className="btn-primary">Discuss Your Project</Link>
+            <Link to="/services" className="btn-outline">View Our Services</Link>
           </div>
         </div>
       </section>
@@ -141,7 +135,7 @@ function SectorsRedesign() {
             </div>
           </div>
 
-          {/* Tab Content Panel */}
+          {/* Tab Content Display Area: White card with border and shadow */}
           {activeSector && (
             <div
               key={activeSector.id}
@@ -173,9 +167,10 @@ function SectorsRedesign() {
                     <p className="case-study-text">{activeSector.caseStudy}</p>
                   </div>
 
-                  <a href={`/pages/${activeSector.id}/`} className="read-more">
-                    Learn More <span aria-hidden="true">→</span>
-                  </a>
+                  {/* Learn More button destination fixed to /pages/data-center */}
+                  <Link to={`/pages/${activeSector.id}`} className="read-more">
+                    Learn More <span aria-hidden="true" className="read-more-arrow">→</span>
+                  </Link>
                 </div>
               </div>
             </div>
