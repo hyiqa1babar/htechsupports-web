@@ -279,9 +279,9 @@ export default function Careers() {
                       </div>
                       <h4>{r.name}</h4>
                       <div className="role-item-footer">
-                        <Link to="/contact" className="role-apply-btn">
+                        <a href="#cv-upload" className="role-apply-btn">
                           Apply / Register Profile <span aria-hidden="true">→</span>
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   ))}

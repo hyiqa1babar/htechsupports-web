@@ -1,47 +1,49 @@
-/* client/src/pages/Resources.css */
+/* client/src/pages/Resources.css — Teal brand theme */
 .hts-resources-page {
-  background: #ffffff;
+  background: var(--neutral-white);
   min-height: 100vh;
 }
 
 .hts-resources-header {
-  padding: 4rem 0 2.5rem;
-  background: linear-gradient(180deg, rgba(30, 38, 109, 0.04) 0%, rgba(255, 255, 255, 1) 100%);
+  padding: 5rem 0 3rem;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--teal-midnight) 100%);
   text-align: center;
+  color: var(--neutral-white);
 }
 
 .hts-header-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(30, 38, 109, 0.08);
-  color: #1e266d;
-  font-size: 0.825rem;
+  gap: 8px;
+  background: rgba(9, 170, 170, 0.15);
+  color: var(--teal-bright);
+  font-size: 0.82rem;
   font-weight: 700;
-  padding: 5px 16px;
-  border-radius: 20px;
+  padding: 6px 18px;
+  border-radius: 999px;
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(30, 38, 109, 0.15);
+  border: 1px solid var(--teal-bright);
 }
 
 .hts-header-title {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 900;
-  color: #1e266d;
+  color: var(--neutral-white);
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
   line-height: 1.15;
 }
 
 .hts-gradient-text {
-  background: linear-gradient(135deg, #1e266d 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, var(--teal-bright) 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hts-header-subtitle {
   font-size: 1.1rem;
-  color: #64748b;
+  color: rgba(255,255,255,.88);
   max-width: 680px;
   margin: 0 auto;
   line-height: 1.65;
