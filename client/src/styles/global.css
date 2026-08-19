@@ -11,13 +11,20 @@
 /* ── Design Tokens ──────────────────────────── */
 :root {
   /* Core Brand Colors */
-  --primary-dark: #070E18;    /* Midnight Navy */
-  --teal-bright: #09AAAA;     /* Bright Teal */
-  --teal-deep: #047777;       /* Deep Teal */
-  --teal-dark: #055457;       /* Dark Pine Teal */
-  --teal-midnight: #063138;   /* Midnight Teal */
-  --blue-ocean: #0F587E;      /* Ocean Blue */
-  --neutral-white: #FFFFFF;   /* Pure White */
+  --primary-dark: #070E18;
+  /* Midnight Navy */
+  --teal-bright: #09AAAA;
+  /* Bright Teal */
+  --teal-deep: #047777;
+  /* Deep Teal */
+  --teal-dark: #055457;
+  /* Dark Pine Teal */
+  --teal-midnight: #063138;
+  /* Midnight Teal */
+  --blue-ocean: #0F587E;
+  /* Ocean Blue */
+  --neutral-white: #FFFFFF;
+  /* Pure White */
 
   /* Semantic Aliases & Backward Compatibility */
   --hts-primary-dark: var(--primary-dark);
@@ -55,9 +62,17 @@
 }
 
 /* ── Reset ──────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -68,17 +83,39 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { display: block; max-width: 100%; }
+img {
+  display: block;
+  max-width: 100%;
+}
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-ul { list-style: none; }
+ul {
+  list-style: none;
+}
 
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
 
 /* Logo sizing — ensure visibility across breakpoints */
-.logo { height: 56px; width: auto; display: inline-block; }
-@media (min-width: 1024px) { .logo { height: 72px; } }
+.logo {
+  height: 56px;
+  width: auto;
+  display: inline-block;
+}
+
+@media (min-width: 1024px) {
+  .logo {
+    height: 72px;
+  }
+}
 
 /* ── Utility ─────────────────────────────────── */
 .container {
@@ -113,10 +150,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── WCAG AA Contrast Utilities ─────────────── */
-.text-primary-dark { color: var(--primary-dark); }
-.bg-primary-dark { background: var(--primary-dark); }
-.text-teal-bright { color: var(--teal-bright); }
-.text-teal-deep { color: var(--teal-deep); }
-.bg-teal-midnight { background: var(--teal-midnight); }
-.bg-teal-deep { background: var(--teal-deep); }
-.text-neutral-white { color: var(--neutral-white); }
+.text-primary-dark {
+  color: var(--primary-dark);
+}
+
+.bg-primary-dark {
+  background: var(--primary-dark);
+}
+
+.text-teal-bright {
+  color: var(--teal-bright);
+}
+
+.text-teal-deep {
+  color: var(--teal-deep);
+}
+
+.bg-teal-midnight {
+  background: var(--teal-midnight);
+}
+
+.bg-teal-deep {
+  background: var(--teal-deep);
+}
+
+.text-neutral-white {
+  color: var(--neutral-white);
+}
