@@ -1,7 +1,7 @@
 /* CoverageSection.css */
 
 .coverage-section {
-  background: #ffffff;
+  background: var(--hts-offwhite);
   padding: 100px 0;
 }
 
@@ -14,62 +14,81 @@
 
 /* ── Map ───────────────────────────────────────────────── */
 .coverage-map-frame {
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 12px 48px rgba(30,38,109,.16);
+  box-shadow: 0 12px 48px rgba(7, 14, 24, 0.12);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
 }
 
 .coverage-map-frame img {
   width: 100%;
   height: auto;
   object-fit: cover;
+  display: block;
 }
 
 /* ── Text + bars ───────────────────────────────────────── */
 .coverage-eyebrow {
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  color: var(--hts-cyan);
+  font-weight: 800;
+  letter-spacing: .15em;
+  color: var(--teal-deep);
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 
-.coverage-title { margin-bottom: 14px; }
-.coverage-sub { margin-bottom: 32px; }
+.coverage-title {
+  color: var(--primary-dark);
+  margin-bottom: 14px;
+}
+
+.coverage-sub {
+  color: var(--hts-muted);
+  margin-bottom: 32px;
+}
 
 .coverage-stats {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
-.stat-item { display: flex; flex-direction: column; gap: 5px; }
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 .stat-bar-bg {
   width: 100%;
   height: 14px;
-  background: #e5e7eb;
+  background: #e2e8f0;
   border-radius: 99px;
   overflow: hidden;
+  position: relative;
 }
 
 .stat-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--hts-navy), var(--hts-cyan));
+  background: var(--teal-bright); /* Solid vibrant #09AAAA fill matching percentage */
   border-radius: 99px;
-  transition: width 1s ease;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 8px rgba(9, 170, 170, 0.35);
 }
 
 .stat-label {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-dark);
 }
 
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .coverage-inner { grid-template-columns: 1fr; gap: 40px; }
+  .coverage-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 }

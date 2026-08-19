@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import siteData      from '../data/siteData.json';
-import LogoCarousel   from '../components/LogoCarousel.jsx';
 import ServicesGrid   from '../components/ServicesGrid.jsx';
 import CompanySection from '../components/CompanySection.jsx';
 import SectorsSection from '../components/SectorsSection.jsx';
 import CoverageSection from '../components/CoverageSection.jsx';
+import LogoCarousel   from '../components/LogoCarousel.jsx';
 import ContactSection from '../components/ContactSection.jsx';
 import './Home.css';
 
@@ -36,19 +36,8 @@ export default function Home() {
         />
       </Helmet>
 
-      {/* ── 1. Hero ─────────────────────────────────────── */}
+      {/* ── 1. Hero (Solid primary-dark background with teal-bright CTA) ── */}
       <section className="hero" aria-label="Hero banner">
-        {/* Real background photo */}
-        <img
-          className="hero-bg-image"
-          src="/assets/images/hero-startup-1.png"
-          alt=""
-          aria-hidden="true"
-          loading="eager"
-        />
-        {/* Translucent gradient mirror layer, straight base */}
-        <div className="hero-gradient-overlay" aria-hidden="true" />
-
         <div className="container hero-inner">
           <p className="hero-eyebrow">Global IT Support &amp; Infrastructure Services</p>
           <h1 className="hero-headline">
@@ -58,32 +47,27 @@ export default function Home() {
           <p className="hero-sub">{description}</p>
           <div className="hero-ctas">
             <Link to="/services" className="btn-primary">Our Services</Link>
-            <a href="#contact"         className="btn-primary">Get in Touch</a>
+            <a href="#contact" className="btn-outline">Get in Touch</a>
           </div>
         </div>
       </section>
 
-      {/* ── 2. Client Logos – dedicated white ribbon below the hero ──── */}
-      <section className="client-ribbon" aria-label="Client logos">
-        <LogoCarousel variant="mini" />
-      </section>
-
-      {/* ── 3. What We Do – Services Grid ─────────────────── */}
+      {/* ── 2. What We Do – Services Grid ─────────────────── */}
       <ServicesGrid />
 
-      {/* ── 3. The Company (particles) ────────────────────── */}
+      {/* ── 3. The Company ────────────────────────────────── */}
       <CompanySection />
 
-      {/* ── 4. Our Sectors ─────────────────────────────────── */}
+      {/* ── 4. Our Sectors (6 Sector Cards 3x2) ───────────── */}
       <SectorsSection />
 
-      {/* ── 5. Our Coverage (map + dynamic region bars) ──────── */}
+      {/* ── 5. Our Coverage (Map + dynamic region bars) ───── */}
       <CoverageSection />
 
-      {/* ── 6. Clients ──────────────────────────────────────── */}
+      {/* ── 6. Clients (Bottom logo marquee) ──────────────── */}
       <LogoCarousel variant="full" />
 
-      {/* ── 7. Contact Form ─────────────────────────────────── */}
+      {/* ── 7. Contact Form ───────────────────────────────── */}
       <ContactSection />
     </>
   );

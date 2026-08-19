@@ -2,12 +2,13 @@
 
 .sectors-section {
   padding: 88px 0;
+  background: var(--neutral-white);
 }
 
 /* Section header */
 .sectors-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,65 +16,102 @@
 }
 
 .sectors-eyebrow {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: .14em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: .15em;
   text-transform: uppercase;
-  color: var(--teal-bright);
+  color: var(--teal-deep);
 }
 
-.sectors-header .section-title { color: var(--neutral-white); }
-.sectors-header .section-sub   { color: rgba(255,255,255,.72); }
+.sectors-header .section-title {
+  color: var(--primary-dark);
+}
+
+.sectors-header .section-sub {
+  color: var(--hts-muted);
+}
 
 /* ── 3x2 grid of sector cards ──────────────────────────── */
 .sectors-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 /* Individual sector card */
 .sector-card {
   background: var(--teal-midnight);
-  border: 1px solid var(--teal-bright);
+  border: 1px solid var(--teal-dark);
   border-radius: var(--radius-card);
-  padding: 28px 24px;
+  padding: 32px 26px;
   color: var(--neutral-white);
   text-decoration: none;
-  transition: background var(--transition), border-color var(--transition), color var(--transition);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(6, 49, 56, 0.25);
 }
 
 .sector-card:hover {
   background: var(--teal-deep);
   border-color: var(--teal-bright);
-  color: var(--neutral-white);
+  box-shadow: 0 12px 30px rgba(4, 119, 119, 0.35);
+  transform: translateY(-4px);
 }
 
 .sector-icon {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   color: var(--teal-bright);
+  transition: transform var(--transition);
 }
 
-.sector-icon svg { width: 100%; height: 100%; }
+.sector-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sector-card:hover .sector-icon {
+  transform: scale(1.08);
+}
 
 .sector-title {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 800;
   color: var(--neutral-white);
+  letter-spacing: -0.01em;
 }
 
 .sector-desc {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,.8);
-  line-height: 1.5;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.6;
   flex: 1;
 }
 
+.sector-link-arrow {
+  font-size: 1.1rem;
+  color: var(--teal-bright);
+  font-weight: 800;
+  transition: transform var(--transition), color var(--transition);
+}
+
+.sector-card:hover .sector-link-arrow {
+  color: var(--neutral-white);
+  transform: translateX(4px);
+}
+
 /* ── Responsive ────────────────────────────────────────── */
-@media (max-width: 900px) { .sectors-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .sectors-grid { grid-template-columns: 1fr; } }
+@media (max-width: 992px) {
+  .sectors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .sectors-grid {
+    grid-template-columns: 1fr;
+  }
+}

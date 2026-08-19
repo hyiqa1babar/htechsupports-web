@@ -2,64 +2,21 @@
 
 .carousel-section--full {
   background: var(--hts-offwhite);
-  padding: 72px 0 56px;
+  padding: 80px 0 64px;
   overflow: hidden;
 }
-
-/* ── Mini variant: sits inside the hero band itself ────── */
-.carousel-section--mini {
-  position: relative;
-  z-index: 2;
-  background: transparent;
-  padding: 0 0 28px;
-  overflow: hidden;
-}
-
-.carousel-section--mini .carousel-mask::before {
-  background: linear-gradient(to right, var(--hts-banner-start), transparent);
-}
-
-.carousel-section--mini .carousel-mask::after {
-  background: linear-gradient(to left, var(--hts-banner-end), transparent);
-}
-
-.carousel-section--mini .carousel-track {
-  animation-duration: 30s;
-  gap: 14px;
-}
-
-.carousel-section--mini .carousel-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  min-width: 130px;
-  height: 56px;
-  padding: 8px 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-}
-
-.carousel-section--mini .carousel-card:hover {
-  background: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
-}
-
-.carousel-section--mini .carousel-card img {
-  max-height: 36px;
-  max-width: 100px;
-  filter: none;
-  opacity: 0.95;
-}
-
-.carousel-section--mini .carousel-card:hover img { opacity: 1; }
 
 .carousel-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+}
+
+.carousel-header .section-title {
+  color: var(--primary-dark);
 }
 
 .carousel-intro {
@@ -103,7 +60,9 @@
   animation: marquee 38s linear infinite;
 }
 
-.carousel-track:hover { animation-play-state: paused; }
+.carousel-track:hover {
+  animation-play-state: paused;
+}
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
@@ -116,18 +75,19 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   padding: 14px 24px;
   min-width: 150px;
   height: 84px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  box-shadow: 0 2px 10px rgba(7, 14, 24, 0.04);
   flex-shrink: 0;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
 }
 
 .carousel-card:hover {
-  box-shadow: 0 6px 24px rgba(30,38,109,.14);
+  box-shadow: 0 8px 24px rgba(9, 170, 170, 0.18);
+  border-color: var(--teal-bright);
   transform: translateY(-2px);
 }
 
@@ -141,4 +101,6 @@
   transition: opacity 0.2s;
 }
 
-.carousel-card:hover img { filter: none; opacity: 1; }
+.carousel-card:hover img {
+  opacity: 1;
+}

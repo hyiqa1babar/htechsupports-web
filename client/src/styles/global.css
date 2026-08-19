@@ -10,29 +10,48 @@
 
 /* ── Design Tokens ──────────────────────────── */
 :root {
-  --primary-dark: #070E18; /* Midnight Navy */
-  --teal-bright: #09AAAA;   /* Bright Teal */
-  --teal-deep: #047777;   /* Deep Teal */
-  --teal-dark: #055457;   /* Dark Pine Teal */
-  --teal-midnight: #063138; /* Midnight Teal */
-  --blue-ocean: #0F587E;   /* Ocean Blue */
-  --neutral-white: #FFFFFF; /* Pure White */
-  --hts-heading: var(--hts-deep-teal); /* heading color for contrast */
-  --hts-body: var(--hts-midnight-navy); /* body text color */
-  --hts-bright-teal: #09AAAA;   /* Bright Teal (duplicated for legacy) */
-  --hts-deep-teal: #047777;   /* Deep Teal (duplicated for legacy) */
-  --hts-dark-pine: #055457;   /* Dark Pine Teal (renamed to --teal-dark) */
-  --hts-midnight: #063138;   /* Midnight Teal (renamed to --teal-midnight) */
-  --hts-pure-white: #FFFFFF;   /* Pure White (renamed to --neutral-white) */
+  /* Core Brand Colors */
+  --primary-dark: #070E18;    /* Midnight Navy */
+  --teal-bright: #09AAAA;     /* Bright Teal */
+  --teal-deep: #047777;       /* Deep Teal */
+  --teal-dark: #055457;       /* Dark Pine Teal */
+  --teal-midnight: #063138;   /* Midnight Teal */
+  --blue-ocean: #0F587E;      /* Ocean Blue */
+  --neutral-white: #FFFFFF;   /* Pure White */
 
-  /* Real site palette – banner + footer only (from htechsupports.com kd-overlay) */
-  --hts-banner-start: #4f44b0;
-  --hts-banner-end: #51a9be;
+  /* Semantic Aliases & Backward Compatibility */
+  --hts-primary-dark: var(--primary-dark);
+  --hts-midnight-navy: var(--primary-dark);
+  --hts-navy: var(--primary-dark);
+  --hts-bright-teal: var(--teal-bright);
+  --hts-cyan: var(--teal-bright);
+  --hts-deep-teal: var(--teal-deep);
+  --hts-dark-pine: var(--teal-dark);
+  --hts-midnight: var(--teal-midnight);
+  --hts-pure-white: var(--neutral-white);
+  --hts-white: var(--neutral-white);
+  --hts-offwhite: #f8fafc;
+  --hts-bg: #f8fafc;
+  --hts-surface: #ffffff;
+  --hts-border: #e2e8f0;
+  --hts-heading: var(--primary-dark);
+  --hts-body: #334155;
+  --hts-text: #334155;
+  --hts-text-muted: #64748b;
+  --hts-muted: #64748b;
 
-  /* New design system additions */
-  --hts-dusk: #4f44b0;          /* dusty blue-purple: form/detail card backgrounds */
-  --hts-dusk-2: #1e3a8a;       /* deeper dusk for gradients */
-  --hts-navy-soft: #6b74a8;    /* placeholder text on white fields */
+  /* Banner & Accent Gradients */
+  --hts-banner-start: var(--primary-dark);
+  --hts-banner-end: var(--teal-midnight);
+  --hts-dusk: var(--teal-midnight);
+  --hts-dusk-2: var(--teal-dark);
+  --hts-navy-soft: #64748b;
+
+  /* Layout tokens */
+  --radius-card: 14px;
+  --transition: 0.25s ease;
+  --shadow-card: 0 4px 20px rgba(7, 14, 24, 0.06);
+  --shadow-hover: 0 12px 32px rgba(9, 170, 170, 0.18);
 }
 
 /* ── Reset ──────────────────────────────────── */
@@ -41,9 +60,9 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--hts-white);
-  color: var(--hts-midnight-navy);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--neutral-white);
+  color: var(--hts-body);
   line-height: 1.6;
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
@@ -72,7 +91,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -.02em;
-  color: var(--hts-deep-teal);
+  color: var(--primary-dark);
 }
 
 .section-sub {
@@ -82,7 +101,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1.7;
 }
 
-/* ── Footer ──────────────────────────────────── */
+/* ── Footer Global Class ────────────────────── */
 .footer {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--teal-midnight) 60%, var(--teal-dark) 100%);
   color: var(--neutral-white);
@@ -97,4 +116,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .text-primary-dark { color: var(--primary-dark); }
 .bg-primary-dark { background: var(--primary-dark); }
 .text-teal-bright { color: var(--teal-bright); }
+.text-teal-deep { color: var(--teal-deep); }
 .bg-teal-midnight { background: var(--teal-midnight); }
+.bg-teal-deep { background: var(--teal-deep); }
+.text-neutral-white { color: var(--neutral-white); }

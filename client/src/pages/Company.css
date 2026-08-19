@@ -1,89 +1,854 @@
-/* Company.css - Teal-based Theme for HTech Supports Company Page */
+/* ==========================================================================
+   Company.css - HTech Supports Company Page (Teal Brand System)
+   ========================================================================== */
 
-/* Basic theme variables */
 .company-page.light-theme {
+  min-height: 100vh;
+  font-size: 1rem;
+  line-height: 1.6;
   background-color: var(--neutral-white);
-  color: var(--primary-dark);
+  color: #334155;
+  overflow-x: hidden;
 }
 
-/* Hero Section */
+/* ── 1. HERO SECTION ───────────────────────────────────────────────────────
+   Unique 2-column layout with primary-dark background and teal-bright accents */
 .company-hero-light {
-  background: var(--teal-midnight);
-  border-bottom: 1px solid var(--teal-dark);
+  position: relative;
+  padding: 6.5rem 0 5rem;
+  background: var(--primary-dark);
+  color: var(--neutral-white);
+  overflow: hidden;
 }
 
 .hero-pattern-bg {
-  background-image: linear-gradient(180deg, var(--teal-dark) 0%, var(--teal-deep) 100%);
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(9, 170, 170, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(4, 119, 119, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.company-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero-badge-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--teal-bright);
-  background: rgba(var(--primary-dark), 0.08);
-  border-color: var(--teal-bright);
+  background: rgba(9, 170, 170, 0.12);
+  border: 1px solid var(--teal-bright);
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-bottom: 24px;
 }
 
-/*** Data Containers ***/
-.overview-card-light {
-  background: var(--white);
-  border-color: var(--teal-dark);
+.badge-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--teal-bright);
 }
 
-.mv-card-light {
-  background: var(--white);
-  border-color: var(--teal-dark);
-}
-
-.pillar-card-light {
-  background: var(--white);
-  border-color: var(--teal-dark);
-}
-
-/*** CTAs ***/
-.hts-btn-navy {
-  background: var(--teal-bright);
+.company-hero-light h1 {
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.18;
   color: var(--neutral-white);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
 }
 
-.hts-btn-outline-navy {
-  color: var(--teal-bright);
-  border-color: var(--teal-bright);
+.hero-title-accent {
+  background: linear-gradient(135deg, var(--teal-bright) 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.cta-box-light {
-  background: linear-gradient(135deg, var(--teal-midnight) 0%, var(--teal-deep) 100%);
+.hero-subtitle-light {
+  font-size: clamp(1.05rem, 1.8vw, 1.18rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 58ch;
+  margin-bottom: 32px;
 }
 
-.cta-eyebrow-navy {
-  color: var(--teal-bright);
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 
-/*** Trust Pills ***/
+.hero-trust-pills-light {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  width: 100%;
+}
+
 .trust-pill-light {
-  color: var(--teal-bright);
-  border-color: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .pill-icon {
+  width: 18px;
+  height: 18px;
   color: var(--teal-bright);
 }
 
-/*** Map & Coverage ***/
+/* Hero visual & float cards */
+.hero-visual-col {
+  position: relative;
+}
+
+.visual-card-wrapper-light {
+  position: relative;
+  border-radius: 24px;
+  padding: 10px;
+}
+
+.hero-main-img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+.glass-card-light {
+  background: rgba(7, 14, 24, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(9, 170, 170, 0.35);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.hero-float-card-light {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  border-radius: 16px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-float-card-2-light {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border-radius: 16px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.float-card-icon-light {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(9, 170, 170, 0.2);
+  color: var(--teal-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.float-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.float-card-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--teal-bright);
+}
+
+.float-card-val {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--neutral-white);
+}
+
+/* ── 2. COMPANY OVERVIEW SECTION ─────────────────────────────────────────── */
+.company-overview-section {
+  padding: 6rem 0;
+  background: var(--neutral-white);
+}
+
+.overview-card-light {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+  background: var(--hts-offwhite);
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 3.5rem;
+  box-shadow: 0 10px 30px rgba(7, 14, 24, 0.04);
+}
+
+.overview-text-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.section-eyebrow-navy {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+
+.overview-text-side h2 {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.overview-text-side p {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.overview-image-side img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(7, 14, 24, 0.1);
+  display: block;
+}
+
+/* ── 3. MISSION & VISION SHOWCASE ──────────────────────────────────────────
+   Styled with --teal-midnight background, white text, and --teal-bright buttons */
+.company-mv-section {
+  padding: 6rem 0;
+  background: var(--hts-offwhite);
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.section-header-light {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-header-light.align-left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.section-header-light h2 {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.02em;
+}
+
+.section-header-light p {
+  font-size: 1.05rem;
+  color: var(--hts-muted);
+  max-width: 60ch;
+}
+
+.mv-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.mv-card-light {
+  background: var(--teal-midnight);
+  border: 1px solid var(--teal-dark);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(6, 49, 56, 0.35);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.mv-card-light:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal-bright);
+}
+
+.mv-card-image {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.mv-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mv-badge-pill {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(7, 14, 24, 0.85);
+  color: var(--teal-bright);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--teal-bright);
+}
+
+.mv-card-body {
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.mv-card-body h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--neutral-white);
+}
+
+.mv-quote {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+  margin: 0;
+  flex: 1;
+}
+
+.mv-action {
+  margin-top: 1rem;
+}
+
+/* ── 4. WHY HTECH SUPPORT (4 CORE PILLARS) ──────────────────────────────────
+   Fix text visibility: crisp dark headings and high-contrast body text */
+.company-why-section {
+  padding: 6rem 0;
+  background: var(--neutral-white);
+}
+
+.why-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.pillar-card-light {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 18px rgba(7, 14, 24, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card-light:hover {
+  transform: translateY(-5px);
+  border-color: var(--teal-bright);
+  box-shadow: 0 16px 36px rgba(9, 170, 170, 0.14);
+}
+
+.pillar-icon-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.pillar-card-light h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.pillar-card-light p {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+/* ── 5. GLOBAL FOOTPRINT COVERAGE ──────────────────────────────────────────
+   Rings: --teal-bright stroke fills on --primary-dark track backgrounds */
+.company-coverage-light {
+  padding: 6rem 0;
+  background: var(--hts-offwhite);
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.coverage-wrapper-light {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.coverage-map-box {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 15px 35px rgba(7, 14, 24, 0.08);
+  background: #ffffff;
+}
+
+.coverage-map-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-glow-pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--teal-bright);
+  box-shadow: 0 0 14px var(--teal-bright);
+  animation: pulse-pin 2s infinite alternate;
+}
+
+@keyframes pulse-pin {
+  from { transform: scale(0.85); opacity: 0.7; }
+  to { transform: scale(1.3); opacity: 1; }
+}
+
+.pin-1 { top: 30%; left: 48%; }
+.pin-2 { top: 32%; left: 25%; }
+.pin-3 { top: 55%; left: 78%; }
+.pin-4 { top: 42%; left: 58%; }
+.pin-5 { top: 68%; left: 32%; }
+
+.coverage-grid-light {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.coverage-card-light {
+  text-align: center;
+  padding: 2rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(7, 14, 24, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.coverage-card-light:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal-bright);
+}
+
+/* Conic Ring: teal-bright fill on primary-dark track */
 .coverage-ring-light {
-  background: conic-gradient(var(--teal-bright) calc(var(--pct) * 1%), var(--teal-dark) 0%);
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: conic-gradient(var(--teal-bright) calc(var(--pct) * 1%), var(--primary-dark) 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(7, 14, 24, 0.12);
+}
+
+.coverage-ring-light::before {
+  content: '';
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #ffffff;
 }
 
 .coverage-value-light {
-  color: var(--teal-bright);
+  position: relative;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary-dark);
 }
 
-/*** Partner Cards ***/
+.coverage-card-light h3 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── 6. WHAT WE DELIVER (CAPABILITIES) ──────────────────────────────────────
+   Fix text visibility: dark navy headings and clear slate text */
+.company-deliverables-section {
+  padding: 6rem 0;
+  background: #ffffff;
+}
+
+.services-summary-grid-light {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.svc-card-light {
+  padding: 2.25rem;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(7, 14, 24, 0.03);
+}
+
+.svc-card-light:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(9, 170, 170, 0.12);
+  border-color: var(--teal-bright);
+}
+
+.svc-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(9, 170, 170, 0.1);
+  color: var(--teal-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.svc-icon-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.svc-card-body h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 0.6rem;
+}
+
+.svc-card-body p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+/* ── 7. PARTNERS ─────────────────────────────────────────────────────────── */
+.company-partners-light {
+  padding: 6rem 0;
+  background: var(--hts-offwhite);
+  border-top: 1px solid #e2e8f0;
+}
+
+.partners-grid-light {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
 .partner-card-light {
-  border-color: var(--teal-dark);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 6px 18px rgba(7, 14, 24, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/*** Responsive Adjustments ***/
+.partner-card-light:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal-bright);
+}
+
+.partner-card-light img {
+  max-height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+.partner-name-light {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+/* ── 8. CLIENTS MARQUEE ─────────────────────────────────────────────────── */
+.company-clients-light {
+  padding: 5rem 0 3rem;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.clients-marquee-light {
+  overflow: hidden;
+  padding: 1rem 0;
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+.marquee-track-light {
+  display: flex;
+  gap: 2rem;
+  animation: marquee 35s linear infinite;
+  width: max-content;
+}
+
+.client-logo-card-light {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(7, 14, 24, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  min-width: 140px;
+  height: 80px;
+}
+
+.client-logo-card-light:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal-bright);
+}
+
+.client-logo-card-light img {
+  max-height: 52px;
+  max-width: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── 9. CTA BAND ─────────────────────────────────────────────────────────── */
+.company-cta-light {
+  padding: 6rem 0;
+  background: #ffffff;
+}
+
+.cta-box-light {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--teal-midnight) 60%, var(--teal-deep) 100%);
+  border-radius: 28px;
+  padding: 4.5rem 2rem;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 25px 50px rgba(7, 14, 24, 0.2);
+}
+
+.cta-eyebrow-navy {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--teal-bright);
+  margin-bottom: 12px;
+}
+
+.cta-box-light h2 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.cta-box-light p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2.5rem;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* ── 10. BUTTON UTILITIES (TEAL THEME) ──────────────────────────────────── */
+.hts-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-weight: 800;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.hts-btn-lg {
+  padding: 15px 32px;
+  font-size: 1rem;
+}
+
+.hts-btn-sm {
+  padding: 10px 22px;
+  font-size: 0.9rem;
+}
+
+.hts-btn-navy {
+  background: var(--teal-bright);
+  color: var(--primary-dark);
+  box-shadow: 0 6px 18px rgba(9, 170, 170, 0.35);
+}
+
+.hts-btn-navy:hover {
+  background: var(--teal-deep);
+  color: var(--neutral-white);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(4, 119, 119, 0.45);
+}
+
+.hts-btn-outline-navy {
+  background: transparent;
+  color: var(--teal-bright);
+  border: 2px solid var(--teal-bright);
+}
+
+.hts-btn-outline-navy:hover {
+  background: var(--teal-bright);
+  color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── 11. RESPONSIVE ──────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
+  .company-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .overview-card-light {
+    grid-template-columns: 1fr;
+    padding: 2.5rem;
+  }
+  .mv-dual-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .services-summary-grid-light {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .coverage-wrapper-light {
+    grid-template-columns: 1fr;
+  }
+  .partners-grid-light {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .why-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .services-summary-grid-light {
+    grid-template-columns: 1fr;
+  }
+  .coverage-grid-light {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .company-hero-light {
-    padding: 4rem 0 3rem;
+    padding: 5rem 0 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coverage-grid-light {
+    grid-template-columns: 1fr;
+  }
+  .partners-grid-light {
+    grid-template-columns: 1fr;
   }
 }
