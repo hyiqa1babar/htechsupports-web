@@ -1,0 +1,44 @@
+/* src/components/StoreBadges.css */
+
+.hts-store-badges-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.hts-store-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 148px;
+  height: 44px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: none !important;
+  outline: none !important;
+  background: #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.hts-store-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  opacity: 0.95;
+}
+
+.hts-store-badge:focus-visible {
+  outline: 2px solid #09aaaa !important;
+  outline-offset: 2px;
+}
+
+.hts-store-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none !important;
+  outline: none !important;
+}

@@ -84,7 +84,7 @@ export default function ServicesGrid() {
           {topServices.map((svc) => (
             <Link
               key={svc.id}
-              to="/services"
+              to={svc.link || '/services'}
               className="svc-card"
               role="listitem"
               aria-label={svc.title}

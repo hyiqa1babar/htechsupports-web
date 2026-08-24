@@ -1,6 +1,8 @@
 // src/pages/Contact.jsx — Premium teal-branded contact page
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import siteData from '../data/siteData.json';
+import StoreBadges from '../components/StoreBadges.jsx';
 import './Contact.css';
 
 const OFFICES = [
@@ -181,12 +183,7 @@ export default function Contact() {
               <h3>Download the Engineer Hub App</h3>
               <p>Access job packs, dispatch, and sign-off tools on the go.</p>
               <div className="ct-app-badges">
-                <a href="https://play.google.com/store/apps/details?id=com.h_tech_support.live" className="ct-app-badge" target="_blank" rel="noopener noreferrer">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
-                </a>
-                <a href="https://apps.apple.com/us/app/h-tech-supports/id6612006961" className="ct-app-badge" target="_blank" rel="noopener noreferrer">
-                  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
-                </a>
+                <StoreBadges />
               </div>
             </div>
           </div>

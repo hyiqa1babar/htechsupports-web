@@ -22,6 +22,7 @@ import DetailPage from './pages/DetailPage.jsx';
 import ResourceDetail from './pages/ResourceDetail.jsx';
 import Terms from './pages/Terms.jsx';
 import Privacy from './pages/Privacy.jsx';
+import EkahauPage from './pages/EkahauPage.jsx';
 
 function AppContent() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/ekahau" element={<EkahauPage />} />
           <Route path="/services/:id" element={<DetailPage />} />
           <Route path="/sectors" element={<SectorsRedesign />} />
           <Route path="/sectors/:id" element={<DetailPage />} />
@@ -46,6 +48,9 @@ function AppContent() {
           <Route path="/pages/contact-creative" element={<Navigate to="/contact" replace />} />
           <Route path="/pages/terms-and-conditions" element={<Navigate to="/terms-and-conditions" replace />} />
           <Route path="/pages/privacy-policy" element={<Navigate to="/privacy-policy" replace />} />
+          {/* dedicated ekahau routes */}
+          <Route path="/ekahau" element={<EkahauPage />} />
+          <Route path="/pages/ekahau" element={<EkahauPage />} />
           {/* regular pages */}
           <Route path="/company" element={<Company />} />
           <Route path="/resources" element={<Resources />} />

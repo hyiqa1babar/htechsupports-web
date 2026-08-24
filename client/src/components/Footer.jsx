@@ -1,6 +1,7 @@
 /* src/components/Footer.jsx */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StoreBadges from './StoreBadges.jsx';
 import './Footer.css';
 
 const PARTNERS = [
@@ -104,6 +105,7 @@ export default function Footer() {
             <ul>
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/sectors">Sectors</Link></li>
+              <li><Link to="/pages/ekahau">Ekahau Wi-Fi Surveys</Link></li>
               <li><Link to="/pages/professional-service">Professional Service</Link></li>
               <li><Link to="/pages/wireless-survey">Wireless Survey</Link></li>
               <li><Link to="/pages/network-support">Network Support</Link></li>
@@ -154,12 +156,7 @@ export default function Footer() {
             </div>
 
             <div className="app-badges">
-              <a href="https://play.google.com/store/apps/details?id=com.h_tech_support.live" className="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
-              </a>
-              <a href="https://apps.apple.com/us/app/h-tech-supports/id6612006961" className="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
-              </a>
+              <StoreBadges />
             </div>
           </div>
         </div>

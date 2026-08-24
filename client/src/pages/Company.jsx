@@ -1,10 +1,9 @@
-// src/pages/Company.jsx
-// Redesigned Light Theme Company page with exact fact-checked copy and actual client logo assets
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import siteData from '../data/siteData.json';
 import { usePartner } from '../components/PartnerContext.jsx';
+import InteractiveCoverageMap from '../components/InteractiveCoverageMap.jsx';
 import {
   Globe2,
   ShieldCheck,
@@ -320,13 +319,8 @@ export default function Company() {
                 <p>Engineers deployed and services delivered across five major regions worldwide.</p>
               </header>
 
-              <div className="coverage-map-box">
-                <img src="/assets/images/coverage-map.jpg" alt="HTech Supports Coverage Map" loading="lazy" />
-                <div className="map-glow-pin pin-1" title="Europe" />
-                <div className="map-glow-pin pin-2" title="North America" />
-                <div className="map-glow-pin pin-3" title="Asia Pacific" />
-                <div className="map-glow-pin pin-4" title="Middle East" />
-                <div className="map-glow-pin pin-5" title="Latin America" />
+              <div className="coverage-interactive-box">
+                <InteractiveCoverageMap />
               </div>
             </div>
 

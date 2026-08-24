@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import siteData from '../data/siteData.json';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { usePartner } from '../components/PartnerContext.jsx';
 import './DetailPage.css';
 
@@ -18,7 +18,9 @@ function Reveal({ children, className = '', delay = 0, tag: Tag = 'div' }) {
 }
 
 function DetailPage({ slug }) {
-  const page = siteData.detailPages?.[slug];
+  const params = useParams();
+  const currentSlug = slug || params.id || params.slug;
+  const page = siteData.detailPages?.[currentSlug];
   const openPartner = usePartner();
 
   if (!page) return (
