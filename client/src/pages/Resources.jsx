@@ -1,17 +1,25 @@
 // client/src/pages/Resources.jsx
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import FeaturedHero from '../components/FeaturedHero.jsx';
 import ResourceFilters from '../components/ResourceFilters.jsx';
 import PostGrid from '../components/PostGrid.jsx';
 import NewsletterBanner from '../components/NewsletterBanner.jsx';
 import postsData from '../data/postsData.json';
-import { BookOpen, Sparkles } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import './Resources.css';
 
 export default function Resources() {
-  const [posts] = useState(postsData || []);
+  const [posts, setPosts] = useState(postsData || []);
   const [filter, setFilter] = useState({ search: '', category: '' });
+
+  // Fetch live posts from API; fall back to bundled data on error
+  useEffect(() => {
+    fetch('/api/posts')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (Array.isArray(data) && data.length > 0) setPosts(data); })
+      .catch(() => {});
+  }, []);
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
