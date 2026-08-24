@@ -7,40 +7,58 @@ import './Header.css';
 
 const NAV = siteData.navigation;
 
-function DropdownMenu({ items, onItemClick }) {
+function DropdownMenu({ title, items, onItemClick }) {
+  const isServices = title?.toLowerCase().includes('service');
+  const isSectors = title?.toLowerCase().includes('sector');
+
   return (
-    <ul className="hts-dropdown">
-      {items.map((child) => (
-        <li key={child.title}>
-          <Link to={child.path} onClick={onItemClick}>
-            {child.title}
+    <div className={`hts-dropdown-card ${isServices ? 'hts-dropdown-services' : ''} ${isSectors ? 'hts-dropdown-sectors' : ''}`}>
+      <div className="hts-dropdown-header">
+        <span className="hts-dropdown-category">{title}</span>
+        <span className="hts-dropdown-count">{items.length} Offerings</span>
+      </div>
+      <div className="hts-dropdown-grid">
+        {items.map((child) => (
+          <Link
+            key={child.title}
+            to={child.path}
+            onClick={onItemClick}
+            className="hts-dropdown-item"
+          >
+            <div className="hts-item-dot" />
+            <div className="hts-item-content">
+              <span className="hts-item-title">{child.title}</span>
+              {child.title.includes('Ekahau') && <span className="hts-item-badge">Partner</span>}
+            </div>
+            <span className="hts-item-arrow">→</span>
           </Link>
-        </li>
-      ))}
-    </ul>
+        ))}
+      </div>
+    </div>
   );
 }
 
 function NavItem({ item }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef(null);
+  const timeoutRef = useRef(null);
 
-  // Close on outside click
-  useEffect(() => {
-    const handler = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpen(false);
+    }, 150);
+  };
 
   if (item.children) {
     return (
       <li
-        ref={ref}
         className={`hts-nav-item has-dropdown ${open ? 'dropdown-open' : ''}`}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Link
           to={item.path}
@@ -51,7 +69,11 @@ function NavItem({ item }) {
         >
           {item.title} <span className="hts-chevron">&#x2304;</span>
         </Link>
-        {open && <DropdownMenu items={item.children} onItemClick={() => setOpen(false)} />}
+        {open && (
+          <div className="hts-dropdown-bridge" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <DropdownMenu title={item.title} items={item.children} onItemClick={() => setOpen(false)} />
+          </div>
+        )}
       </li>
     );
   }

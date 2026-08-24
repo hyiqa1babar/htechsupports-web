@@ -90,7 +90,7 @@ function SectorsRedesign() {
           </p>
           <div className="sectors-hero-ctas">
             <Link to="/contact" className="btn-primary">Discuss Your Project</Link>
-            <Link to="/services" className="btn-outline">View Our Services</Link>
+            <Link to="/services" className="btn-primary">View Our Services</Link>
           </div>
         </div>
       </section>

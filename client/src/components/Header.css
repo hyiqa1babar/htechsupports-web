@@ -27,7 +27,8 @@
   height: 64px;
   width: 100%;
   max-width: 1200px;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
   box-shadow: 0 6px 32px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
@@ -82,7 +83,8 @@
   font-family: inherit;
 }
 
-.hts-nav-link:hover {
+.hts-nav-link:hover,
+.hts-nav-item.dropdown-open .hts-nav-link {
   background: rgba(9, 170, 170, 0.1);
   color: var(--teal-deep);
 }
@@ -90,52 +92,148 @@
 .hts-chevron {
   font-size: 0.75rem;
   opacity: 0.7;
+  transition: transform 0.2s ease;
 }
 
-/* ── Dropdown ──────────────────────────────────── */
-.hts-dropdown {
+.hts-nav-item.dropdown-open .hts-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown Bridge & Hover Card ──────────────────────── */
+.hts-dropdown-bridge {
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(7, 14, 24, 0.14);
-  min-width: 240px;
-  padding: 8px 0;
-  list-style: none;
+  padding-top: 14px; /* Seamless hover bridge */
   z-index: 1000;
-  animation: dropIn .18s ease;
 }
 
-.hts-dropdown::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: 0;
-  right: 0;
-  height: 12px;
-  background: transparent;
+.hts-dropdown-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 20px 48px rgba(7, 14, 24, 0.18), 0 4px 12px rgba(0, 0, 0, 0.05);
+  min-width: 280px;
+  max-width: 380px;
+  padding: 16px;
+  animation: dropIn .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hts-dropdown-services {
+  min-width: 320px;
+}
+
+.hts-dropdown-sectors {
+  min-width: 290px;
 }
 
 @keyframes dropIn {
-  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.hts-dropdown li a {
-  display: block;
-  padding: 10px 20px;
+.hts-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 8px;
+}
+
+.hts-dropdown-category {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #047777;
+}
+
+.hts-dropdown-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.hts-dropdown-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hts-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.hts-dropdown-item:hover {
+  background: rgba(9, 170, 170, 0.09);
+  transform: translateX(3px);
+}
+
+.hts-item-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: background 0.15s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.hts-dropdown-item:hover .hts-item-dot {
+  background: #09aaaa;
+  transform: scale(1.3);
+}
+
+.hts-item-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hts-item-title {
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--primary-dark);
-  transition: background 0.15s, color 0.15s;
+  color: #0f172a;
 }
 
-.hts-dropdown li a:hover {
-  background: rgba(9, 170, 170, 0.1);
-  color: var(--teal-deep);
+.hts-dropdown-item:hover .hts-item-title {
+  color: #047777;
+  font-weight: 700;
+}
+
+.hts-item-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: rgba(9, 170, 170, 0.14);
+  color: #047777;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.hts-item-arrow {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.15s ease;
+}
+
+.hts-dropdown-item:hover .hts-item-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #09aaaa;
 }
 
 /* ── CTA partner button ────────────────────────────────── */

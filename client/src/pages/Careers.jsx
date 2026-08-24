@@ -193,7 +193,7 @@ export default function Careers() {
                 <p>{s.subtitle}</p>
                 <div className="slide-ctas">
                   <a href="#disciplines" className="hts-btn hts-btn-primary hts-btn-lg">Explore Open Disciplines</a>
-                  <a href="#cv-upload" className="hts-btn hts-btn-outline hts-btn-lg">Submit Your CV</a>
+                  <a href="#cv-upload" className="hts-btn hts-btn-primary hts-btn-lg">Submit Your CV</a>
                 </div>
               </div>
             </div>

@@ -72,6 +72,7 @@ function AppContent() {
           ].map(slug => (
             <Route key={slug} path={`/pages/${slug}`} element={<DetailPage slug={slug} />} />
           ))}
+          <Route path="/pages/:slug" element={<DetailPage />} />
         </Routes>
       </main>
       {location.pathname !== '/admin' && <Footer />}

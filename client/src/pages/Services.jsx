@@ -67,7 +67,7 @@ export default function Services() {
             <p>End-to-end IT infrastructure services delivered across 50+ countries. From AV installation to global staff augmentation.</p>
             <div className="sv-hero-actions">
               <a href="#sv-grid" className="sv-btn sv-btn-accent">Explore Services</a>
-              <Link to="/contact" className="sv-btn sv-btn-ghost">Get in Touch</Link>
+              <Link to="/contact" className="sv-btn sv-btn-accent">Get in Touch</Link>
             </div>
           </div>
           <div className="sv-hero-right">
