@@ -11,16 +11,26 @@ export default function ResourceDetail() {
   const { slug } = useParams();
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const post = useMemo(() => {
-    return postsData.find((p) => p.slug === slug) || null;
+  const cleanSlug = useMemo(() => {
+    if (!slug) return '';
+    return decodeURIComponent(slug).trim().replace(/\/$/, '').toLowerCase();
   }, [slug]);
+
+  const post = useMemo(() => {
+    if (!cleanSlug) return null;
+    return postsData.find((p) => {
+      const pSlug = (p.slug || '').trim().toLowerCase();
+      const pId = String(p.id || '').trim().toLowerCase();
+      return pSlug === cleanSlug || pId === cleanSlug;
+    }) || null;
+  }, [cleanSlug]);
 
   const relatedPosts = useMemo(() => {
     if (!post) return [];
     return postsData
-      .filter((p) => p.slug !== slug)
+      .filter((p) => p.slug !== post.slug && p.id !== post.id)
       .slice(0, 3);
-  }, [post, slug]);
+  }, [post]);
 
   // Scroll reading progress calculation
   useEffect(() => {

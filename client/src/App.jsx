@@ -58,6 +58,17 @@ function AppContent() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/:slug" element={<ResourceDetail />} />
           <Route path="/blog/:slug" element={<ResourceDetail />} />
+          {/* original WordPress post direct URL redirects */}
+          {[
+            'the-ultimate-guide-to-choosing-the-right-itsupport-partner-2',
+            'the-ultimate-guide-to-choosing-the-right-itsupport-partner',
+            '5-common-it-problems-businesses-encounter-and-how-to-solve-them',
+            'the-benefits-of-ekahau-surveys-for-networkoptimization-assuming-this-is-a-service-offered',
+            'problems-everyone-has-when-working-remotely-and-how-to-solve-them',
+            'the-best-remote-ux-and-ui-design-conferences-to-attend-in-2020'
+          ].map(slug => (
+            <Route key={slug} path={`/${slug}`} element={<Navigate to={`/resources/${slug}`} replace />} />
+          ))}
           <Route path="/careers" element={<Careers />} />
           <Route path="/engineer" element={<Engineer />} />
           <Route path="/blog" element={<Blog />} />
