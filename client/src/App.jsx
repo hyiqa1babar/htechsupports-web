@@ -23,11 +23,13 @@ import ResourceDetail from './pages/ResourceDetail.jsx';
 import Terms from './pages/Terms.jsx';
 import Privacy from './pages/Privacy.jsx';
 import EkahauPage from './pages/EkahauPage.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 function AppContent() {
   const location = useLocation();
   return (
     <>
+      <ScrollToTop />
       <Header />
       <main id="main-content">
         <Routes>
