@@ -23,8 +23,9 @@
     "type": "Partner Application",
     "subject": "Partner Application: NovaTech Solutions Ltd",
     "message": "We are an EMEA-focused MSP providing enterprise network hardware. We would like to partner with HTech Supports for your smart hands field engineering coverage and Ekahau Wi-Fi survey capabilities in France and the UK.",
-    "status": "unread",
-    "createdAt": "2026-08-27T08:15:30.000Z"
+    "status": "read",
+    "createdAt": "2026-08-27T08:15:30.000Z",
+    "updatedAt": "2026-08-27T11:47:19.821Z"
   },
   {
     "id": "1724750002000",
