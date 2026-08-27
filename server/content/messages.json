@@ -9,8 +9,9 @@
     "type": "Partner Application",
     "subject": "Partner Application: hyiqa",
     "message": "hi",
-    "status": "unread",
-    "createdAt": "2026-08-27T09:16:27.708Z"
+    "status": "read",
+    "createdAt": "2026-08-27T09:16:27.708Z",
+    "updatedAt": "2026-08-27T11:47:12.154Z"
   },
   {
     "id": "1724760001000",
