@@ -1,9 +1,11 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+const { commitFilesAtomic, readFileFromRepo, getOctokit } = require('../utils/github');
 
 const DATA_DIR = path.join(__dirname, '..', 'content');
 const MESSAGES_FILE = path.join(DATA_DIR, 'messages.json');
+const REPO_PATH = 'server/content/messages.json';
 
 function readMessagesFile() {
   try {
@@ -21,62 +23,100 @@ function writeMessagesFile(data) {
   fs.writeFileSync(MESSAGES_FILE, JSON.stringify(data, null, 2));
 }
 
+async function readMessagesFromRepo() {
+  try {
+    const { content } = await readFileFromRepo(REPO_PATH);
+    return JSON.parse(content);
+  } catch (_) {
+    return [];
+  }
+}
+
 function nextId() {
   return Date.now().toString();
 }
 
 exports.handleContactSubmission = async (req, res) => {
   try {
-    const { name, phone, email, role, message } = req.body;
+    const { name, phone, email, role, type, company, message, subject } = req.body || {};
 
-    if (!name || !email || !message) {
+    if (!email) {
       return res.status(400).json({
         success: false,
-        error: 'Name, email, and message are required fields.'
+        error: 'Email is required.'
       });
     }
 
-    // Save message to JSON file
+    const submissionType = type || role || 'General Inquiry';
+    const senderName = name && name.trim() ? name.trim() : (submissionType.toLowerCase().includes('newsletter') ? 'Newsletter Subscriber' : 'Website Visitor');
+    const messageContent = message && message.trim() ? message.trim() : (submissionType.toLowerCase().includes('newsletter') ? 'Subscribed to HTech Supports Insights newsletter' : 'No message provided');
+
+    // Create standardized message record
     const newMessage = {
       id: nextId(),
-      name,
-      phone: phone || '',
-      email,
-      role: role || 'General Inquiry',
-      message,
+      name: senderName,
+      email: email.trim(),
+      phone: phone ? phone.trim() : '',
+      company: company ? company.trim() : '',
+      role: role || submissionType,
+      type: submissionType,
+      subject: subject || `${submissionType} from ${senderName}`,
+      message: messageContent,
       status: 'unread',
       createdAt: new Date().toISOString()
     };
 
-    const messages = readMessagesFile();
-    messages.push(newMessage);
-    writeMessagesFile(messages);
+    if (getOctokit()) {
+      try {
+        const repoMessages = await readMessagesFromRepo();
+        repoMessages.unshift(newMessage);
+        await commitFilesAtomic(
+          [{ path: REPO_PATH, content: JSON.stringify(repoMessages, null, 2) }],
+          `lead: new ${submissionType} from ${senderName}`
+        );
+      } catch (err) {
+        console.warn('GitHub sync failed for contact message, falling back to local file:', err.message);
+        const messages = readMessagesFile();
+        messages.unshift(newMessage);
+        writeMessagesFile(messages);
+      }
+    } else {
+      const messages = readMessagesFile();
+      messages.unshift(newMessage);
+      writeMessagesFile(messages);
+    }
 
-    console.log('Received contact submission:', newMessage);
+    console.log('Received submission:', newMessage);
 
-    // Optional Nodemailer transporter setup
+    // Optional Nodemailer transporter notification
     if (process.env.SMTP_HOST && process.env.SMTP_USER) {
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT || 587,
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-      });
+      try {
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: process.env.SMTP_PORT || 587,
+          secure: process.env.SMTP_SECURE === 'true',
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+          },
+        });
 
-      await transporter.sendMail({
-        from: `"${name}" <${email}>`,
-        to: process.env.CONTACT_EMAIL || 'info@htechsupports.com',
-        subject: `New Contact Request: ${role || 'General Inquiry'}`,
-        text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nRole: ${role}\nMessage: ${message}`,
-      });
+        const recipient = process.env.CONTACT_EMAIL || 'info@htechsupports.com';
+        await transporter.sendMail({
+          from: `"${senderName}" <${email}>`,
+          to: recipient,
+          subject: `[HTech Supports] New ${submissionType}: ${senderName}`,
+          text: `Type: ${submissionType}\nName: ${senderName}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nCompany: ${company || 'N/A'}\nRole: ${role || 'N/A'}\n\nMessage:\n${messageContent}\n\nSubmitted on: ${new Date().toLocaleString()}`,
+        });
+      } catch (mailErr) {
+        console.warn('SMTP notification failed, but submission was saved:', mailErr.message);
+      }
     }
 
     return res.status(200).json({
       success: true,
-      message: 'Thank you for reaching out! We will respond shortly.'
+      message: 'Thank you for reaching out! We will respond shortly.',
+      id: newMessage.id
     });
   } catch (error) {
     console.error('Contact form submission error:', error);
@@ -92,27 +132,68 @@ exports.getMessages = (req, res) => {
   res.json(messages);
 };
 
-exports.updateMessageStatus = (req, res) => {
-  const messages = readMessagesFile();
-  const index = messages.findIndex(m => m.id === req.params.id);
-  if (index === -1) return res.status(404).json({ error: 'Message not found' });
+exports.updateMessageStatus = async (req, res) => {
+  try {
+    const messages = readMessagesFile();
+    const index = messages.findIndex(m => m.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Message not found' });
 
-  const updated = {
-    ...messages[index],
-    ...req.body,
-    updatedAt: new Date().toISOString()
-  };
-  messages[index] = updated;
-  writeMessagesFile(messages);
-  res.json(updated);
+    const updated = {
+      ...messages[index],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    messages[index] = updated;
+
+    if (getOctokit()) {
+      try {
+        const repoMessages = await readMessagesFromRepo();
+        const rIdx = repoMessages.findIndex(m => m.id === req.params.id);
+        if (rIdx !== -1) {
+          repoMessages[rIdx] = updated;
+          await commitFilesAtomic(
+            [{ path: REPO_PATH, content: JSON.stringify(repoMessages, null, 2) }],
+            `admin: update message ${req.params.id} status to ${updated.status || 'updated'}`
+          );
+        }
+      } catch (err) {
+        console.warn('GitHub update failed for message:', err.message);
+      }
+    }
+
+    writeMessagesFile(messages);
+    res.json(updated);
+  } catch (err) {
+    console.error('updateMessageStatus error:', err);
+    res.status(500).json({ error: err.message || 'Update failed' });
+  }
 };
 
-exports.deleteMessage = (req, res) => {
-  const messages = readMessagesFile();
-  const filtered = messages.filter(m => m.id !== req.params.id);
-  if (messages.length === filtered.length) {
-    return res.status(404).json({ error: 'Message not found' });
+exports.deleteMessage = async (req, res) => {
+  try {
+    const messages = readMessagesFile();
+    const filtered = messages.filter(m => m.id !== req.params.id);
+    if (messages.length === filtered.length) {
+      return res.status(404).json({ error: 'Message not found' });
+    }
+
+    if (getOctokit()) {
+      try {
+        const repoMessages = await readMessagesFromRepo();
+        const rFiltered = repoMessages.filter(m => m.id !== req.params.id);
+        await commitFilesAtomic(
+          [{ path: REPO_PATH, content: JSON.stringify(rFiltered, null, 2) }],
+          `admin: delete message ${req.params.id}`
+        );
+      } catch (err) {
+        console.warn('GitHub delete failed for message:', err.message);
+      }
+    }
+
+    writeMessagesFile(filtered);
+    res.status(204).end();
+  } catch (err) {
+    console.error('deleteMessage error:', err);
+    res.status(500).json({ error: err.message || 'Delete failed' });
   }
-  writeMessagesFile(filtered);
-  res.status(204).end();
 };

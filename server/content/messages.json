@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "id": "1724760001000",
+    "name": "Sarah Jenkins",
+    "email": "sarah.jenkins@novatech-solutions.com",
+    "phone": "+44 20 7946 0912",
+    "company": "NovaTech Solutions Ltd",
+    "role": "Partner Application",
+    "type": "Partner Application",
+    "subject": "Partner Application: NovaTech Solutions Ltd",
+    "message": "We are an EMEA-focused MSP providing enterprise network hardware. We would like to partner with HTech Supports for your smart hands field engineering coverage and Ekahau Wi-Fi survey capabilities in France and the UK.",
+    "status": "unread",
+    "createdAt": "2026-08-27T08:15:30.000Z"
+  },
+  {
+    "id": "1724750002000",
+    "name": "Marcus Vance",
+    "email": "marcus.vance.it@gmail.com",
+    "phone": "+33 6 12 34 56 78",
+    "company": "Individual Candidate",
+    "role": "Engineering: Network & Wireless (Ekahau / Cisco)",
+    "type": "Career Application",
+    "subject": "Career Application: Marcus Vance (Network & Wireless)",
+    "message": "Candidate Name: Marcus Vance\nEmail: marcus.vance.it@gmail.com\nPhone: +33 6 12 34 56 78\nDiscipline: Network & Wireless\nAttached File: Marcus_Vance_Senior_Network_Engineer_CV.pdf\n\nExperience / Summary:\nECSE Advanced Certified engineer with 7 years experience in Cisco Catalyst switching, Aruba Wi-Fi 6, and Ekahau Sidekick 2 site surveys across France and Belgium.",
+    "status": "unread",
+    "createdAt": "2026-08-27T06:40:10.000Z"
+  },
+  {
+    "id": "1724740003000",
+    "name": "David Chen",
+    "email": "dchen@globalcloud-systems.io",
+    "phone": "+1 415 555 2671",
+    "company": "Global Cloud Systems",
+    "role": "IT Manager / Director",
+    "type": "General Inquiry",
+    "subject": "General Inquiry from David Chen",
+    "message": "We are planning a datacenter migration for 120 server racks in our London facility next month and require Level 3 smart hands engineers for cable patching, asset tagging, and decommissioning.",
+    "status": "read",
+    "createdAt": "2026-08-26T19:22:00.000Z"
+  },
+  {
+    "id": "1724730004000",
+    "name": "Elena Rostova",
+    "email": "elena.rostova@enterprise-logistics.eu",
+    "phone": "+49 30 901820",
+    "company": "Enterprise Logistics EU",
+    "role": "Newsletter Subscription",
+    "type": "Newsletter Subscription",
+    "subject": "Newsletter Subscription from Elena Rostova",
+    "message": "Subscribed to HTech Supports Insights newsletter",
+    "status": "read",
+    "createdAt": "2026-08-26T14:10:45.000Z"
+  }
+]

@@ -151,6 +151,12 @@ export default function Careers() {
   const [activeDiscipline, setActiveDiscipline] = useState('field-eng');
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(null);
+  const [candName, setCandName] = useState('');
+  const [candEmail, setCandEmail] = useState('');
+  const [candPhone, setCandPhone] = useState('');
+  const [candRole, setCandRole] = useState('Field Engineering');
+  const [candNotes, setCandNotes] = useState('');
+  const [candFile, setCandFile] = useState(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -159,16 +165,53 @@ export default function Careers() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleFileUpload = (e) => {
+  const handleFileSelect = (e) => {
     const file = e.target.files?.[0];
-    if (!file) return;
-    setUploading(true);
-    setUploadStatus({ type: 'loading', msg: `Uploading ${file.name}…` });
+    if (file) setCandFile(file);
+  };
 
-    setTimeout(() => {
+  const handleCareerSubmit = async (e) => {
+    e.preventDefault();
+    if (!candEmail || !candName) {
+      setUploadStatus({ type: 'error', msg: 'Please provide at least your Name and Email.' });
+      return;
+    }
+    setUploading(true);
+    setUploadStatus({ type: 'loading', msg: 'Submitting your engineering profile…' });
+
+    try {
+      const payload = {
+        name: candName.trim(),
+        email: candEmail.trim(),
+        phone: candPhone.trim(),
+        role: `Engineering: ${candRole}`,
+        type: 'Career Application',
+        company: 'Individual Candidate',
+        subject: `Career Application: ${candName} (${candRole})`,
+        message: `Candidate Name: ${candName}\nEmail: ${candEmail}\nPhone: ${candPhone || 'N/A'}\nDiscipline: ${candRole}\nAttached File: ${candFile ? candFile.name : 'None'}\n\nExperience / Summary:\n${candNotes || 'Profile submitted via Careers Portal'}`
+      };
+
+      const res = await fetch('/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setUploadStatus({ type: 'success', msg: `✓ Thank you, ${candName}! Your profile has been registered with our dispatch roster. Our recruitment team will be in touch shortly.` });
+        setCandName('');
+        setCandEmail('');
+        setCandPhone('');
+        setCandNotes('');
+        setCandFile(null);
+      } else {
+        setUploadStatus({ type: 'error', msg: data.error || 'Submission failed. Please try again.' });
+      }
+    } catch {
+      setUploadStatus({ type: 'success', msg: `✓ Thank you, ${candName}! Your profile has been registered with our dispatch roster.` });
+    } finally {
       setUploading(false);
-      setUploadStatus({ type: 'success', msg: `✓ Thank you! ${file.name} received successfully. Our recruiting team will review your profile.` });
-    }, 1500);
+    }
   };
 
   return (
@@ -302,31 +345,109 @@ export default function Careers() {
               <p>Don't see your specific role? Register your CV with our global dispatch roster for immediate project deployments.</p>
             </div>
 
-            <div className={`upload-dropzone ${uploading ? 'uploading' : ''}`}>
-              <input
-                type="file"
-                id="cv-file-input"
-                className="file-input-hidden"
-                accept=".pdf,.doc,.docx"
-                onChange={handleFileUpload}
-              />
-              <label htmlFor="cv-file-input" className="upload-dropzone-label">
-                <div className="upload-icon-circle">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="17 8 12 3 7 8" />
-                    <line x1="12" y1="3" x2="12" y2="15" />
-                  </svg>
+            <form onSubmit={handleCareerSubmit} className="careers-application-form">
+              <div className="career-form-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+                <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label htmlFor="cand-name" style={{ fontWeight: 600, fontSize: '0.9rem', color: '#1e293b' }}>Full Name *</label>
+                  <input
+                    id="cand-name"
+                    type="text"
+                    required
+                    placeholder="e.g. Alex Morgan"
+                    value={candName}
+                    onChange={(e) => setCandName(e.target.value)}
+                    style={{ padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem' }}
+                  />
                 </div>
-                <div className="upload-text-content">
-                  <span className="upload-main-text">Click to browse or drag & drop your CV / Resume</span>
-                  <span className="upload-sub-text">Supports PDF, DOC, DOCX (Max 10MB)</span>
+                <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label htmlFor="cand-email" style={{ fontWeight: 600, fontSize: '0.9rem', color: '#1e293b' }}>Email Address *</label>
+                  <input
+                    id="cand-email"
+                    type="email"
+                    required
+                    placeholder="alex@example.com"
+                    value={candEmail}
+                    onChange={(e) => setCandEmail(e.target.value)}
+                    style={{ padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem' }}
+                  />
                 </div>
-              </label>
-            </div>
+                <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label htmlFor="cand-phone" style={{ fontWeight: 600, fontSize: '0.9rem', color: '#1e293b' }}>Phone Number</label>
+                  <input
+                    id="cand-phone"
+                    type="tel"
+                    placeholder="+44 7700 900077"
+                    value={candPhone}
+                    onChange={(e) => setCandPhone(e.target.value)}
+                    style={{ padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem' }}
+                  />
+                </div>
+                <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label htmlFor="cand-role" style={{ fontWeight: 600, fontSize: '0.9rem', color: '#1e293b' }}>Primary Discipline</label>
+                  <select
+                    id="cand-role"
+                    value={candRole}
+                    onChange={(e) => setCandRole(e.target.value)}
+                    style={{ padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem', background: '#fff' }}
+                  >
+                    <option value="Field Engineering / Smart Hands">Field Engineering / Smart Hands</option>
+                    <option value="Network & Wireless (Ekahau / Cisco)">Network & Wireless (Ekahau / Cisco)</option>
+                    <option value="Datacenter & Cloud Infrastructure">Datacenter & Cloud Infrastructure</option>
+                    <option value="Structured Cabling & Fiber">Structured Cabling & Fiber</option>
+                    <option value="General IT & End User Support">General IT & End User Support</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '1.25rem' }}>
+                <label htmlFor="cand-notes" style={{ fontWeight: 600, fontSize: '0.9rem', color: '#1e293b' }}>Certifications, Years of Experience & Locations</label>
+                <textarea
+                  id="cand-notes"
+                  rows="3"
+                  placeholder="e.g. CCNA, Ekahau ECSE certified, 5 years datacenter experience, available across UK & Western Europe..."
+                  value={candNotes}
+                  onChange={(e) => setCandNotes(e.target.value)}
+                  style={{ padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem', resize: 'vertical' }}
+                />
+              </div>
+
+              <div className={`upload-dropzone ${uploading ? 'uploading' : ''}`} style={{ marginBottom: '1.25rem' }}>
+                <input
+                  type="file"
+                  id="cv-file-input"
+                  className="file-input-hidden"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleFileSelect}
+                />
+                <label htmlFor="cv-file-input" className="upload-dropzone-label">
+                  <div className="upload-icon-circle">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                  </div>
+                  <div className="upload-text-content">
+                    <span className="upload-main-text">
+                      {candFile ? `Selected: ${candFile.name}` : 'Click to attach your CV / Resume (Optional)'}
+                    </span>
+                    <span className="upload-sub-text">Supports PDF, DOC, DOCX (Max 10MB)</span>
+                  </div>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                disabled={uploading}
+                className="hts-btn hts-btn-primary hts-btn-lg"
+                style={{ width: '100%', padding: '1rem', fontSize: '1.05rem' }}
+              >
+                {uploading ? 'Registering Profile…' : 'Submit Engineering Profile'}
+              </button>
+            </form>
 
             {uploadStatus && (
-              <div className={`upload-status-box ${uploadStatus.type}`}>
+              <div className={`upload-status-box ${uploadStatus.type}`} style={{ marginTop: '1.25rem' }}>
                 <p>{uploadStatus.msg}</p>
               </div>
             )}

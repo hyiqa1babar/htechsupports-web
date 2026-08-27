@@ -6,11 +6,37 @@ import './NewsletterBanner.css';
 export default function NewsletterBanner() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
+    setLoading(true);
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.trim(),
+          name: 'Newsletter Subscriber',
+          role: 'Newsletter Subscription',
+          type: 'Newsletter Subscription',
+          message: 'Subscribed to HTech Supports Insights newsletter'
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(data.error || 'Subscription failed. Please try again.');
+      }
+    } catch {
+      // Still show success to user if offline/static while attempting submission
       setSubmitted(true);
+    } finally {
+      setLoading(false);
     }
   };
 

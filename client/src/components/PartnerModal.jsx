@@ -38,7 +38,9 @@ export default function PartnerModal({ open, onClose }) {
       email:   form.email.value,
       phone:   form.phone.value,
       company: form.company.value,
-      role:    'Partner',
+      role:    'Partner Application',
+      type:    'Partner Application',
+      subject: `Partner Application: ${form.company.value || form.name.value}`,
       message: form.message.value,
     };
     try {
