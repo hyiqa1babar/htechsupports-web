@@ -20,8 +20,38 @@ function Reveal({ children, className = '', delay = 0, tag: Tag = 'div' }) {
 function DetailPage({ slug }) {
   const params = useParams();
   const currentSlug = slug || params.id || params.slug;
-  const page = siteData.detailPages?.[currentSlug];
+  const initialPage = siteData.detailPages?.[currentSlug];
+  const [page, setPage] = useState(initialPage);
   const openPartner = usePartner();
+
+  useEffect(() => {
+    // Keep initial data if route changes
+    const fallback = siteData.detailPages?.[currentSlug];
+    if (fallback) setPage(fallback);
+
+    // Check for updated content from backend
+    let isMounted = true;
+    fetch('/api/pages')
+      .then(res => res.json())
+      .then(pages => {
+        if (!isMounted || !Array.isArray(pages)) return;
+        const matched = pages.find(p => p.slug === currentSlug || p.id === `detail-${currentSlug}` || p.id === currentSlug);
+        if (matched) {
+          setPage(prev => ({
+            ...prev,
+            title: matched.title || prev?.title,
+            tagline: matched.tagline || prev?.tagline,
+            description: matched.content || prev?.description,
+            image: matched.image_url || prev?.image,
+            features: matched.features || prev?.features,
+            caseStudy: matched.caseStudy || prev?.caseStudy,
+          }));
+        }
+      })
+      .catch(() => {});
+
+    return () => { isMounted = false; };
+  }, [currentSlug]);
 
   if (!page) return (
     <div className="dp"><Helmet><title>Not Found — HTech Supports</title></Helmet>
@@ -30,7 +60,7 @@ function DetailPage({ slug }) {
   );
 
   const isService = page.kind === 'service';
-  const allServices = siteData.services?.filter(s => s.id !== slug).slice(0, 3) || [];
+  const allServices = siteData.services?.filter(s => s.id !== currentSlug).slice(0, 3) || [];
 
   return (
     <div className="dp">

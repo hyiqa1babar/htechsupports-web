@@ -86,8 +86,11 @@ export default function SimpleAdmin() {
       } else {
         const apiData = {
           title: formData.title,
+          tagline: formData.tagline || '',
           content: formData.content,
           image_url: formData.image_url || '',
+          path: formData.path || '',
+          category: formData.category || '',
           status: formData.status || 'published'
         };
 
@@ -509,52 +512,40 @@ export default function SimpleAdmin() {
 
               {editMode && (
                 <div className="settings-form">
-                  <h3>{selectedItem ? 'Edit Item' : 'Create New Item'}</h3>
+                  <h3>{selectedItem ? `✏️ Editing: ${selectedItem.title}` : '+ Create New Item'}</h3>
                   <form onSubmit={handleSubmit}>
-                    <div className="setting-group">
-                      <label>Title *</label>
-                      <input
-                        type="text"
-                        name="title"
-                        required
-                        placeholder="Title"
-                        value={formData.title || ''}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="setting-group">
-                      <label>Featured Image</label>
-                      {formData.image_url && (
-                        <img src={formData.image_url} alt="Thumbnail" style={{ maxWidth: '180px', borderRadius: '8px', display: 'block', marginBottom: 8 }} />
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+                      <div className="setting-group">
+                        <label>Title *</label>
+                        <input type="text" name="title" required placeholder="Page / service title" value={formData.title || ''} onChange={handleChange} />
+                      </div>
+                      <div className="setting-group">
+                        <label>Tagline / Sub-heading</label>
+                        <input type="text" name="tagline" placeholder="Short tagline shown on hero" value={formData.tagline || ''} onChange={handleChange} />
+                      </div>
+                      {activeTab === 'pages' && (
+                        <div className="setting-group">
+                          <label>URL Path (e.g. /pages/ekahau)</label>
+                          <input type="text" name="path" placeholder="/pages/slug" value={formData.path || ''} onChange={handleChange} />
+                        </div>
                       )}
-                      <input
-                        type="file"
-                        name="image"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                      />
+                      <div className="setting-group">
+                        <label>Category / Kind</label>
+                        <input type="text" name="category" placeholder="e.g. Service Sub-page, Sector, Main Page" value={formData.category || ''} onChange={handleChange} />
+                      </div>
+                    </div>
+                    <div className="setting-group" style={{ marginTop: '1rem' }}>
+                      <label>Description / Content</label>
+                      <textarea name="content" rows="5" placeholder="Full description text shown on the page…" value={formData.content || ''} onChange={handleChange} />
                     </div>
                     <div className="setting-group">
-                      <label>Content</label>
-                      <textarea
-                        name="content"
-                        rows="6"
-                        placeholder="Write content or HTML here..."
-                        value={formData.content || ''}
-                        onChange={handleChange}
-                      />
+                      <label>Featured Image {formData.image_url ? '(current shown below — upload to replace)' : ''}</label>
+                      {formData.image_url && <img src={formData.image_url} alt="Current" style={{ maxWidth: '200px', borderRadius: '8px', display: 'block', marginBottom: 8, border: '1px solid rgba(255,255,255,0.1)' }} />}
+                      <input type="file" name="image" accept="image/*" onChange={handleFileChange} />
                     </div>
-                    <div style={{ display: 'flex', gap: '10px', marginTop: '1rem' }}>
-                      <button
-                        type="button"
-                        className="admin-cancel-btn"
-                        onClick={() => { setEditMode(false); setSelectedItem(null); setFormData({}); }}
-                      >
-                        Cancel
-                      </button>
-                      <button type="submit" className="admin-action-btn" disabled={loading}>
-                        {loading ? 'Saving…' : 'Save Item'}
-                      </button>
+                    <div style={{ display: 'flex', gap: '10px', marginTop: '1.25rem' }}>
+                      <button type="button" className="admin-cancel-btn" onClick={() => { setEditMode(false); setSelectedItem(null); setFormData({}); }}>Cancel</button>
+                      <button type="submit" className="admin-action-btn" disabled={loading}>{loading ? 'Saving…' : selectedItem ? 'Save Changes' : 'Create Item'}</button>
                     </div>
                   </form>
                 </div>
@@ -564,21 +555,28 @@ export default function SimpleAdmin() {
                 <thead>
                   <tr>
                     <th>Title</th>
+                    {activeTab === 'pages' && <th>Path / URL</th>}
+                    <th>Category</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentList().map(p => (
+                  {currentList().length === 0 ? (
+                    <tr><td colSpan="5" style={{ textAlign: 'center', padding: '2rem', color: 'rgba(255,255,255,0.4)' }}>No items yet. Click + Add New to create one.</td></tr>
+                  ) : currentList().map(p => (
                     <tr key={p.id}>
-                      <td><strong>{p.title}</strong></td>
+                      <td>
+                        <strong>{p.title}</strong>
+                        {p.tagline && <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)', marginTop: 2 }}>{p.tagline}</div>}
+                      </td>
+                      {activeTab === 'pages' && <td><code style={{ fontSize: '0.78rem', color: '#38bdf8' }}>{p.path || p.slug || '—'}</code></td>}
+                      <td><span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>{p.category || p.kind || '—'}</span></td>
                       <td><span className={`status-badge ${p.status}`}>{p.status || 'published'}</span></td>
                       <td>
-                        <button className="edit-btn" onClick={() => startEdit(p)}>Edit</button>
-                        <button className="edit-btn" onClick={() => toggleStatus(p.id)}>
-                          {p.status === 'published' ? 'Unpublish' : 'Publish'}
-                        </button>
-                        <button className="delete-btn" onClick={() => handleDelete(p.id)}>Delete</button>
+                        <button className="edit-btn" onClick={() => startEdit(p)}>✏️ Edit</button>
+                        <button className="edit-btn" style={{ marginLeft: 4 }} onClick={() => toggleStatus(p.id)}>{p.status === 'published' ? 'Unpublish' : 'Publish'}</button>
+                        <button className="delete-btn" style={{ marginLeft: 4 }} onClick={() => handleDelete(p.id)}>Delete</button>
                       </td>
                     </tr>
                   ))}

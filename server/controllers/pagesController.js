@@ -147,7 +147,11 @@ exports.updatePage = async (req, res) => {
       const updated = {
         ...pages[index],
         title: body.title || pages[index].title,
-        content: body.content || pages[index].content,
+        tagline: body.tagline !== undefined ? body.tagline : pages[index].tagline,
+        content: body.content !== undefined ? body.content : pages[index].content,
+        path: body.path !== undefined ? body.path : pages[index].path,
+        category: body.category !== undefined ? body.category : pages[index].category,
+        image_url: body.image_url !== undefined ? body.image_url : pages[index].image_url,
         status: body.status || pages[index].status,
         updated: new Date().toISOString()
       };

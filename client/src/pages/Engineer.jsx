@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import siteData from '../data/siteData.json';
 import { usePartner } from '../components/PartnerContext.jsx';
+import StoreBadges from '../components/StoreBadges.jsx';
 import './Engineer.css';
 
 const HUB_FEATURES = [
@@ -74,13 +75,27 @@ export default function Engineer() {
         <div className="engineer-hero-bg" aria-hidden="true" />
         <div className="engineer-hero-overlay" />
         <div className="container engineer-hero-content">
-          <span className="hero-badge">Engineer Portal</span>
-          <h1 id="eng-title">Enter the Hub</h1>
-          <p className="hero-subtitle">Your command centre for global deployments. Dispatch, job packs, certifications, evidence capture, travel, and performance — unified.</p>
-          <div className="hero-ctas">
-            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Request Access</Link>
+          <div className="hero-top-badge-row">
+            <span className="hero-badge">OFFICIAL ENGINEER PORTAL & MOBILE APP</span>
           </div>
-          <p className="hero-note">Secure SSO login for active engineers and approved partners.</p>
+          <h1 id="eng-title">Enter the Hub</h1>
+          <p className="hero-subtitle">
+            Are you a certified field engineer or approved partner? Access live dispatch, offline digital job packs, Ekahau certifications, and real-time sign-offs directly from your mobile device.
+          </p>
+
+          {/* Prominent App Store & Google Play Badges inside the banner */}
+          <div className="engineer-store-cta-box">
+            <p className="store-cta-label">DOWNLOAD THE H-TECH SUPPORTS APP:</p>
+            <div className="engineer-store-buttons">
+              <StoreBadges className="engineer-hero-badges" />
+            </div>
+          </div>
+
+          <div className="hero-ctas" style={{ marginTop: '1.75rem' }}>
+            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Request Portal Credentials</Link>
+            <Link to="/careers" className="hts-btn hts-btn-outline hts-btn-lg" style={{ marginLeft: '12px' }}>Join Engineer Network</Link>
+          </div>
+          <p className="hero-note">⚡ Real-time dispatch notifications, GPS check-in, and offline job packs for iOS & Android.</p>
         </div>
       </section>
 

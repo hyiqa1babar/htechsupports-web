@@ -63,12 +63,37 @@
   max-width: 65ch;
   margin-bottom: 32px;
 }
-.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.engineer-store-cta-box {
+  margin: 1.5rem 0 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  display: inline-block;
+}
+.store-cta-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--teal-bright);
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+}
+.engineer-store-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.engineer-hero-badges {
+  display: flex;
+  gap: 12px;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .hero-note {
   margin-top: 1.5rem;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ── SECTION HEADER ── */
