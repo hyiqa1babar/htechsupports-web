@@ -498,14 +498,14 @@
 
 /* ═══ 5. BOTTOM ENTERPRISE CTA ═══ */
 .sv-bottom-cta {
-  padding: 0 0 88px;
+  padding: 40px 0 100px;
   background: #f8fafc;
 }
 
 .sv-cta-box {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--teal-midnight) 100%);
   border-radius: 28px;
-  padding: 64px 48px;
+  padding: 80px 48px;
   text-align: center;
   color: var(--neutral-white);
   border: 1px solid rgba(9, 170, 170, 0.25);
@@ -513,21 +513,25 @@
 }
 
 .sv-cta-content {
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sv-pill-dark {
   background: rgba(9, 170, 170, 0.18);
   color: var(--teal-bright);
-  border-color: var(--teal-bright);
+  border: 1px solid var(--teal-bright);
+  margin-bottom: 24px;
 }
 
 .sv-cta-content h2 {
   font-size: clamp(2rem, 3.8vw, 2.9rem);
   font-weight: 900;
   letter-spacing: -0.02em;
-  margin: 16px 0;
+  margin: 0 0 18px 0;
   color: var(--neutral-white);
 }
 
@@ -535,7 +539,7 @@
   font-size: 1.12rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.88);
-  margin-bottom: 36px;
+  margin: 0 0 36px 0;
 }
 
 .sv-cta-buttons {
@@ -543,6 +547,7 @@
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
+  margin-bottom: 8px;
 }
 
 /* ═══ RESPONSIVE ═══ */

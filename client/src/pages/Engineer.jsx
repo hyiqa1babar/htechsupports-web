@@ -74,7 +74,7 @@ export default function Engineer() {
       <section className="engineer-hero" aria-labelledby="eng-title">
         <div className="engineer-hero-bg" aria-hidden="true" />
         <div className="engineer-hero-overlay" />
-        <div className="container engineer-hero-content">
+        <div className="container engineer-hero-content engineer-hero-centered">
           <div className="hero-top-badge-row">
             <span className="hero-badge">OFFICIAL ENGINEER PORTAL & MOBILE APP</span>
           </div>
@@ -83,19 +83,13 @@ export default function Engineer() {
             Are you a certified field engineer or approved partner? Access live dispatch, offline digital job packs, Ekahau certifications, and real-time sign-offs directly from your mobile device.
           </p>
 
-          {/* Prominent App Store & Google Play Badges inside the banner */}
-          <div className="engineer-store-cta-box">
-            <p className="store-cta-label">DOWNLOAD THE H-TECH SUPPORTS APP:</p>
-            <div className="engineer-store-buttons">
+          {/* Centralized App Store & Google Play Badges */}
+          <div className="engineer-store-cta-box-center">
+            <p className="store-cta-label">DOWNLOAD THE H-TECH SUPPORTS APP</p>
+            <div className="engineer-store-buttons-center">
               <StoreBadges className="engineer-hero-badges" />
             </div>
           </div>
-
-          <div className="hero-ctas" style={{ marginTop: '1.75rem' }}>
-            <Link to="/contact" className="hts-btn hts-btn-primary hts-btn-lg">Request Portal Credentials</Link>
-            <Link to="/careers" className="hts-btn hts-btn-outline hts-btn-lg" style={{ marginLeft: '12px' }}>Join Engineer Network</Link>
-          </div>
-          <p className="hero-note">⚡ Real-time dispatch notifications, GPS check-in, and offline job packs for iOS & Android.</p>
         </div>
       </section>
 
