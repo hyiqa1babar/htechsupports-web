@@ -50,7 +50,7 @@ function NavItem({ item }) {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setOpen(false);
-    }, 150);
+    }, 250);
   };
 
   if (item.children) {

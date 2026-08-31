@@ -483,14 +483,16 @@
   font-size: 0.95rem;
 }
 .hts-btn-primary {
-  background: #0284c7;
-  color: #ffffff;
-  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.3);
+  background: var(--teal-bright);
+  color: var(--primary-dark);
+  box-shadow: 0 6px 18px rgba(9, 170, 170, 0.35);
+  font-weight: 800;
 }
 .hts-btn-primary:hover {
-  background: #0369a1;
+  background: var(--teal-deep);
+  color: var(--neutral-white);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 10px 24px rgba(4, 119, 119, 0.45);
 }
 .hts-btn-outline {
   background: transparent;
