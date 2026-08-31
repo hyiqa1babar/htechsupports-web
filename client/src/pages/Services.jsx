@@ -258,20 +258,22 @@ export default function Services() {
 
       {/* ═══ 5. BOTTOM ENTERPRISE CTA ═══ */}
       <section className="sv-bottom-cta">
-        <div className="container sv-cta-box">
-          <div className="sv-cta-content">
-            <span className="sv-pill-badge sv-pill-dark">GET IN TOUCH</span>
-            <h2>Ready to Scale Your IT Infrastructure?</h2>
-            <p>
-              Whether you need smart hands engineers dispatched tomorrow or a full multi-site Ekahau wireless survey, our team is ready.
-            </p>
-            <div className="sv-cta-buttons">
-              <Link to="/contact" className="sv-btn sv-btn-filled sv-btn-lg">
-                Contact Our Engineering Team
-              </Link>
-              <Link to="/engineer" className="sv-btn sv-btn-filled sv-btn-lg">
-                Enter Engineer Hub
-              </Link>
+        <div className="container">
+          <div className="sv-cta-card">
+            <div className="sv-cta-content">
+              <span className="sv-pill-badge sv-pill-dark">GET IN TOUCH</span>
+              <h2 className="sv-cta-heading">Ready to Scale Your IT Infrastructure?</h2>
+              <p className="sv-cta-desc">
+                Whether you need smart hands engineers dispatched tomorrow or a full multi-site Ekahau wireless survey, our team is ready.
+              </p>
+              <div className="sv-cta-buttons">
+                <Link to="/contact" className="sv-btn sv-btn-filled sv-btn-lg">
+                  Contact Our Engineering Team
+                </Link>
+                <Link to="/engineer" className="sv-btn sv-btn-filled sv-btn-lg">
+                  Enter Engineer Hub
+                </Link>
+              </div>
             </div>
           </div>
         </div>
