@@ -446,6 +446,64 @@
   background: var(--primary-dark);
 }
 
+.sv-image-frame.sv-image-frame-brand {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+  border-color: #cbd5e1;
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sv-brand-logo-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 28px 20px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.sv-brand-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 30%, rgba(9, 170, 170, 0.08) 0%, transparent 60%),
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px, 24px 24px;
+  pointer-events: none;
+}
+
+.sv-brand-logo-img {
+  max-width: 250px;
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.08));
+  transition: transform 0.3s ease;
+}
+
+.sv-feature-row:hover .sv-brand-logo-img {
+  transform: scale(1.05);
+}
+
+.sv-brand-partner-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-deep);
+  background: rgba(9, 170, 170, 0.12);
+  border: 1px solid rgba(9, 170, 170, 0.3);
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+
 .sv-feature-img {
   width: 100%;
   aspect-ratio: 16/10;

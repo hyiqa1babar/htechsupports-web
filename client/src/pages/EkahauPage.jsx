@@ -183,17 +183,21 @@ export default function EkahauPage() {
           </div>
 
           <div className="ek-hero-visual">
-            <div className="ek-visual-card">
-              <img
-                src="/assets/images/service-wireless.png"
-                alt="Ekahau Wi-Fi Heatmap Survey"
-                className="ek-visual-img"
-              />
+            <div className="ek-visual-card ek-brand-card">
+              <div className="ek-brand-bg-pattern" aria-hidden="true" />
+              <div className="ek-brand-logo-wrapper">
+                <img
+                  src="/assets/partners/2017_Ekahau_logo_black-640x360-1-300x169.png"
+                  alt="Ekahau Official Certified Partner"
+                  className="ek-visual-brand-logo"
+                />
+                <span className="ek-brand-cert-tag">Certified Wireless Design Partner</span>
+              </div>
               <div className="ek-float-badge">
                 <ShieldCheck className="ek-float-icon" />
                 <div>
                   <p className="ek-float-title">SLA-Backed Wi-Fi Assurance</p>
-                  <p className="ek-float-sub">Zero-Deadzone Guaranteed</p>
+                  <p className="ek-float-sub">ECSE Certified • Zero-Deadzone Guaranteed</p>
                 </div>
               </div>
             </div>

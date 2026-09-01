@@ -94,8 +94,8 @@ export default function Services() {
     { val: '1000+', label: 'Successful Projects' },
   ];
 
-  const filteredServices = activeTab === 'all' 
-    ? services 
+  const filteredServices = activeTab === 'all'
+    ? services
     : services.filter(s => s.id === activeTab);
 
   const scrollToService = (id) => {
@@ -235,13 +235,26 @@ export default function Services() {
 
                   {/* Image Column */}
                   <div className="sv-feature-media">
-                    <div className="sv-image-frame">
-                      <img
-                        src={svc.image}
-                        alt={svc.title}
-                        loading="lazy"
-                        className="sv-feature-img"
-                      />
+                    <div className={`sv-image-frame ${svc.id === 'ekahau' ? 'sv-image-frame-brand' : ''}`}>
+                      {svc.id === 'ekahau' ? (
+                        <div className="sv-brand-logo-container">
+                          <div className="sv-brand-pattern" aria-hidden="true" />
+                          <img
+                            src={svc.image}
+                            alt={svc.title}
+                            loading="lazy"
+                            className="sv-brand-logo-img"
+                          />
+                          <span className="sv-brand-partner-badge">Official Certified Partner</span>
+                        </div>
+                      ) : (
+                        <img
+                          src={svc.image}
+                          alt={svc.title}
+                          loading="lazy"
+                          className="sv-feature-img"
+                        />
+                      )}
                       <div className="sv-image-accent-glow" aria-hidden="true" />
                       <div className="sv-image-bottom-badge">
                         <span className="sv-img-badge-dot" />

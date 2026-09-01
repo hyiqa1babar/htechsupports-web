@@ -150,7 +150,7 @@
       "badge": "Official Partner",
       "description": "High-Precision Wi-Fi 6E/7 Design, Predictive 3D Modeling & Live Site Surveys. As an official Ekahau Partner, our certified network engineers utilize Ekahau AI Pro and Sidekick 2 spectrum analyzers to deliver crystal-clear heatmaps, zero-deadzone wireless architecture, and SLA-backed capacity planning.",
       "link": "/pages/ekahau",
-      "image": "/assets/images/service-wireless.png"
+      "image": "/assets/partners/2017_Ekahau_logo_black-640x360-1-300x169.png"
     },
     {
       "id": "wireless-survey",
@@ -263,7 +263,7 @@
         "Comprehensive Executive Heatmaps & Bill-of-Materials (BOM)"
       ],
       "caseStudy": "Conducted multi-floor Ekahau Sidekick 2 surveys across 42 European distribution centres, optimizing channel overlap and boosting warehouse handheld terminal roam speeds by 400%.",
-      "image": "/assets/images/service-wireless.png"
+      "image": "/assets/partners/2017_Ekahau_logo_black-640x360-1-300x169.png"
     },
     "wireless-survey": {
       "kind": "service",
