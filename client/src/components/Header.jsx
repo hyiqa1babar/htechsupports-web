@@ -28,7 +28,6 @@ function DropdownMenu({ title, items, onItemClick }) {
             <div className="hts-item-dot" />
             <div className="hts-item-content">
               <span className="hts-item-title">{child.title}</span>
-              {child.title.includes('Ekahau') && <span className="hts-item-badge">Partner</span>}
             </div>
             <span className="hts-item-arrow">→</span>
           </Link>

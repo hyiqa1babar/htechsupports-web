@@ -75,16 +75,63 @@ const SERVICE_CATEGORIES = {
   'end-user-computing-support': 'Workplace & Deskside',
   'itad-it-asset-disposal': 'Lifecycle & Compliance',
   'staff-augmentation': 'Global Workforce'
-};
-
-export default function Services() {
-  const { services } = siteData;
+};export default function Services() {
+  const [servicesList, setServicesList] = useState(siteData.services || []);
+  const [pageMeta, setPageMeta] = useState({
+    title: 'Enterprise Technology Services',
+    gradientTitle: 'Delivered Worldwide',
+    subtitle: 'From smart hands engineering and high-precision Ekahau Wi-Fi design to global rollouts across 50+ countries. Delivering enterprise agility, multi-vendor expertise, and SLA-backed execution.'
+  });
   const [heroIdx, setHeroIdx] = useState(0);
   const [activeTab, setActiveTab] = useState('all');
 
   useEffect(() => {
+    let isMounted = true;
+
+    // Fetch dynamic runtime services data from backend
+    fetch('/api/services')
+      .then(res => res.json())
+      .then(apiServices => {
+        if (!isMounted || !Array.isArray(apiServices) || apiServices.length === 0) return;
+        setServicesList(prev => {
+          return prev.map(localSvc => {
+            const matched = apiServices.find(a => a.id === localSvc.id || a.slug === localSvc.id || a.link === localSvc.link);
+            if (!matched) return localSvc;
+            return {
+              ...localSvc,
+              title: matched.title || localSvc.title,
+              description: matched.content || matched.description || localSvc.description,
+              image: matched.image_url || localSvc.image,
+              category: matched.category || localSvc.category,
+              badge: matched.badge !== undefined ? matched.badge : localSvc.badge,
+              features: Array.isArray(matched.features) && matched.features.length > 0 ? matched.features : undefined,
+            };
+          });
+        });
+      })
+      .catch(() => {});
+
+    // Fetch dynamic runtime page info from backend
+    fetch('/api/pages')
+      .then(res => res.json())
+      .then(apiPages => {
+        if (!isMounted || !Array.isArray(apiPages)) return;
+        const matchedPage = apiPages.find(p => p.id === 'services' || p.slug === 'services');
+        if (matchedPage) {
+          setPageMeta({
+            title: matchedPage.title || 'Enterprise Technology Services',
+            gradientTitle: matchedPage.tagline || 'Delivered Worldwide',
+            subtitle: matchedPage.content || 'From smart hands engineering and high-precision Ekahau Wi-Fi design to global rollouts across 50+ countries. Delivering enterprise agility, multi-vendor expertise, and SLA-backed execution.'
+          });
+        }
+      })
+      .catch(() => {});
+
     const t = setInterval(() => setHeroIdx(i => (i + 1) % HERO_IMAGES.length), 4000);
-    return () => clearInterval(t);
+    return () => {
+      isMounted = false;
+      clearInterval(t);
+    };
   }, []);
 
   const stats = [
@@ -94,9 +141,9 @@ export default function Services() {
     { val: '1000+', label: 'Successful Projects' },
   ];
 
-  const filteredServices = activeTab === 'all'
-    ? services
-    : services.filter(s => s.id === activeTab);
+  const filteredServices = activeTab === 'all' 
+    ? servicesList 
+    : servicesList.filter(s => s.id === activeTab);
 
   const scrollToService = (id) => {
     setActiveTab(id);
@@ -127,11 +174,11 @@ export default function Services() {
         <div className="container sv-hero-content">
           <span className="sv-hero-pill">GLOBAL IT CAPABILITIES</span>
           <h1 className="sv-hero-title">
-            Enterprise Technology Services<br />
-            <span className="sv-gradient-text">Delivered Worldwide</span>
+            {pageMeta.title}<br />
+            <span className="sv-gradient-text">{pageMeta.gradientTitle}</span>
           </h1>
           <p className="sv-hero-subtitle">
-            From smart hands engineering and high-precision Ekahau Wi-Fi design to global rollouts across 50+ countries. Delivering enterprise agility, multi-vendor expertise, and SLA-backed execution.
+            {pageMeta.subtitle}
           </p>
           <div className="sv-hero-actions">
             <a href="#services-showcase" className="sv-btn sv-btn-filled">Explore All Services</a>
@@ -162,13 +209,13 @@ export default function Services() {
             >
               All Services
             </button>
-            {services.map((svc) => (
+            {servicesList.map((svc) => (
               <button
                 key={svc.id}
                 onClick={() => scrollToService(svc.id)}
                 className={`sv-nav-pill ${activeTab === svc.id ? 'active' : ''}`}
               >
-                {svc.title.split(' ')[0]} {svc.title.split(' ')[1] || ''}
+                {svc.title}
               </button>
             ))}
           </div>
@@ -187,13 +234,15 @@ export default function Services() {
           <div className="sv-alternating-list">
             {filteredServices.map((svc, idx) => {
               const isEven = idx % 2 === 1;
-              const capabilities = SERVICE_CAPABILITIES[svc.id] || [
-                'L1 to L3 certified technical support',
-                'Rapid global dispatch across 50+ countries',
-                'Strict SLA compliance and transparent reporting',
-                'Multi-vendor hardware integration'
-              ];
-              const category = SERVICE_CATEGORIES[svc.id] || 'Enterprise Service';
+              const capabilities = (Array.isArray(svc.features) && svc.features.length > 0)
+                ? svc.features
+                : (SERVICE_CAPABILITIES[svc.id] || [
+                  'L1 to L3 certified technical support',
+                  'Rapid global dispatch across 50+ countries',
+                  'Strict SLA compliance and transparent reporting',
+                  'Multi-vendor hardware integration'
+                ]);
+              const category = svc.category || SERVICE_CATEGORIES[svc.id] || 'Enterprise Service';
 
               return (
                 <article
